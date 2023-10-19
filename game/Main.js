@@ -3,9 +3,6 @@ var canvas = document.getElementById("renderCanvas");
 var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
 
-// Ajoutez des objets 3D à la scène
-var box = BABYLON.MeshBuilder.CreateBox("box", { size: 1 }, scene);
-
 // Configurez une caméra
 var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
 camera.setTarget(BABYLON.Vector3.Zero());
