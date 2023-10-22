@@ -1,6 +1,8 @@
+import DevCamera from '/DevCamera.js';
 var canvas = document.getElementById("renderCanvas");
 var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
+
 var name = "level2";
 
 function sceneData() {
@@ -9,7 +11,10 @@ function sceneData() {
     canvas.focus();
     
    // Configurez une caméra
-    createCamera();
+    //var camera =createCamera();
+    var camera = new DevCamera(canvas, scene);
+
+ 
     /*
     // Configurez une caméra
     var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
@@ -32,53 +37,14 @@ function sceneData() {
     cube.position = new BABYLON.Vector3(0, 1, 0);
 
 
-    // Appel de la fonction pour configurer les touches clavier
-    setupKeyboardInput();
-}
-function createCamera(){
-     // Configurez une caméra
-     var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
-     camera.setTarget(BABYLON.Vector3.Zero());
-     camera.attachControl();
- 
-
+    //camera.setupKeyboardInput();
 }
 
-function setupKeyboardInput() {
-    var keys = {};
 
-    // Écoutez les événements de clavier sur l'élément canvas
-    canvas.addEventListener('keydown', function (event) {
-        keys[event.key] = true;
-    });
+function moveForward(){
 
-    canvas.addEventListener('keyup', function (event) {
-        keys[event.key] = false;
-    });
 
-    engine.runRenderLoop(function () {
-        // Vérifiez l'état des touches ici
-        if (keys['z']) {
-            // Code à exécuter lorsque la touche Z est enfoncée
-            console.log('Touche Z enfoncée');
-        }
-        if (keys['s']) {
-            // Code à exécuter lorsque la touche S est enfoncée
-            console.log('Touche S enfoncée');
-        }
-        if (keys['q']) {
-            // Code à exécuter lorsque la touche Q est enfoncée
-            console.log('Touche Q enfoncée');
-        }
-        if (keys['d']) {
-            // Code à exécuter lorsque la touche D est enfoncée
-            console.log('Touche D enfoncée');
-        }
-
-       
-    });
 }
-
 function launch() {
     sceneData();
     engine.runRenderLoop(function () {

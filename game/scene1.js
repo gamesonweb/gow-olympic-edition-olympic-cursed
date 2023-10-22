@@ -4,9 +4,7 @@ var scene = new BABYLON.Scene(engine);
 var name = "level1";
 
 function sceneData() {
-    // Assurez-vous que l'élément canvas a le focus
-    canvas.tabIndex = 1;
-    canvas.focus();
+    
     // Configurez une caméra
     var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
     camera.setTarget(BABYLON.Vector3.Zero());
