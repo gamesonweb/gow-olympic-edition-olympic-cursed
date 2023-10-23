@@ -43,3 +43,4 @@ class PlayerCamera {
         });
     }
 }
+export default PlayerCamera;
