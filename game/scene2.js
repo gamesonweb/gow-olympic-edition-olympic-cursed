@@ -1,4 +1,5 @@
 import DevCamera from '/DevCamera.js';
+import PlayerCamera from '/PlayerCamera.js';
 var canvas = document.getElementById("renderCanvas");
 var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
@@ -12,8 +13,8 @@ function sceneData() {
     
    // Configurez une caméra
     //var camera =createCamera();
-    var camera = new DevCamera(canvas, scene);
-
+    //var camera = new DevCamera(canvas, scene);
+    var camera = new PlayerCamera(canvas, scene,engine);
  
 
     // Ajoutez une lumière

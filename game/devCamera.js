@@ -11,7 +11,17 @@ class DevCamera {
       
         return camera;
     }
+    
+    createCamera2(scene) {
+        var camera = new BABYLON.UniversalCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
+        camera.setTarget(BABYLON.Vector3.Zero());
+        camera.attachControl();
 
+        return camera;
+    }
+    fixMouse() {
+        
+    }
 
 }
 
