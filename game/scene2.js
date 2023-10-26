@@ -14,7 +14,7 @@ function sceneData() {
    // Configurez une caméra
     //var camera =createCamera();
     //var camera = new DevCamera(canvas, scene);
-    var camera = new PlayerCamera(canvas, scene,engine);
+    
  
 
     // Ajoutez une lumière
@@ -24,14 +24,16 @@ function sceneData() {
     var material = new BABYLON.StandardMaterial("blueMaterial", scene);
     material.diffuseColor = new BABYLON.Color3(1, 0, 0); // Couleur rouge
 
-
+   
     // Créez un cube avec le matériau
     var cube = BABYLON.MeshBuilder.CreateBox("blueCube", { size: 2 }, scene);
     cube.material = material;
-
+    
+   
     // Positionnez le cube où vous le souhaitez
     cube.position = new BABYLON.Vector3(0, 1, 0);
-
+    console.log(cube.position);
+    var camera = new PlayerCamera(canvas, scene,engine,cube);
 
     //camera.setupKeyboardInput();
 }
