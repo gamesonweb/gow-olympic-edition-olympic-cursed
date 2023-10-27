@@ -12,7 +12,7 @@ class PlayerCamera {
     createCamera(scene, canvas, target) {
         var camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(0, 5, -10), scene);
         
-        camera.setTarget(target); // Utilisez cette méthode pour définir la cible de la caméra
+        //camera.setTarget(target); // Utilisez cette méthode pour définir la cible de la caméra
     
         camera.inputs.clear();
         camera.inputs.addMouse();
@@ -40,7 +40,7 @@ class PlayerCamera {
     }
     createCamera3(scene, canvas, targetMesh) {
         var camera = new BABYLON.ArcRotateCamera("ArcRotateCamera", 0, 0, 10, targetMesh, scene);
-    
+        //camera.setTarget(targetMesh);
        
     
         camera.attachControl(canvas, true);

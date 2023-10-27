@@ -21,17 +21,21 @@ function sceneData() {
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
     // Créez un matériau pour le cube (bleu)
-    var material = new BABYLON.StandardMaterial("blueMaterial", scene);
+    var material = new BABYLON.StandardMaterial("redMaterial", scene);
     material.diffuseColor = new BABYLON.Color3(1, 0, 0); // Couleur rouge
 
    
     // Créez un cube avec le matériau
-    var cube = BABYLON.MeshBuilder.CreateBox("blueCube", { size: 2 }, scene);
+    var cube = BABYLON.MeshBuilder.CreateBox("redCube", { size: 2 }, scene);
     cube.material = material;
+    // Récupérer l'abstract mesh
+    //var mesh = cube.getMeshUniformBuffer();
+    // Afficher les informations de l'abstract mesh
     
+
    
     // Positionnez le cube où vous le souhaitez
-    cube.position = new BABYLON.Vector3(0, 1, 0);
+    cube.position = new BABYLON.Vector3(0, 100, 0);
     console.log(cube.position);
     var camera = new PlayerCamera(canvas, scene,engine,cube);
 
