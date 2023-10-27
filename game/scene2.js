@@ -1,3 +1,5 @@
+
+import CharacterController from './CharacterController.js';
 import DevCamera from '/DevCamera.js';
 import PlayerCamera from '/PlayerCamera.js';
 var canvas = document.getElementById("renderCanvas");
@@ -27,6 +29,7 @@ function sceneData() {
    
     // Créez un cube avec le matériau
     var cube = BABYLON.MeshBuilder.CreateBox("redCube", { size: 2 }, scene);
+    var floor = BABYLON.MeshBuilder.CreateBox("floor", { size: 200 }, scene);
     cube.material = material;
     // Récupérer l'abstract mesh
     //var mesh = cube.getMeshUniformBuffer();
@@ -35,10 +38,11 @@ function sceneData() {
 
    
     // Positionnez le cube où vous le souhaitez
+    floor.position = new BABYLON.Vector3(0, cube.position.y - 1, 0);
     cube.position = new BABYLON.Vector3(0, 100, 0);
     console.log(cube.position);
     var camera = new PlayerCamera(canvas, scene,engine,cube);
-
+    var character = new CharacterController(canvas, scene,engine,cube);
     //camera.setupKeyboardInput();
 }
 
