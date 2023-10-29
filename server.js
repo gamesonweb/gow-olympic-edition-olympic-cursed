@@ -31,7 +31,7 @@ app.use(express.static('public'));
 app.use(express.static('./view/css'));
 app.use(express.static('./view/img'));
 app.use(express.static('game'));
-
+app.use(express.static('game/models'));
 
 app.use(cookieSession({
   secret: 'mot-de-passe-du-cookie',
