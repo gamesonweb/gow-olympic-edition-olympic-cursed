@@ -22,7 +22,7 @@ function sceneData() {
     
     var map = new CustomModels(); 
     //map.CreateTree(0,110,0);
-    map.CreateObject(0,90,0)
+    map.CreateObject(0,-10,0)
     //map.CreateObject();
 
     // Ajoutez une lumière
@@ -45,11 +45,11 @@ function sceneData() {
    
     // Positionnez le cube où vous le souhaitez
     //floor.position = new BABYLON.Vector3(0, cube.position.y - 1, 0);
-    cube.position = new BABYLON.Vector3(0, 100, 0);
+    cube.position = new BABYLON.Vector3(0, 0, 0);
     // map.position = new BABYLON.Vector3(0, 110, 0);
     console.log(cube.position);
-    //var camera = new PlayerCamera(canvas, scene,engine,cube);
-    var devcamera = new DevCamera(canvas,scene)
+    var camera = new PlayerCamera(canvas, scene,engine,cube);
+    //var devcamera = new DevCamera(canvas,scene)
     var character = new CharacterController(canvas, scene,engine,cube);
     //camera.setupKeyboardInput();
 }
