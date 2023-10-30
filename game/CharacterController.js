@@ -20,18 +20,21 @@ class CharacterController{
     
         engine.runRenderLoop(() => {
             if (this.keys['z']) {
-                //console.log('Touche Z enfoncée');
-                character.position.z += 0.1;
-                console.log(character.position)
+                console.log('Touche Z enfoncée');
+                character.position.z -= 0.1;
+                //console.log(character.position)
             }
             if (this.keys['s']) {
                 console.log('Touche S enfoncée');
+                character.position.z += 0.1;
             }
             if (this.keys['q']) {
                 console.log('Touche Q enfoncée');
+                character.position.x += 0.1;
             }
             if (this.keys['d']) {
                 console.log('Touche D enfoncée');
+                character.position.x -= 0.1;
             }
         });
     }
