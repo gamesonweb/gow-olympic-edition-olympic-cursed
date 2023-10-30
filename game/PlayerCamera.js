@@ -1,71 +1,41 @@
 class PlayerCamera {
-    constructor(canvas, scene,engine,target) {
-        this.camera = this.createCamera2(scene,canvas,target);
-        //this.camera = this.createCamera3(scene,canvas);
-        //this.camera = this.createCamera(scene,canvas,target);
-       
-        this.lockPointer(scene,engine)
-      
+    constructor(canvas, scene, engine, target) {
+        this.camera = this.createCamera2(scene, canvas, target); // Crée la caméra de suivi et l'assigne à this.camera
+        this.lockPointer(scene, engine); // Appelle la fonction pour gérer le verrouillage du pointeur
     }
 
-
+    // Crée une caméra universelle
     createCamera(scene, canvas, target) {
         var camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(0, 5, -10), scene);
-        
+
         //camera.setTarget(target); // Utilisez cette méthode pour définir la cible de la caméra
-    
+
         camera.inputs.clear();
         camera.inputs.addMouse();
         camera.attachControl(canvas, true);
-        
+
         return camera;
     }
-    
-    
-    createCamera2(scene, canvas,targetMesh) {
-        var followCamera = new BABYLON.FollowCamera("FollowCam", new BABYLON.Vector3(0, 0, -10), scene,targetMesh);
-        //camera.setTarget(BABYLON.Vector3.Zero());
-        //followCamera.target = targetMesh; // Définissez la cible de la caméra
-    
-       /* camera.inputs.clear();
-        camera.inputs.addMouse();*/
-        /*
-        followCamera.radius = 5; // Distance à la cible
-        followCamera.heightOffset = 3; // Hauteur par rapport à la cible
-        followCamera.rotationOffset = 0; // Angle initial de la caméra*/
+
+    // Crée une caméra de suivi
+    createCamera2(scene, canvas, targetMesh) {
+        var followCamera = new BABYLON.FollowCamera("FollowCam", new BABYLON.Vector3(0, 0, -10), scene, targetMesh);
 
         followCamera.attachControl(canvas, true);
-        
+
         return followCamera;
     }
+
+    // Crée une caméra ArcRotate
     createCamera3(scene, canvas, targetMesh) {
         var camera = new BABYLON.ArcRotateCamera("ArcRotateCamera", 0, 0, 10, targetMesh, scene);
-        //camera.setTarget(targetMesh);
-       
-    
+
         camera.attachControl(canvas, true);
-    
+
         return camera;
     }
-    
-    
 
-    setupPointerLock() {
-        canvas.addEventListener("click", () => {
-            canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock || canvas.webkitRequestPointerLock;
-            canvas.requestPointerLock();
-        });
-
-        document.addEventListener("pointerlockchange", () => {
-            if (document.pointerLockElement === canvas) {
-                // Le pointeur est verrouillé, vous pouvez gérer l'entrée ici
-            } else {
-                // Le pointeur n'est pas verrouillé
-            }
-        });
-    }
-   
-    
+    // Configure le verrouillage du pointeur
     lockPointer(scene, engine) {
         scene.onPointerDown = (evt) => {
             if (evt.button === 0) {
@@ -75,7 +45,6 @@ class PlayerCamera {
             }
         };
     }
-    
-
 }
+
 export default PlayerCamera;
