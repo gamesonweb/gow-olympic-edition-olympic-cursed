@@ -3,8 +3,14 @@ var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
 var name = "level1";
 
+import { CustomModels } from './CustomModels.js';
 function sceneData() {
+    //activer la physique sur la scene 
+    var physicsEngine = new BABYLON.CannonJSPlugin();
+    scene.enablePhysics(new BABYLON.Vector3(0, -9.81, 0), physicsEngine);
+    scene.collisionsEnabled = true;
     
+   
     // Configurez une caméra
     var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
     camera.setTarget(BABYLON.Vector3.Zero());
