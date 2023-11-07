@@ -48,15 +48,15 @@ function sceneData() {
     // Créez un cube avec le matériau
     var cube = BABYLON.MeshBuilder.CreateBox("redCube", { size: 2 }, scene);
     // Ajouter une imposture de physique pour activer les collisions et définir la masse à 1 
-    /*
+    
     cube.physicsImpostor = new BABYLON.PhysicsImpostor(
         cube,
         BABYLON.PhysicsImpostor.BoxImpostor,
         { mass: 0, friction: 0.5, restitution: 1, resolution: 0.1 },
         scene
-    );*/
+    );
     cube.material = material;
-/*
+
 
     var cube2 = BABYLON.MeshBuilder.CreateBox("redCube", { size: 2 }, scene);
     cube2.position = new BABYLON.Vector3(0, 1.1, 0);
@@ -69,7 +69,7 @@ function sceneData() {
     );
    
 
-*/
+
     //physique cube 
 
     // Récupérer l'abstract mesh
