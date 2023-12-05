@@ -28,6 +28,8 @@ function sceneData() {
 
     // Positionnez le cube où vous le souhaitez
     cube.position = new BABYLON.Vector3(0, 1, 0);
+    var tree = new CustomModels();
+    tree.CreateTree(10,1,0)
 }
 
 function launch() {

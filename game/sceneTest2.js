@@ -30,11 +30,15 @@ function sceneData() {
         { mass: 1, friction: 0.5, restitution: 1, resolution: 0.1 },
         scene
     );
+    var place = new CustomModels();
+    //place.CreateObject3(0,0,3,scene);
+
     var tree = new CustomModels();
-    tree.CreateObject(0,0,3);
+    tree.CreateTree3(0,0,3,scene);
     //tree.CreateTree(0,5,3)
 
     // Créer un sol
+    
     var ground = BABYLON.Mesh.CreateGround("ground", 20, 20, 2, scene);
     ground.physicsImpostor = new BABYLON.PhysicsImpostor(
         ground,
@@ -42,6 +46,7 @@ function sceneData() {
         { mass: 0, friction: 0.5, restitution: 0.7 },
         scene
     );
+    
 
     // Créer une sphère
     var sphere = BABYLON.Mesh.CreateSphere("sphere", 16, 2, scene);

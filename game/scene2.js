@@ -86,7 +86,7 @@ function sceneData() {
 
     var camera = new PlayerCamera(canvas, scene,engine,cube);
     camera.checkCollisions = true
-    //var devcamera = new DevCamera(canvas,scene)
+    var devcamera = new DevCamera(canvas,scene)
     var character = new CharacterController(canvas, scene,engine,cube);
     //character.setupKeyboardInput();
     //camera.setupKeyboardInput();
