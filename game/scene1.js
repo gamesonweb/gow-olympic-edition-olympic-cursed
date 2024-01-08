@@ -14,7 +14,7 @@ function sceneData() {
     // Configurez une caméra
     var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
     camera.setTarget(BABYLON.Vector3.Zero());
-
+    camera.attachControl();
     // Ajoutez une lumière
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
@@ -26,10 +26,11 @@ function sceneData() {
     var cube = BABYLON.MeshBuilder.CreateBox("blueCube", { size: 2 }, scene);
     cube.material = material;
 
+    //var devcamera = new DevCamera(canvas, scene);
     // Positionnez le cube où vous le souhaitez
-    cube.position = new BABYLON.Vector3(0, 1, 0);
+    cube.position = new BABYLON.Vector3(0, 1, 20);
     var tree = new CustomModels();
-    tree.CreateTree(10,1,0)
+    tree.CreateTree(0,1,20)
 }
 
 function launch() {

@@ -5,7 +5,6 @@ import DevCamera from '/DevCamera.js';
 import PlayerCamera from '/PlayerCamera.js';
 //import { SceneLoader } from "@babylonjs/core";
 
-
 var canvas = document.getElementById("renderCanvas");
 var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
@@ -22,6 +21,7 @@ function sceneData() {
 
     var cube = BABYLON.MeshBuilder.CreateBox("redCube", { size: 2 }, scene);
     cube.position = new BABYLON.Vector3(0, 5, 0);
+    //cube.rotation = new BABYLON.Vector3(20,20,0);
     // Ajouter une imposture de physique pour activer les collisions et définir la masse à 1 
     
     cube.physicsImpostor = new BABYLON.PhysicsImpostor(
@@ -30,25 +30,27 @@ function sceneData() {
         { mass: 1, friction: 0.5, restitution: 1, resolution: 0.1 },
         scene
     );
+    //cube.rotate()
     var place = new CustomModels();
-    //place.CreateObject3(0,0,3,scene);
+   
 
     var tree = new CustomModels();
+  
+    tree.CreateTree(0,0,-15);
+    
     var sceneprod = new CustomModels();
-    tree.CreateTree(0,0,0);
-    //tree.CreateObject(0,0,3);
     sceneprod.plane(0,0,3,scene);
-    // Créer un sol
     
-    var ground = BABYLON.Mesh.CreateGround("ground", 20, 20, 2, scene);
-    ground.physicsImpostor = new BABYLON.PhysicsImpostor(
-        ground,
-        BABYLON.PhysicsImpostor.BoxImpostor,
-        { mass: 0, friction: 0.5, restitution: 0.7 },
-        scene
-    );
-    
+    var plane2 = new CustomModels();
+    plane2.plane(0,0,-15,scene);
 
+
+
+        
+
+   
+    
+    /*        
     // Créer une sphère
     var sphere = BABYLON.Mesh.CreateSphere("sphere", 16, 2, scene);
     sphere.position = new BABYLON.Vector3(0, 10, 0); // Positionnez la sphère en hauteur
@@ -58,18 +60,15 @@ function sceneData() {
         { mass: 1, friction: 0.5, restitution: 0.7 },
         scene
     );
-
-    // Créez un matériau pour le sol (par exemple, blanc)
-    var groundMaterial = new BABYLON.StandardMaterial("groundMaterial", scene);
-    groundMaterial.diffuseColor = new BABYLON.Color3(0.92, 0.29, 0.28); // Rouge doux
-
-    ground.material = groundMaterial;
-
-    // Créez un matériau pour la sphère (par exemple, bleu)
-    var sphereMaterial = new BABYLON.StandardMaterial("sphereMaterial", scene);
-    sphereMaterial.diffuseColor = new BABYLON.Color3(0, 0, 1); // Couleur bleue
-    sphere.material = sphereMaterial;
     
+
+     // Créez un matériau pour la sphère (par exemple, bleu)
+     var sphereMaterial = new BABYLON.StandardMaterial("sphereMaterial", scene);
+     sphereMaterial.diffuseColor = new BABYLON.Color3(0, 0, 1); // Couleur bleue
+     sphere.material = sphereMaterial;
+     */
+    // Créez un matériau pour le sol (par exemple, blanc)
+    //var playerCamera = new PlayerCamera(canvas,scene,engine,cube)
     var devcamera = new DevCamera(canvas, scene);
     var character = new CharacterController(canvas, scene,engine,cube);
 }
