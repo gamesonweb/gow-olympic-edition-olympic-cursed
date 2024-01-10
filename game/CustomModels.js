@@ -65,11 +65,11 @@ export class CustomModels {
             tree.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
         
             //BOITE DE COLLISION
-            boundingBox = BABYLON.MeshBuilder.CreateBox("boundingBox", { size: 4 }, this.scene);
+            boundingBox = BABYLON.MeshBuilder.CreateBox("boundingBox", { size: 1 }, this.scene);
     
             boundingBox.isVisible = false;
             
-            boundingBox.scaling = new BABYLON.Vector3(0.5,3,0.5);
+           
             boundingBox.position =  new BABYLON.Vector3(x, y, z);
             
             boundingBox.physicsImpostor = new BABYLON.PhysicsImpostor(
@@ -79,8 +79,8 @@ export class CustomModels {
                 this.scene
          
             );
-            
-           
+            tronc.addChild(boundingBox);
+            boundingBox.scaling = new BABYLON.Vector3(0.041,-0.209,0.034);
 
         
             
@@ -90,58 +90,8 @@ export class CustomModels {
         return { boundingBox };
     }
     
-   
-    CreateTreeColision(x, y, z) {
-        let tree;
-        BABYLON.SceneLoader.ImportMesh("", "./models/", "tree.babylon", this.scene, (meshes) => {
-            console.log("Chargement réussi", meshes);
-            tree = meshes[0];
-            //tree.physicsImpostor = new BABYLON.PhysicsImpostor(tree, BABYLON.PhysicsImpostor.MeshImpostor, { mass: 0, restitution: 0.9, ignoreParent: true }, this.scene);
-            tree.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux coordonnées spécifiées
-          
-        }, undefined, undefined, ".glb");
+  
     
-    }
-    
-    
-    CreateTree2(x, y, z) {
-        let tree;
-        BABYLON.SceneLoader.ImportMesh("", "./models/", "Tree.glb", this.scene, (meshes) => {
-        console.log("Chargement réussi", meshes);
-    
-        // Parcourir tous les meshes
-        for (let i = 0; i < meshes.length; i++) {
-            // Créer un nouveau physics impostor
-            let physicsImpostor = new BABYLON.PhysicsImpostor(
-            meshes[i],
-            BABYLON.PhysicsImpostor.MeshImpostor,
-            { mass: 1, friction: 0.5, restitution: 0.1 },
-            this.scene
-            );
-    
-            // Attacher le physics impostor au mesh
-            meshes[i].physicsImpostor = physicsImpostor;
-        }
-        }, undefined, undefined, ".glb");
-    }
-    // Crée un modèle d'arbre 3D et le positionne aux coordonnées spécifiées (x, y, z)
-    CreateTree3(x, y, z,scene) {
-        let tree;
-        BABYLON.SceneLoader.ImportMesh("", "./models/", "Tree.glb", scene, (meshes) => {
-            console.log("Chargement réussi", meshes);
-            tree = meshes[0];
-            tree.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux coordonnées spécifiées
-
-            tree.physicsImpostor = new BABYLON.PhysicsImpostor(
-                tree,
-                BABYLON.PhysicsImpostor.MeshImpostor,
-                { mass: 1, friction: 0.5, restitution: 0.7 },
-                scene
-            );
-        
-        }, undefined, undefined, ".glb");
-    }
-
    
     async CreateSceneProd(x, y, z) {
        
