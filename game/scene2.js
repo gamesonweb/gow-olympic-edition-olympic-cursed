@@ -15,7 +15,7 @@ function sceneData() {
     // Ajoutez une lumière hémisphérique
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
     // Activer la physique sur la scène
-    var physicsEngine = new BABYLON.CannonJSPlugin();
+    var physicsEngine = new BABYLON.CannonJSPlugin(true,10);
     scene.enablePhysics(new BABYLON.Vector3(0, -9.81, 0), physicsEngine);
     scene.collisionsEnabled = true;
 
@@ -30,12 +30,18 @@ function sceneData() {
         { mass: 1, friction: 0.5, restitution: 1, resolution: 0.1 },
         scene
     );
+
+  
+   scene.debugLayer.show();
+
+
     var place = new CustomModels();
     //place.CreateObject3(0,0,3,scene);
 
     var tree = new CustomModels();
-
-    tree.CreateTree(0,0,-15);
+    tree.CreateTree(0,0,-15 );
+       
+    
     //tree.CreateObject(0,0,3);
 
     // Créer un sol

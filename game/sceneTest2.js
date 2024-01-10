@@ -27,7 +27,7 @@ function sceneData() {
     cube.physicsImpostor = new BABYLON.PhysicsImpostor(
         cube,
         BABYLON.PhysicsImpostor.BoxImpostor,
-        { mass: 1, friction: 0.5, restitution: 1, resolution: 0.1 },
+        { mass: 1, friction: 0.5, restitution: 0, resolution: 0.1 },
         scene
     );
     var place = new CustomModels();

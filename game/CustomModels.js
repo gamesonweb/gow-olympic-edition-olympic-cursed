@@ -1,4 +1,5 @@
 
+
 export class CustomModels {
 
     constructor(scene) {
@@ -44,35 +45,51 @@ export class CustomModels {
     
       
       
-    CreateObject3(x, y, z,scene) {
-        let obj;
-        BABYLON.SceneLoader.ImportMesh("", "./models/", "test_Scene.glb", scene, (meshes) => {
-            console.log("Chargement réussi", meshes);
-            obj = meshes[0];
-            obj.position = new BABYLON.Vector3(x, y, z); // Positionne l'objet
-            
-            obj.physicsImpostor = new BABYLON.PhysicsImpostor(
-                obj,
-                BABYLON.PhysicsImpostor.MeshImpostor,
-                { mass: 1, friction: 0.5, restitution: 0.7 },
-                scene
-            );
-        }, undefined, undefined, ".glb");
-    }
     
     
     // Crée un modèle d'arbre 3D et le positionne aux coordonnées spécifiées (x, y, z)
     CreateTree(x, y, z) {
         let tree;
-       
+        let boundingBox;
+        let tronc;
+        // Load the tree model
         BABYLON.SceneLoader.ImportMesh("", "./models/", "Tree.glb", this.scene, (meshes) => {
             console.log("Chargement réussi arbre", meshes);
+           
             tree = meshes[0];
-            //tree.physicsImpostor = new BABYLON.PhysicsImpostor(tree, BABYLON.PhysicsImpostor.MeshImpostor, { mass: 0, restitution: 0.9, ignoreParent: true }, this.scene);
-            tree.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux coordonnées spécifiées
+            tronc = meshes[1];
+            
+            console.log(tree.name)
+            console.log(tronc.name)
+
+            tree.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+        
+            //BOITE DE COLLISION
+            boundingBox = BABYLON.MeshBuilder.CreateBox("boundingBox", { size: 4 }, this.scene);
+    
+            boundingBox.isVisible = false;
+            
+            boundingBox.scaling = new BABYLON.Vector3(0.5,3,0.5);
+            boundingBox.position =  new BABYLON.Vector3(x, y, z);
+            
+            boundingBox.physicsImpostor = new BABYLON.PhysicsImpostor(
+                boundingBox,
+                BABYLON.PhysicsImpostor.BoxImpostor,
+                { mass: 0, restitution: 1},
+                this.scene
+         
+            );
+            
+           
+
+        
+            
           
         }, undefined, undefined, ".glb");
+    
+        return { boundingBox };
     }
+    
    
     CreateTreeColision(x, y, z) {
         let tree;
