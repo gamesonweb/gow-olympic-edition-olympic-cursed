@@ -1,4 +1,8 @@
 
+//import { ColliderGestionner } from "./ColliderGestionner";
+
+//import { ColliderGestionner } from "/ColliderGestionner";
+
 
 export class CustomModels {
 
@@ -52,24 +56,32 @@ export class CustomModels {
         let tree;
         let boundingBox;
         let tronc;
+       // let  collider = new ColliderGestionner(this.scene);
+       //let  collidxer  = new ColliderGestionner();
         // Load the tree model
         BABYLON.SceneLoader.ImportMesh("", "./models/", "Tree.glb", this.scene, (meshes) => {
             console.log("Chargement réussi arbre", meshes);
-           
+         
             tree = meshes[0];
             tronc = meshes[1];
             
-            console.log(tree.name)
-            console.log(tronc.name)
-
+            
             tree.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
-        
+            
             //BOITE DE COLLISION
             boundingBox = BABYLON.MeshBuilder.CreateBox("boundingBox", { size: 1 }, this.scene);
     
             boundingBox.isVisible = false;
             
-           
+           /*
+            tronc.physicsImpostor =  new BABYLON.PhysicsImpostor(
+                tronc,
+                BABYLON.PhysicsImpostor.MeshImpostor,
+                { mass: 0, restitution: 1},
+                this.scene
+         
+            );*/
+            /*
             boundingBox.position =  new BABYLON.Vector3(x, y, z);
             
             boundingBox.physicsImpostor = new BABYLON.PhysicsImpostor(
@@ -79,11 +91,13 @@ export class CustomModels {
                 this.scene
          
             );
+          
             tronc.addChild(boundingBox);
             boundingBox.scaling = new BABYLON.Vector3(0.041,-0.209,0.034);
-
+              */
+            //boundingBox = collider.createBoudingBox(tronc,x,y,z,0.041,-0.209,0.034);
         
-            
+           //return boundingBox;
           
         }, undefined, undefined, ".glb");
     
@@ -109,12 +123,14 @@ export class CustomModels {
 
         var ground = BABYLON.Mesh.CreateGround("ground", 20, 20, 2, scene);
         //create physic impostor
+        var groundAggregate =new BABYLON.PhysicsAggregate(ground, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, scene);
+        /*
         ground.physicsImpostor = new BABYLON.PhysicsImpostor(
             ground,
             BABYLON.PhysicsImpostor.BoxImpostor,
             { mass: 0, friction: 0.5, restitution: 0 },
             scene
-        );
+        );*/
         // create Materials
         var groundMaterial = new BABYLON.StandardMaterial("groundMaterial", scene);
         groundMaterial.diffuseColor = new BABYLON.Color3(0.92, 0.29, 0.28); // Rouge doux
