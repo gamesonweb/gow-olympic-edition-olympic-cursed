@@ -6,7 +6,7 @@ export class TriggerEvent {
     }
 
     endOfTheGame(obj) {
-        
+       // obj.intersect
     }
 
     

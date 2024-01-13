@@ -31,14 +31,11 @@ function sceneData() {
         scene
     );
     var place = new CustomModels();
-    //place.CreateObject3(0,0,3,scene);
-
+  
     var tree = new CustomModels();
     var sceneprod = new CustomModels();
-    tree.CreateTree(0,0,0);
-    //tree.CreateObject(0,0,3);
-    sceneprod.plane(0,0,3,scene);
-    // Créer un sol
+    
+    
     
     var ground = BABYLON.Mesh.CreateGround("ground", 20, 20, 2, scene);
     ground.physicsImpostor = new BABYLON.PhysicsImpostor(
@@ -51,7 +48,7 @@ function sceneData() {
 
     // Créer une sphère
     var sphere = BABYLON.Mesh.CreateSphere("sphere", 16, 2, scene);
-    sphere.position = new BABYLON.Vector3(0, 10, 0); // Positionnez la sphère en hauteur
+    sphere.position = new BABYLON.Vector3(0, 10, 0); // Positionnez la sphère en c
     sphere.physicsImpostor = new BABYLON.PhysicsImpostor(
         sphere,
         BABYLON.PhysicsImpostor.SphereImpostor,
@@ -69,7 +66,7 @@ function sceneData() {
     var sphereMaterial = new BABYLON.StandardMaterial("sphereMaterial", scene);
     sphereMaterial.diffuseColor = new BABYLON.Color3(0, 0, 1); // Couleur bleue
     sphere.material = sphereMaterial;
-    
+    //activer la camera libre et le script de deplacement de personnage
     var devcamera = new DevCamera(canvas, scene);
     var character = new CharacterController(canvas, scene,engine,cube);
 }

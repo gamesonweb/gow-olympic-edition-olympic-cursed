@@ -29,8 +29,7 @@ function sceneData() {
     //var devcamera = new DevCamera(canvas, scene);
     // Positionnez le cube où vous le souhaitez
     cube.position = new BABYLON.Vector3(0, 1, 20);
-    var tree = new CustomModels();
-    tree.CreateTree(0,1,20)
+
 }
 
 function launch() {
