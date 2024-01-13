@@ -19,7 +19,7 @@ async function getInitializedHavok() {
 
 async function sceneData() {
     
-    // Ajoutez une lumière hémisphérique
+    // Ajoutez une lumière hémisphériques
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
     // Activer la physique sur la scène
     //var physicsEngine = new BABYLON.CannonJSPlugin(true,10);
