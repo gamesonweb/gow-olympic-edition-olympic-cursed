@@ -72,14 +72,7 @@ async function sceneData() {
     });*/
     
     
-        
-    hk.onTriggerCollisionObservable.add((ev) => {
-        // console.log(ev);
-        console.log(ev.type, ':', ev.collider.transformNode.name, '-', ev.collidedAgainst.transformNode.name);
-        if(ev.collidedAgainst.transformNode.name =="tronc"){
-                console.log("End OF the Game")
-        }
-    });
+    eventHandler(hk);
    
 }
 
@@ -148,6 +141,16 @@ function testPlayer(){
   
 
     
+}
+function eventHandler(hk){
+    
+    hk.onTriggerCollisionObservable.add((ev) => {
+        // console.log(ev);
+        console.log(ev.type, ':', ev.collider.transformNode.name, '-', ev.collidedAgainst.transformNode.name);
+        if(ev.collidedAgainst.transformNode.name =="tronc"){
+                console.log("End OF the Game")
+        }
+    });
 }
 
 export { name, scene, sceneData, launch };
