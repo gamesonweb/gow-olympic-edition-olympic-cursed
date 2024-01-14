@@ -93,7 +93,7 @@ export class CustomModels {
         
         //add material to the object
         ground.material = groundMaterial;
-        console.log(ground);
+        //console.log(ground);
      
     }
 

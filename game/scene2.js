@@ -22,13 +22,12 @@ async function sceneData() {
     
     // Ajoutez une lumière hémisphériques
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
-    // Activer la physique sur la scène
-    //var physicsEngine = new BABYLON.CannonJSPlugin(true,10);
+
  
     const havokInstance = await HavokPhysics();
     // pass the engine to the plugin
     const hk = new BABYLON.HavokPlugin(true, havokInstance);
-    ////var physicsEngine =  new BABYLON.HavokPlugin()
+   
     
     scene.enablePhysics(new BABYLON.Vector3(0, -9.81, 0),  hk);
     scene.collisionsEnabled = true;
@@ -38,10 +37,12 @@ async function sceneData() {
     sceneprod.plane(0,0,-10,10,50,scene);
     
     var plane2 = new CustomModels();
-    //plane2.plane(0,0,-15,10,10,scene);
 
-    console.log()
-    testPlayer();
+
+
+    //testPlayer()
+    let player =testPlayer();
+    
     
     var tree = new CustomModels();
     tree.CreateTree(0,0,-15 );
@@ -69,23 +70,19 @@ async function sceneData() {
     /*
     hk.onCollisionObservable.add((ev) => {
         console.log(ev.type);
-    });*/
-    
+    });*/ 
+   
+    let playerMesh = scene.getMeshByUniqueId(6);
+    //console.log(scene.getMeshByName("player"));
+    //console.log(scene.getMeshByUniqueId(6));
     
     eventHandler(hk);
-   
+   return playerMesh;
 }
 
 
 
-function launch() {
-    sceneData();
-    const camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
-    camera.attachControl(canvas, true);
-    engine.runRenderLoop(function () {
-        scene.render();
-    });
-}
+
 
 function getScene() {
     return scene;
@@ -113,7 +110,7 @@ function testPlayer(){
     var boxH = 2;
     var boxD = 2;
     
-    var box = BABYLON.MeshBuilder.CreateBox("box", {width: boxW, height: boxH, depth: boxD});
+    var box = BABYLON.MeshBuilder.CreateBox("player", {width: boxW, height: boxH, depth: boxD});
    
     box.rotationQuaternion = BABYLON.Quaternion.Identity();
     box.position = new BABYLON.Vector3(0,5,0);
@@ -138,7 +135,7 @@ function testPlayer(){
   
 
     
-  
+    return box;
 
     
 }
@@ -150,6 +147,29 @@ function eventHandler(hk){
         if(ev.collidedAgainst.transformNode.name =="tronc"){
                 console.log("End OF the Game")
         }
+    });
+}
+
+function launch() {
+   
+    //var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
+    var camera = new PlayerCamera();
+    var camera = new BABYLON.FollowCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
+    camera.attachControl(); // Attache les contrôles de la caméra au canvas de la scène
+    
+        
+ 
+    sceneData().then(playerMesh => {
+        console.log(playerMesh); // Utilisez playerMesh comme nécessaire
+        camera.lockedTarget = playerMesh;
+        
+    }).catch(error => {
+        console.error(error);
+    });
+
+
+    engine.runRenderLoop(function () {
+        scene.render();
     });
 }
 

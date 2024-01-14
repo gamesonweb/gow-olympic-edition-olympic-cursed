@@ -18,7 +18,7 @@ class PlayerCamera {
     }
 
     // Crée une caméra de suivi
-    createCamera2(scene, canvas, targetMesh) {
+    createCameraFollow(scene, canvas, targetMesh) {
         var followCamera = new BABYLON.FollowCamera("FollowCam", new BABYLON.Vector3(0, 0, -10), scene, targetMesh);
 
         followCamera.attachControl(canvas, true);
