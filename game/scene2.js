@@ -66,14 +66,17 @@ async function sceneData() {
 
     // Créer un sol
 
-    
+    /*
     hk.onCollisionObservable.add((ev) => {
         console.log(ev.type);
-    });
+    });*/
     
     
         
-    
+    hk.onTriggerCollisionObservable.add((ev) => {
+        // console.log(ev);
+        console.log(ev.type, ':', ev.collider.transformNode.name, '-', ev.collidedAgainst.transformNode.name);
+    });
    
 }
 
@@ -134,19 +137,15 @@ function testPlayer(){
     let control = new CharacterController(canvas,scene,engine,boxBody);
 
     //setCollisioncallback
+    
     boxBody.setCollisionCallbackEnabled(true)
     const observable = boxBody.getCollisionObservable();
     const observer = observable.add((collisionEvent) => {
-        console.log(collisionEvent);
+        //console.log(collisionEvent.collidedAgainst);
         // Process collisions for the player
     });
-    /*//test
-    box.onCollide = function(m) {
-        if (m.id == 11)  console.log("un collide");
-   
-       
-    };*/
 
+    
   
 
     

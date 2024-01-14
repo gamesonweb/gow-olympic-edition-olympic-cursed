@@ -33,11 +33,24 @@ export class CustomModels {
             
 
             var troncAggregate =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
-      
+            troncAggregate.shape.isTrigger =  true;
+
+            const observable = plugin.onTriggerCollisionObservable;
+            const observer = observable.add((collisionEvent) => {
+                if (collisionEvent.type === "TRIGGER_ENTERED") {
+                    // do something when the trigger is entered
+                    console.log("i entered");
+                } else {
+                    // do something when trigger is exited
+                }
+            });
+            
         
            //return boundingBox;
           
         }, undefined, undefined, ".glb");
+
+     
     
         return { boundingBox };
     }
