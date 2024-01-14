@@ -27,13 +27,13 @@ export class CustomModels {
             tronc = meshes[1];
             
             
+           
             tree.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
             
             
 
             var troncAggregate =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
-            
-          
+      
         
            //return boundingBox;
           

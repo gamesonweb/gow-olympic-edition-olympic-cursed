@@ -1,6 +1,7 @@
 
 import CharacterController from './CharacterController.js';
 import { CustomModels } from './CustomModels.js';
+import { TriggerEvent } from './trigger.js';
 import DevCamera from '/DevCamera.js';
 import PlayerCamera from '/PlayerCamera.js';
 //import { SceneLoader } from "@babylonjs/core";
@@ -64,9 +65,13 @@ async function sceneData() {
     //tree.CreateObject(0,0,3);
 
     // Créer un sol
-    
-   
 
+    
+    hk.onCollisionObservable.add((ev) => {
+        console.log(ev.type);
+    });
+    
+    
         
     
    
@@ -127,6 +132,22 @@ function testPlayer(){
     blueMaterial.diffuseColor = new BABYLON.Color3(0, 0, 1); // Rouge doux
     box.material = blueMaterial;
     let control = new CharacterController(canvas,scene,engine,boxBody);
+
+    //setCollisioncallback
+    boxBody.setCollisionCallbackEnabled(true)
+    const observable = boxBody.getCollisionObservable();
+    const observer = observable.add((collisionEvent) => {
+        console.log(collisionEvent);
+        // Process collisions for the player
+    });
+    /*//test
+    box.onCollide = function(m) {
+        if (m.id == 11)  console.log("un collide");
+   
+       
+    };*/
+
+  
 
     
 }
