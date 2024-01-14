@@ -25,7 +25,7 @@ export class CustomModels {
          
             tree = meshes[0];
             tronc = meshes[1];
-            
+            tronc.name ="tronc"
             
            
             tree.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
@@ -35,6 +35,11 @@ export class CustomModels {
             var troncAggregate =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
             troncAggregate.shape.isTrigger =  true;
 
+            
+            var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
+            //troncAggregate.shape.isTrigger =  true;
+
+            /*
             const observable = plugin.onTriggerCollisionObservable;
             const observer = observable.add((collisionEvent) => {
                 if (collisionEvent.type === "TRIGGER_ENTERED") {
@@ -43,7 +48,7 @@ export class CustomModels {
                 } else {
                     // do something when trigger is exited
                 }
-            });
+            });*/
             
         
            //return boundingBox;

@@ -76,6 +76,9 @@ async function sceneData() {
     hk.onTriggerCollisionObservable.add((ev) => {
         // console.log(ev);
         console.log(ev.type, ':', ev.collider.transformNode.name, '-', ev.collidedAgainst.transformNode.name);
+        if(ev.collidedAgainst.transformNode.name =="tronc"){
+                console.log("End OF the Game")
+        }
     });
    
 }
@@ -139,11 +142,7 @@ function testPlayer(){
     //setCollisioncallback
     
     boxBody.setCollisionCallbackEnabled(true)
-    const observable = boxBody.getCollisionObservable();
-    const observer = observable.add((collisionEvent) => {
-        //console.log(collisionEvent.collidedAgainst);
-        // Process collisions for the player
-    });
+  
 
     
   
