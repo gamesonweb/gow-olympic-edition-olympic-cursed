@@ -34,111 +34,23 @@ async function sceneData() {
     
 
     var sceneprod = new CustomModels();
-    sceneprod.plane(0,0,3,scene);
+    sceneprod.plane(0,0,-10,10,50,scene);
     
     var plane2 = new CustomModels();
-    plane2.plane(0,0,-15,scene);
+    //plane2.plane(0,0,-15,10,10,scene);
 
-
-    var cube = BABYLON.MeshBuilder.CreateBox("blueCube", { size: 2 }, scene);
-    cube.position = new BABYLON.Vector3(0, 5, 0);
-    //material
-    var groundMaterial = new BABYLON.StandardMaterial("groundMaterial", scene);
-    groundMaterial.diffuseColor = new BABYLON.Color3(0, 0, 1); // Rouge doux
-    cube.material = groundMaterial;
-    // Ajouter une imposture de physique pour activer les collisions et définir la masse à 1 
-    /*
-    cube.physicsImpostor = new BABYLON.PhysicsImpostor(
-        cube,
-        BABYLON.PhysicsImpostor.BoxImpostor,
-        { mass: 1, friction: 0.5, restitution: 1, resolution: 0.1 },
-        scene
-    );*/
-    //var otherMesh = scene.getMeshByName("boundingBox");
+    console.log()
+    testPlayer();
+    
     var tree = new CustomModels();
     tree.CreateTree(0,0,-15 );
-    //var otherMesh = tree.CreateTree(0,0,-15 );
-        let otherMesh;
-    //get meshes
-   // var otherMesh = scene.getMeshByName("boundingBox");
-    //var otherMesh = scene.getMeshById(21);
-    var mesh = scene.getMeshByName("blueCube");
-    mesh.actionManager = new BABYLON.ActionManager(scene);
-   
-    console.log(otherMesh);
-    console.log(mesh);
+
+      
 
     //var devcamera = new DevCamera(canvas, scene);
-    var character = new CharacterController(canvas, scene,engine,cube);
+   
     // This creates and positions a free camera (non-mesh)
 
-
-
-         
-
-        /*
-    mesh.actionManager.registerAction(
-        new BABYLON.ExecuteCodeAction(
-            BABYLON.ActionManager.OnPickTrigger,
-            function () {
-                // Code à exécuter lors du clic sur l'objet
-                console.log("enter")
-            }
-        )
-    );
-           
-    mesh.actionManager.registerAction(
-        new BABYLON.ExecuteCodeAction(
-            BABYLON.ActionManager.OnIntersectionEnterTrigger,
-            function () {
-                // Code à exécuter lors du clic sur l'objet
-                console.log("enter")
-            }
-        )
-    ); */
-    
-   
-                /*
-     // Définition de l'action avec OnIntersectionEnterTrigger
-     mesh.actionManager.registerAction(new BABYLON.ExecuteCodeAction(
-        {
-            trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger,
-            parameter: {
-                mesh: otherMesh, // mesh cible de l'intersection
-                usePreciseIntersection: true // optionnel pour des calculs de collision plus précis
-            }
-        },
-        function () {
-            console.log("mesh1 a intersecté avec mesh2");
-            // Ajoutez ici le code à exécuter lors de l'intersection
-        }
-        ));
-            */
-        // Détecter l'intersection dans la boucle de rendu
-        /*
-        scene.onBeforeRenderObservable.add(() => {
-            if (mesh.intersectsMesh(otherMesh, true)) {
-                // Code à exécuter lors de l'intersection
-                console.log('mesh1 a intersecté avec mesh2');
-            }
-        });*/
-       /*
-        
-        if (mesh.intersectsMesh(otherMesh,false)) {
-            // Code à exécuter lors de l'intersection
-            console.log('mesh1 a intersecté avec mesh2');
-        }*/
-    /*
-    mesh.actionManager.registerAction(
-        new BABYLON.ExecuteCodeAction(
-            BABYLON.ActionManager.OnPickTrigger,
-            function () {
-                // Code à exécuter lors du clic sur l'objet
-                console.log("enter")
-            }
-        )
-    );
-         */ 
   //montrer le layer
    scene.debugLayer.show();
    
@@ -173,6 +85,50 @@ function launch() {
 
 function getScene() {
     return scene;
+}
+
+function testphysics2(){
+   
+    var boxW = 2;
+    var boxH = 2;
+    var boxD = 2;
+    var box = BABYLON.MeshBuilder.CreateBox("blueCube", {width: boxW, height: boxH, depth: boxD});
+    box.rotationQuaternion = BABYLON.Quaternion.Identity();
+
+    var boxShape = new BABYLON.PhysicsShapeBox(new BABYLON.Vector3(0,0,0), BABYLON.Quaternion.Identity(), new BABYLON.Vector3(boxW, boxH, boxD), scene);
+    var boxBody = new BABYLON.PhysicsBody(box, BABYLON.PhysicsMotionType.DYNAMIC, false, scene);
+
+    boxBody.shape = boxShape;
+    boxBody.setMassProperties({mass : 1})
+
+    // Apply a vertical force on all the 3 spheres
+    boxBody.applyForce(new BABYLON.Vector3(500, 500, 0), new BABYLON.Vector3(0, 0, 0));
+}
+function testPlayer(){
+    var boxW = 2;
+    var boxH = 2;
+    var boxD = 2;
+    
+    var box = BABYLON.MeshBuilder.CreateBox("box", {width: boxW, height: boxH, depth: boxD});
+   
+    box.rotationQuaternion = BABYLON.Quaternion.Identity();
+    box.position = new BABYLON.Vector3(0,5,0);
+    var boxShape = new BABYLON.PhysicsShapeBox(new BABYLON.Vector3(0,0,0), BABYLON.Quaternion.Identity(), new BABYLON.Vector3(boxW, boxH, boxD), scene);
+    var boxBody = new BABYLON.PhysicsBody(box, BABYLON.PhysicsMotionType.DYNAMIC, false, scene);
+
+    boxBody.shape = boxShape;
+    boxBody.setMassProperties({mass : 1})
+
+    // Apply a vertical force on all the 3 spheres
+    //boxBody.applyForce(new BABYLON.Vector3(500, 500, 0), new BABYLON.Vector3(0, 0, 0));
+
+    //add create material add tothe cube
+    var blueMaterial = new BABYLON.StandardMaterial("groundMaterial", scene);
+    blueMaterial.diffuseColor = new BABYLON.Color3(0, 0, 1); // Rouge doux
+    box.material = blueMaterial;
+    let control = new CharacterController(canvas,scene,engine,boxBody);
+
+    
 }
 
 export { name, scene, sceneData, launch };
