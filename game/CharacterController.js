@@ -37,7 +37,7 @@ class CharacterController {
             if (this.keys['q']) {
                 console.log('Touche Q enfoncée');
                 character.applyForce(new BABYLON.Vector3(10, 0, 0), new BABYLON.Vector3(0, 0, 0));
-                character.setAngularVelocity(new BABYLON.Vector3(0, -1, 0));
+                character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
                 //character.position.x += 0.1; // Déplace le personnage vers la gauche (positif sur l'axe x).
             }
 
