@@ -69,9 +69,9 @@ export class CustomModels {
         BABYLON.SceneLoader.ImportMesh("", "./models/", "coliseum.glb", this.scene, (meshes) => {
             console.log("Chargement réussi coliseum", meshes);
          
-            mesh = meshes[0];
+            let mesh = meshes[0];
             //tronc = meshes[1];
-            mesh.name ="tronc"
+            mesh.name ="coliseum"
             
            
             mesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 

@@ -23,7 +23,7 @@ async function sceneData() {
     // Ajoutez une lumière hémisphériques
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
- 
+    
     const havokInstance = await HavokPhysics();
     // pass the engine to the plugin
     const hk = new BABYLON.HavokPlugin(true, havokInstance);
@@ -38,16 +38,16 @@ async function sceneData() {
     
     var plane2 = new CustomModels();
 
-
+    
 
     //testPlayer()
-    let player =testPlayer();
-    
+    //let player =testPlayer();
+    testPlayer();
     
     var tree = new CustomModels();
-    tree.CreateTree(0,0,-15 );
+    //tree.CreateTree(0,0,-15 );
 
-      
+    
 
     //var devcamera = new DevCamera(canvas, scene);
    
@@ -72,7 +72,9 @@ async function sceneData() {
         console.log(ev.type);
     });*/ 
    
-    let playerMesh = scene.getMeshByUniqueId(6);
+    //let playerMesh = scene.getMeshByUniqueId(6);
+    
+    let playerMesh = scene.getMeshByName("player");
     //console.log(scene.getMeshByName("player"));
     //console.log(scene.getMeshByUniqueId(6));
     
@@ -130,8 +132,8 @@ function testPlayer(){
     let control = new CharacterController(canvas,scene,engine,boxBody);
     
     boxBody.setCollisionCallbackEnabled(true)
-   
-    
+    console.log("j'ai loaded");
+    scene.addMesh(box);
     return box;
 
     
@@ -148,8 +150,11 @@ function eventHandler(hk){
 }
 
 function launch() {
-   
-
+   /*
+    var camera2 = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
+    camera2.attachControl(canvas);*/
+    //camera2.cameraRotation = 0;
+    
    //createCamPlayer
     var camera = new BABYLON.FollowCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
     camera.cameraRotation = 0;
@@ -164,6 +169,8 @@ function launch() {
     }).catch(error => {
         console.error(error);
     });
+        //createCamPlayer
+    
 
 
     engine.runRenderLoop(function () {

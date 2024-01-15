@@ -22,14 +22,14 @@ function sceneData() {
     var material = new BABYLON.StandardMaterial("blueMaterial", scene);
     material.diffuseColor = new BABYLON.Color3(0, 0, 1); // Couleur bleue
 
-    ;
+    
 
-    let sol = new CustomModels(scene);
-    //sol.plane(0,15,0,10,16)
+   
 
     
     var model = new CustomModels();
     model.CreateColiseum(0,0,0 );
+  
 
       //montrer le layer
    scene.debugLayer.show();

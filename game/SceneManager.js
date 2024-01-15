@@ -11,7 +11,7 @@ function Main() {
     //level2.launch(); 
     //sceneTest2.launch();
     //  sceneTest2.launch();
-    //scene2.launch();
+    scene2.launch();
 }
 
 // Exécute la fonction principale
