@@ -128,21 +128,9 @@ function testPlayer(){
     blueMaterial.diffuseColor = new BABYLON.Color3(0, 0, 1); // Rouge doux
     box.material = blueMaterial;
     let control = new CharacterController(canvas,scene,engine,boxBody);
-    //boxBody.setAngularVelocity(new BABYLON.Vector3(0, 0, 0))
-    //setCollisioncallback
-    /*
-    const constraint = new BABYLON.LockConstraint(box,{
-        rotation: {
-          x: false,
-          y: false,
-          z: false
-        }
-    },scene);
-    */
-
+    
     boxBody.setCollisionCallbackEnabled(true)
-    //boxBody.addConstraint(constraint);
-
+   
     
     return box;
 
