@@ -1,6 +1,6 @@
 class PlayerCamera {
     constructor(canvas, scene, engine, target) {
-        this.camera = this.createCamera2(scene, canvas, target); // Crée la caméra de suivi et l'assigne à this.camera
+        //this.camera = this.createCameraFollow(scene, canvas, target); // Crée la caméra de suivi et l'assigne à this.camera
         this.lockPointer(scene, engine); // Appelle la fonction pour gérer le verrouillage du pointeur
     }
 

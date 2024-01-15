@@ -23,24 +23,28 @@ class CharacterController {
             if (this.keys['z']) {
                 console.log('Touche Z enfoncée');
                 character.applyForce(new BABYLON.Vector3(0, 0, -10), new BABYLON.Vector3(0, 0, 0));
+                character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
                 //character.position.z -= 0.1; // Déplace le personnage vers l'arrière (négatif sur l'axe z).
             }
 
             if (this.keys['s']) {
                 console.log('Touche S enfoncée');
                 character.applyForce(new BABYLON.Vector3(0, 0, 10), new BABYLON.Vector3(0, 0, 0));
+                character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
                 //character.position.z += 0.1; // Déplace le personnage vers l'avant (positif sur l'axe z).
             }
 
             if (this.keys['q']) {
                 console.log('Touche Q enfoncée');
                 character.applyForce(new BABYLON.Vector3(10, 0, 0), new BABYLON.Vector3(0, 0, 0));
+                character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
                 //character.position.x += 0.1; // Déplace le personnage vers la gauche (positif sur l'axe x).
             }
 
             if (this.keys['d']) {
                 console.log('Touche D enfoncée');
                 character.applyForce(new BABYLON.Vector3(-10, 0, 0), new BABYLON.Vector3(0, 0, 0));
+                character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
                 //character.position.x -= 0.1; // Déplace le personnage vers la droite (négatif sur l'axe x).
             }
         });

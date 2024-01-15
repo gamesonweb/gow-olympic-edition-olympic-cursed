@@ -128,11 +128,20 @@ function testPlayer(){
     blueMaterial.diffuseColor = new BABYLON.Color3(0, 0, 1); // Rouge doux
     box.material = blueMaterial;
     let control = new CharacterController(canvas,scene,engine,boxBody);
-
+    //boxBody.setAngularVelocity(new BABYLON.Vector3(0, 0, 0))
     //setCollisioncallback
-    
+    /*
+    const constraint = new BABYLON.LockConstraint(box,{
+        rotation: {
+          x: false,
+          y: false,
+          z: false
+        }
+    },scene);
+    */
+
     boxBody.setCollisionCallbackEnabled(true)
-  
+    //boxBody.addConstraint(constraint);
 
     
     return box;
@@ -152,15 +161,16 @@ function eventHandler(hk){
 
 function launch() {
    
-    //var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
-    var camera = new PlayerCamera();
+
+   //createCamPlayer
     var camera = new BABYLON.FollowCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
-    camera.attachControl(); // Attache les contrôles de la caméra au canvas de la scène
-    
+    camera.cameraRotation = 0;
+   
         
  
     sceneData().then(playerMesh => {
         console.log(playerMesh); // Utilisez playerMesh comme nécessaire
+    
         camera.lockedTarget = playerMesh;
         
     }).catch(error => {
