@@ -22,11 +22,13 @@ class CharacterController {
 
             if (this.keys['z']) {
                 console.log('Touche Z enfoncée');
-                localForward.normalize();
-                //character.applyForce(localForward.scale(10));
+                var force = forward.scale(-5); // Ajustez la magnitude de la force selon les besoins
+
+                console.log(localForward);
+              
                 character.applyForce(new BABYLON.Vector3(0, 0, -10), new BABYLON.Vector3(0, 0, 0));
                 character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
-                //character.position.z -= 0.1; // Déplace le personnage vers l'arrière (négatif sur l'axe z).
+          
             }
 
             if (this.keys['s']) {

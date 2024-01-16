@@ -6,7 +6,7 @@ import * as menu from './Menu.js'
 // Fonction principale
 function Main() {
     // Appelez la fonction "launch" du module "level2" pour lancer la scène 2
-    menu.launch();
+    //menu.launch();
     //level1.launch();
     //level2.launch(); 
     //sceneTest2.launch();

@@ -38,6 +38,9 @@ async function sceneData() {
 
     var tree = new CustomModels(scene);
     tree.CreateTree(0,0,-15 );
+    /*
+    var tree2 = new CustomModels(scene);
+    tree2.CreateTree(0,0,-10 );*/
 
     
     var plane2 = new CustomModels();
@@ -114,7 +117,7 @@ function testPlayer(){
     var boxH = 2;
     var boxD = 2;
     
-    var box = BABYLON.MeshBuilder.CreateBox("player", {width: boxW, height: boxH, depth: boxD});
+    var box = BABYLON.MeshBuilder.CreateBox("player", {width: boxW, height: boxH, depth: boxD},scene);
    
     box.rotationQuaternion = BABYLON.Quaternion.Identity();
     box.position = new BABYLON.Vector3(0,5,0);
@@ -140,66 +143,37 @@ function testPlayer(){
     // Obtenez la matrice de transformation mondiale de l'objet
     var worldMatrix = box.getWorldMatrix();
 
-    // Obtenez la direction vers l'avant en fonction de la rotation
-    var forwardDirection = new BABYLON.Vector3(0, 0, 1);
-    var localForward = BABYLON.Vector3.TransformNormal(forwardDirection, worldMatrix);
+    let forwardVector = getForwardVector(box);
+    console.log("forward vector"+forwardVector);
     
-    // Normalisez la direction et appliquez une force
-    localForward.normalize();
-    let control = new CharacterController(canvas,scene,engine,boxBody,localForward);
-    //box.forward;
+    
+    let localRotation = box.rotationQuaternion;
 
-    scene.addMesh(box);
+    let control = new CharacterController(canvas,scene,engine,boxBody,forwardVector);
+    //box.forward;
+    console.log("test"+box.forward);
+    // Obtenir la direction avant du mesh
+    var forward = box.forward;
+
+    // Appliquer une impulsion dans la direction avant
+    var force = forward.scale(-5); // Ajustez la magnitude de la force selon les besoins
+    var contactPoint = box.getAbsolutePosition();
+    //boxBody.applyImpulse(force, contactPoint);
+    boxBody.applyForce(force, contactPoint);
+
+
     return box;
 
     
 }
-
-// Crée un modèle d'arbre 3D et le positionne aux coordonnées spécifiées (x, y, z)
-function CreateTree(x, y, z) {
-    let tree;
-    let boundingBox;
-    let tronc;
-   
-    BABYLON.SceneLoader.ImportMesh("", "./models/", "Tree.glb", scene, (meshes) => {
-        console.log("Chargement réussi arbre", meshes);
-     
-        tree = meshes[0];
-        tronc = meshes[1];
-        tronc.name ="tronc"
-        
-       
-        tree.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
-        
-        
-
-        var troncAggregate =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, scene);
-        troncAggregate.shape.isTrigger =  true;
-
-        
-        var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, scene);
-        //troncAggregate.shape.isTrigger =  true;
-
-        /*
-        const observable = plugin.onTriggerCollisionObservable;
-        const observer = observable.add((collisionEvent) => {
-            if (collisionEvent.type === "TRIGGER_ENTERED") {
-                // do something when the trigger is entered
-                console.log("i entered");
-            } else {
-                // do something when trigger is exited
-            }
-        });*/
-        
-    
-       //return boundingBox;
-      
-    }, undefined, undefined, ".glb");
-
- 
-
-    return { boundingBox };
+function getForwardVector(_mesh) {
+    _mesh.computeWorldMatrix(true);
+    var forward_local = new BABYLON.Vector3(0, 0, 1);
+    let worldMatrix = _mesh.getWorldMatrix();
+    return BABYLON.Vector3.TransformNormal(forward_local, worldMatrix);
 }
+
+
 
 function eventHandler(hk){
     
