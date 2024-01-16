@@ -1,7 +1,4 @@
 
-//import { ColliderGestionner } from "./ColliderGestionner";
-
-//import { ColliderGestionner } from "/ColliderGestionner";
 
 
 export class CustomModels {
@@ -15,7 +12,7 @@ export class CustomModels {
     
     
     // Crée un modèle d'arbre 3D et le positionne aux coordonnées spécifiées (x, y, z)
-    CreateTree(x, y, z) {
+    async CreateTree(x, y, z) {
         let tree;
         let boundingBox;
         let tronc;

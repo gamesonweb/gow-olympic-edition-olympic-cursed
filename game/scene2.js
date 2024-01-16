@@ -33,8 +33,12 @@ async function sceneData() {
     scene.collisionsEnabled = true;
     
 
-    var sceneprod = new CustomModels();
+    var sceneprod = new CustomModels(scene);
     sceneprod.plane(0,0,-10,10,50,scene);
+
+    var tree = new CustomModels(scene);
+    tree.CreateTree(0,0,-15 );
+
     
     var plane2 = new CustomModels();
 
@@ -43,10 +47,8 @@ async function sceneData() {
     //testPlayer()
     //let player =testPlayer();
     testPlayer();
-    
-    var tree = new CustomModels();
-    //tree.CreateTree(0,0,-15 );
-
+   //CreateTree(0,0,-15);
+   
     
 
     //var devcamera = new DevCamera(canvas, scene);
@@ -138,6 +140,53 @@ function testPlayer(){
 
     
 }
+
+// Crée un modèle d'arbre 3D et le positionne aux coordonnées spécifiées (x, y, z)
+function CreateTree(x, y, z) {
+    let tree;
+    let boundingBox;
+    let tronc;
+   
+    BABYLON.SceneLoader.ImportMesh("", "./models/", "Tree.glb", scene, (meshes) => {
+        console.log("Chargement réussi arbre", meshes);
+     
+        tree = meshes[0];
+        tronc = meshes[1];
+        tronc.name ="tronc"
+        
+       
+        tree.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+        
+        
+
+        var troncAggregate =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, scene);
+        troncAggregate.shape.isTrigger =  true;
+
+        
+        var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, scene);
+        //troncAggregate.shape.isTrigger =  true;
+
+        /*
+        const observable = plugin.onTriggerCollisionObservable;
+        const observer = observable.add((collisionEvent) => {
+            if (collisionEvent.type === "TRIGGER_ENTERED") {
+                // do something when the trigger is entered
+                console.log("i entered");
+            } else {
+                // do something when trigger is exited
+            }
+        });*/
+        
+    
+       //return boundingBox;
+      
+    }, undefined, undefined, ".glb");
+
+ 
+
+    return { boundingBox };
+}
+
 function eventHandler(hk){
     
     hk.onTriggerCollisionObservable.add((ev) => {
