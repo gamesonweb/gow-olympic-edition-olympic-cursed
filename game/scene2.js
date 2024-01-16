@@ -34,10 +34,15 @@ async function sceneData() {
     
 
     var sceneprod = new CustomModels(scene);
-    sceneprod.plane(0,0,-45,40,100,scene);
+    let plane = sceneprod.plane(0,0,-45,40,100,scene);
+    
+   
 
     var tree = new CustomModels(scene);
-    tree.CreateTree(0,0,-15 );
+    //tree.CreateTree(0,5,-15 );
+
+    var pineTree = new CustomModels(scene);
+    pineTree.CreatePineTree(0,5,-10)
     /*
     var tree2 = new CustomModels(scene);
     tree2.CreateTree(0,0,-10 );*/
@@ -127,8 +132,6 @@ function testPlayer(){
     boxBody.shape = boxShape;
     boxBody.setMassProperties({mass : 1})
 
-    // Apply a vertical force on all the 3 spheres
-    //boxBody.applyForce(new BABYLON.Vector3(500, 500, 0), new BABYLON.Vector3(0, 0, 0));
 
     //add create material add tothe cube
     var blueMaterial = new BABYLON.StandardMaterial("groundMaterial", scene);
@@ -137,37 +140,17 @@ function testPlayer(){
    
     
     boxBody.setCollisionCallbackEnabled(true)
-    console.log("j'ai loaded");
-    box.computeWorldMatrix(true);
-    box.getDirection(BABYLON.Axis.Z);
-    // Obtenez la matrice de transformation mondiale de l'objet
-    var worldMatrix = box.getWorldMatrix();
-
-    let forwardVector = getForwardVector(box);
-    console.log("forward vector"+forwardVector);
-    
-    
-    let localRotation = box.rotationQuaternion;
-
+  
    
-    //box.forward;
-    console.log("test"+box.forward);
+    
+ 
 
-    // Obtenir la direction avant du mesh
-    var forward = box.forward;
-    // Appliquer une impulsion dans la direction avant
-    var force = forward.scale(-5); // Ajustez la magnitude de la force selon les besoins
-    var contactPoint = box.getAbsolutePosition();
-    //boxBody.applyImpulse(force, contactPoint);
-    //boxBody.applyForce(force, contactPoint);
-    console.log(    boxBody.getAngularVelocity());
-    console.log(   boxBody.getAngularDamping());
-    //boxBody.applyForce(box.forward);
-    //boxBody.applyForce(new BABYLON.Vector3(box.forward._x, box.forward._y, box.forward._z), new BABYLON.Vector3(0, 0, 0));
+ 
+ 
     
 
     //boxBody.applyForce()
-    let control = new CharacterController(canvas,scene,engine,boxBody,forward,contactPoint);
+    let control = new CharacterController(canvas,scene,engine,boxBody);
     return box;
 
     
@@ -198,7 +181,7 @@ function launch() {
     camera2.attachControl(canvas);*/
     //camera2.cameraRotation = 0;
     
-   //createCamPlayer
+    //createCamPlayer and camera
     var camera = new BABYLON.FollowCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
     camera.cameraRotation = 0;
    

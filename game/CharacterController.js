@@ -1,6 +1,6 @@
 class CharacterController {
-    constructor(canvas, scene, engine, character,localForward,contactPoint) {
-        this.setupKeyboardInput(canvas, engine, character,localForward,contactPoint);
+    constructor(canvas, scene, engine, character) {
+        this.setupKeyboardInput(canvas, engine, character);
     }
 
     setupKeyboardInput(canvas, engine, character,forward,contactPoint) {
