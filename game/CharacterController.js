@@ -1,9 +1,9 @@
 class CharacterController {
-    constructor(canvas, scene, engine, character,localForward) {
-        this.setupKeyboardInput(canvas, engine, character,localForward);
+    constructor(canvas, scene, engine, character,localForward,contactPoint) {
+        this.setupKeyboardInput(canvas, engine, character,localForward,contactPoint);
     }
 
-    setupKeyboardInput(canvas, engine, character,localForward) {
+    setupKeyboardInput(canvas, engine, character,forward,contactPoint) {
         this.keys = {};
 
         // Écoute l'événement "keydown" (touche enfoncée) sur le canvas.
@@ -20,13 +20,12 @@ class CharacterController {
         engine.runRenderLoop(() => {
             // Vérifie l'état des touches dans l'objet "keys" et effectue des actions en conséquence.
 
-            if (this.keys['z']) {
+            if (this.keys['w']) {
                 console.log('Touche Z enfoncée');
-                var force = forward.scale(-5); // Ajustez la magnitude de la force selon les besoins
-
-                console.log(localForward);
-              
-                character.applyForce(new BABYLON.Vector3(0, 0, -10), new BABYLON.Vector3(0, 0, 0));
+                
+                
+                //character.applyForce(new BABYLON.Vector3(forward._x, forward._y, forward._z), new BABYLON.Vector3(0, 0, 0));
+                character.applyForce(new BABYLON.Vector3(0, 0, -5), new BABYLON.Vector3(0, 0, 0));
                 character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
           
             }
@@ -34,20 +33,21 @@ class CharacterController {
             if (this.keys['s']) {
                 console.log('Touche S enfoncée');
                 character.applyForce(new BABYLON.Vector3(0, 0, 10), new BABYLON.Vector3(0, 0, 0));
+                
                 character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
                 //character.position.z += 0.1; // Déplace le personnage vers l'avant (positif sur l'axe z).
             }
 
             if (this.keys['q']) {
                 console.log('Touche Q enfoncée');
-                character.applyForce(new BABYLON.Vector3(0, 0, 0), new BABYLON.Vector3(0, 0, 0));
+                character.applyForce(new BABYLON.Vector3(8, 0, 0), new BABYLON.Vector3(0, 0, 0));
                 character.setAngularVelocity(new BABYLON.Vector3(0, -1, 0));
                 //character.position.x += 0.1; // Déplace le personnage vers la gauche (positif sur l'axe x).
             }
 
             if (this.keys['d']) {
                 console.log('Touche D enfoncée');
-                character.applyForce(new BABYLON.Vector3(0, 0, 0), new BABYLON.Vector3(0, 0, 0));
+                character.applyForce(new BABYLON.Vector3(-8, 0, 0), new BABYLON.Vector3(0, 0, 0));
                 character.setAngularVelocity(new BABYLON.Vector3(0, 1, 0));
                 //character.position.x -= 0.1; // Déplace le personnage vers la droite (négatif sur l'axe x).
             }

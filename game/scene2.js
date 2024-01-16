@@ -34,7 +34,7 @@ async function sceneData() {
     
 
     var sceneprod = new CustomModels(scene);
-    sceneprod.plane(0,0,-10,50,50,scene);
+    sceneprod.plane(0,0,-45,40,100,scene);
 
     var tree = new CustomModels(scene);
     tree.CreateTree(0,0,-15 );
@@ -149,19 +149,25 @@ function testPlayer(){
     
     let localRotation = box.rotationQuaternion;
 
-    let control = new CharacterController(canvas,scene,engine,boxBody,forwardVector);
+   
     //box.forward;
     console.log("test"+box.forward);
+
     // Obtenir la direction avant du mesh
     var forward = box.forward;
-
     // Appliquer une impulsion dans la direction avant
     var force = forward.scale(-5); // Ajustez la magnitude de la force selon les besoins
     var contactPoint = box.getAbsolutePosition();
     //boxBody.applyImpulse(force, contactPoint);
-    boxBody.applyForce(force, contactPoint);
+    //boxBody.applyForce(force, contactPoint);
+    console.log(    boxBody.getAngularVelocity());
+    console.log(   boxBody.getAngularDamping());
+    //boxBody.applyForce(box.forward);
+    //boxBody.applyForce(new BABYLON.Vector3(box.forward._x, box.forward._y, box.forward._z), new BABYLON.Vector3(0, 0, 0));
+    
 
-
+    //boxBody.applyForce()
+    let control = new CharacterController(canvas,scene,engine,boxBody,forward,contactPoint);
     return box;
 
     
