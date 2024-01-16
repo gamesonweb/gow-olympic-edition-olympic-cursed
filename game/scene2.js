@@ -34,7 +34,7 @@ async function sceneData() {
     
 
     var sceneprod = new CustomModels(scene);
-    sceneprod.plane(0,0,-10,10,50,scene);
+    sceneprod.plane(0,0,-10,50,50,scene);
 
     var tree = new CustomModels(scene);
     tree.CreateTree(0,0,-15 );
@@ -131,10 +131,24 @@ function testPlayer(){
     var blueMaterial = new BABYLON.StandardMaterial("groundMaterial", scene);
     blueMaterial.diffuseColor = new BABYLON.Color3(0, 0, 1); // Rouge doux
     box.material = blueMaterial;
-    let control = new CharacterController(canvas,scene,engine,boxBody);
+   
     
     boxBody.setCollisionCallbackEnabled(true)
     console.log("j'ai loaded");
+    box.computeWorldMatrix(true);
+    box.getDirection(BABYLON.Axis.Z);
+    // Obtenez la matrice de transformation mondiale de l'objet
+    var worldMatrix = box.getWorldMatrix();
+
+    // Obtenez la direction vers l'avant en fonction de la rotation
+    var forwardDirection = new BABYLON.Vector3(0, 0, 1);
+    var localForward = BABYLON.Vector3.TransformNormal(forwardDirection, worldMatrix);
+    
+    // Normalisez la direction et appliquez une force
+    localForward.normalize();
+    let control = new CharacterController(canvas,scene,engine,boxBody,localForward);
+    //box.forward;
+
     scene.addMesh(box);
     return box;
 

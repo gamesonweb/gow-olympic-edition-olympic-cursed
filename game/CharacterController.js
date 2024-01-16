@@ -1,9 +1,9 @@
 class CharacterController {
-    constructor(canvas, scene, engine, character) {
-        this.setupKeyboardInput(canvas, engine, character);
+    constructor(canvas, scene, engine, character,localForward) {
+        this.setupKeyboardInput(canvas, engine, character,localForward);
     }
 
-    setupKeyboardInput(canvas, engine, character) {
+    setupKeyboardInput(canvas, engine, character,localForward) {
         this.keys = {};
 
         // Écoute l'événement "keydown" (touche enfoncée) sur le canvas.
@@ -22,6 +22,8 @@ class CharacterController {
 
             if (this.keys['z']) {
                 console.log('Touche Z enfoncée');
+                localForward.normalize();
+                //character.applyForce(localForward.scale(10));
                 character.applyForce(new BABYLON.Vector3(0, 0, -10), new BABYLON.Vector3(0, 0, 0));
                 character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
                 //character.position.z -= 0.1; // Déplace le personnage vers l'arrière (négatif sur l'axe z).
@@ -36,14 +38,14 @@ class CharacterController {
 
             if (this.keys['q']) {
                 console.log('Touche Q enfoncée');
-                character.applyForce(new BABYLON.Vector3(10, 0, 0), new BABYLON.Vector3(0, 0, 0));
-                character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
+                character.applyForce(new BABYLON.Vector3(0, 0, 0), new BABYLON.Vector3(0, 0, 0));
+                character.setAngularVelocity(new BABYLON.Vector3(0, -1, 0));
                 //character.position.x += 0.1; // Déplace le personnage vers la gauche (positif sur l'axe x).
             }
 
             if (this.keys['d']) {
                 console.log('Touche D enfoncée');
-                character.applyForce(new BABYLON.Vector3(-10, 0, 0), new BABYLON.Vector3(0, 0, 0));
+                character.applyForce(new BABYLON.Vector3(0, 0, 0), new BABYLON.Vector3(0, 0, 0));
                 character.setAngularVelocity(new BABYLON.Vector3(0, 1, 0));
                 //character.position.x -= 0.1; // Déplace le personnage vers la droite (négatif sur l'axe x).
             }
