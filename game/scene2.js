@@ -42,7 +42,20 @@ async function sceneData() {
     //tree.CreateTree(0,5,-15 );
 
     var pineTree = new CustomModels(scene);
-    pineTree.CreatePineTree(0,5,-10)
+    pineTree.CreatePineTree(0,3,-10)
+    
+    var deadTrees = new CustomModels(scene);
+    //deadTrees.createDeadTree(0,5,-20);
+
+    var snowTrees = new CustomModels(scene);
+    snowTrees.createSnowTree(0,6,-20);
+
+    var snowLitleTrees = new CustomModels(scene);
+    snowLitleTrees.createLitleSnowTree(0,6,-25);
+
+    var snowMan= new CustomModels(scene);
+    snowMan.createSnowMan(0,1,-30);
+   
     /*
     var tree2 = new CustomModels(scene);
     tree2.CreateTree(0,0,-10 );*/
@@ -65,6 +78,7 @@ async function sceneData() {
 
   //montrer le layer
    scene.debugLayer.show();
+   
    
 
     var place = new CustomModels();
@@ -171,17 +185,19 @@ function eventHandler(hk){
         console.log(ev.type, ':', ev.collider.transformNode.name, '-', ev.collidedAgainst.transformNode.name);
         if(ev.collidedAgainst.transformNode.name =="tronc"){
                 console.log("End OF the Game")
+
         }
     });
 }
 
 function launch() {
-   /*
+    /*
     var camera2 = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
     camera2.attachControl(canvas);*/
     //camera2.cameraRotation = 0;
-    
+   
     //createCamPlayer and camera
+    
     var camera = new BABYLON.FollowCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
     camera.cameraRotation = 0;
    
@@ -201,6 +217,7 @@ function launch() {
 
     engine.runRenderLoop(function () {
         scene.render();
+       
     });
 }
 

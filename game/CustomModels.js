@@ -34,21 +34,9 @@ export class CustomModels {
 
             
             var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
-            //troncAggregate.shape.isTrigger =  true;
-
-            /*
-            const observable = plugin.onTriggerCollisionObservable;
-            const observer = observable.add((collisionEvent) => {
-                if (collisionEvent.type === "TRIGGER_ENTERED") {
-                    // do something when the trigger is entered
-                    console.log("i entered");
-                } else {
-                    // do something when trigger is exited
-                }
-            });*/
             
         
-           //return boundingBox;
+          
           
         }, undefined, undefined, ".glb");
 
@@ -75,25 +63,26 @@ export class CustomModels {
            
             tree.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
             
+            const shapeBox1 = new BABYLON.PhysicsShapeBox(
+                new BABYLON.Vector3(0, 1, 3),        // center of the box
+                new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
+                new BABYLON.Vector3(3, 3, 5),      // dimensions of the box
+                this.scene                                // scene of the shape
+            );
+            const shapeBox2 = new BABYLON.PhysicsShapeBox(
+                new BABYLON.Vector3(0, 1, 3),        // center of the box
+                new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
+                new BABYLON.Vector3(3, 3, 5),      // dimensions of the box
+                this.scene                                // scene of the shape
+            );
             
-
-            var troncAggregate =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
+            var troncAggregate =new BABYLON.PhysicsAggregate(tronc, shapeBox1, { mass: 0 }, this.scene);
             troncAggregate.shape.isTrigger =  true;
+            //troncAggregate.shape.
 
             
-            var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
-            //troncAggregate.shape.isTrigger =  true;
-
-            /*
-            const observable = plugin.onTriggerCollisionObservable;
-            const observer = observable.add((collisionEvent) => {
-                if (collisionEvent.type === "TRIGGER_ENTERED") {
-                    // do something when the trigger is entered
-                    console.log("i entered");
-                } else {
-                    // do something when trigger is exited
-                }
-            });*/
+            var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc, shapeBox2, { mass: 0 }, this.scene);
+           
             
         
            //return boundingBox;
@@ -107,7 +96,7 @@ export class CustomModels {
 
 
 
-    CreateSnowMan(x, y, z) {
+    CreateSnowManOnSki(x, y, z) {
         let tree;
         let boundingBox;
         let tronc;
@@ -115,7 +104,7 @@ export class CustomModels {
         
         let bigMesh = BABYLON.SceneLoader.ImportMesh("", "./models/", "snowman_on_skis.glb", this.scene, (meshes) => {
             console.log("Chargement réussi coliseum", meshes);
-         
+            
             mesh = meshes[0];
             //tronc = meshes[1];
             mesh.name ="SnowMan"
@@ -184,6 +173,214 @@ export class CustomModels {
         return ground;
      
     }
+    async createDeadTree(x, y, z) {
+        let tree;
+        let boundingBox;
+        let tronc;
+       
+        BABYLON.SceneLoader.ImportMesh("", "./models/", "Dead Trees With Snow.glb", this.scene, (meshes) => {
+            console.log("Chargement réussi arbre", meshes);
+            
+            meshes[0].scaling.x = 30
+            meshes[0].scaling.y = 20
+            meshes[0].scaling.z = 20
+            let globalMesh = meshes[0];
+            tronc = meshes[1];
+
+            tronc.name ="tronc"
+            console.log(tronc.name);
+
+            const shapeBox1 = new BABYLON.PhysicsShapeBox(
+                new BABYLON.Vector3(0, 1, 3),        // center of the box
+                new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
+                new BABYLON.Vector3(30, 30, 30),      // dimensions of the box
+                this.scene                                // scene of the shape
+            );
+           
+            
+           
+            globalMesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+            
+            
+
+            var troncAggregate =new BABYLON.PhysicsAggregate(tronc, shapeBox1, { mass: 0 }, this.scene);
+            troncAggregate.shape.isTrigger =  true;
+
+            
+            var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
+          
+
+  
+          
+        }, undefined, undefined, ".glb");
+
+     
+    
+        return { boundingBox };
+    }
+    async createSnowTree(x, y, z) {
+        let tree;
+        let boundingBox;
+        let tronc;
+       
+        BABYLON.SceneLoader.ImportMesh("", "./models/", "Snow Tree.glb", this.scene, (meshes) => {
+            console.log("Chargement réussi arbre", meshes);
+            
+            meshes[0].scaling.x = 10
+            meshes[0].scaling.y = 10
+            meshes[0].scaling.z = 10
+            let globalMesh = meshes[0];
+            tronc = meshes[1];
+
+            tronc.name ="tronc"
+            console.log(tronc.name);
+
+            const shapeBox1 = new BABYLON.PhysicsShapeBox(
+                new BABYLON.Vector3(0, 0, -1),        // center of the box
+                new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
+                new BABYLON.Vector3(5, 10, 5),      // dimensions of the box
+                this.scene                                // scene of the shape
+            );
+            const shapeBox2 = new BABYLON.PhysicsShapeBox(
+                new BABYLON.Vector3(0, 0, -1),        // center of the box
+                new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
+                new BABYLON.Vector3(5, 10, 5),      // dimensions of the box
+                this.scene                                // scene of the shape
+            );
+           
+            
+           
+            globalMesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+            
+            
+
+            var troncAggregate =new BABYLON.PhysicsAggregate(tronc, shapeBox1, { mass: 0 }, this.scene);
+            troncAggregate.shape.isTrigger =  true;
+
+            
+            var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc,shapeBox2, { mass: 0 }, this.scene);
+          
+          
+        }, undefined, undefined, ".glb");
+
+     
+    
+        return { boundingBox };
+    }
+    async createLitleSnowTree(x, y, z) {
+        let tree;
+        let boundingBox;
+        let tronc;
+       
+        BABYLON.SceneLoader.ImportMesh("", "./models/", "Pine Tree with Snow two.glb", this.scene, (meshes) => {
+            console.log("Chargement réussi arbre", meshes);
+            
+            meshes[0].scaling.x = 10
+            meshes[0].scaling.y = 10
+            meshes[0].scaling.z = 10
+
+            let globalMesh = meshes[0];
+            tronc = meshes[1];
+
+            tronc.name ="tronc"
+            console.log(tronc.name);
+
+            const shapeBox1 = new BABYLON.PhysicsShapeBox(
+                new BABYLON.Vector3(0, 0, -1),        // center of the box
+                new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
+                new BABYLON.Vector3(5, 10, 5),      // dimensions of the box
+                this.scene                                // scene of the shape
+            );
+            const shapeBox2 = new BABYLON.PhysicsShapeBox(
+                new BABYLON.Vector3(0, 0, -1),        // center of the box
+                new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
+                new BABYLON.Vector3(5, 10, 5),      // dimensions of the box
+                this.scene                                // scene of the shape
+            );
+           
+            
+           
+            globalMesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+            
+            
+
+            var troncAggregate =new BABYLON.PhysicsAggregate(tronc, shapeBox1, { mass: 0 }, this.scene);
+            troncAggregate.shape.isTrigger =  true;
+
+            
+            var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc,shapeBox2, { mass: 0 }, this.scene);
+      
+        
+          
+        }, undefined, undefined, ".glb");
+
+     
+    
+        return { boundingBox };
+    }
+    async createSnowMan(x, y, z) {
+        let tree;
+        let boundingBox;
+        let tronc;
+       
+        BABYLON.SceneLoader.ImportMesh("", "./models/", "Snowman.glb", this.scene, (meshes) => {
+            console.log("Chargement réussi arbre", meshes);
+            
+            meshes[0].scaling.x = 1
+            meshes[0].scaling.y = 1
+            meshes[0].scaling.z = 1
+
+            let globalMesh = meshes[0];
+            tronc = meshes[1];
+
+            tronc.name ="tronc"
+            console.log(tronc.name);
+
+            const shapeBox1 = new BABYLON.PhysicsShapeBox(
+                new BABYLON.Vector3(0, 4, 0),        // center of the box
+                new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
+                new BABYLON.Vector3(5, 10, 5),      // dimensions of the box
+                this.scene                                // scene of the shape
+            );
+            
+            const shapeBox2 = new BABYLON.PhysicsShapeBox(
+                new BABYLON.Vector3(0, 0, -1),        // center of the box
+                new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
+                new BABYLON.Vector3(5, 10, 5),      // dimensions of the box
+                this.scene                                // scene of the shape
+            );
+           
+            
+           
+            globalMesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+            
+            
+
+            var troncAggregate =new BABYLON.PhysicsAggregate(tronc, shapeBox1, { mass: 0 }, this.scene);
+            troncAggregate.shape.isTrigger =  true;
+
+            
+            var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc,shapeBox2, { mass: 0 }, this.scene);
+      
+        
+          
+        }, undefined, undefined, ".glb");
+
+     
+    
+        return { boundingBox };
+    }
+    
+
+
+
+
+
+
+    
+
+
+
     /** ######################################################################## MENU 3D MODEL #########################################################################**/
 
 
