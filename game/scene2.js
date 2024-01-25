@@ -34,53 +34,43 @@ async function sceneData() {
     
 
     var sceneprod = new CustomModels(scene);
-    let plane = sceneprod.plane(5,0,-45,25,100,scene);
-    
+    //first plane 
+    let plane = sceneprod.plane(5,0,-45,25,150,scene);
+    //second plane 
+    sceneprod.plane(5,-20,-180,25,150,scene);
    
 
-    var tree = new CustomModels(scene);
-    //tree.CreateTree(0,5,-15 );
     let x = -10;
     var pineTree = new CustomModels(scene);
-    var pineTree2 = new CustomModels(scene);
-    var pineTree3 = new CustomModels(scene);
-    var pineTree4 = new CustomModels(scene);
 
     pineTree.CreatePineTree(0,3,-10+x);
-    pineTree2.CreatePineTree(10,3,-10+x);
+    pineTree.CreatePineTree(10,3,-10+x);
     pineTree.CreatePineTree(15,3,-10+x);
     pineTree.CreatePineTree(-5,3,-10+x);
     var deadTrees = new CustomModels(scene);
     //deadTrees.createDeadTree(0,5,-20);
 
     var snowTrees = new CustomModels(scene);
-    var snowTrees2 = new CustomModels(scene);
-    var snowTrees3 = new CustomModels(scene);
-    var snowTrees4 = new CustomModels(scene);
-
     snowTrees.createSnowTree(0,4.5,-30+x);
-    snowTrees2.createSnowTree(5,4.5,-30+x);
-    //snowTrees3.createSnowTree(10,6,-30);
-    snowTrees4.createSnowTree(15,4.5,-30+x);
+    snowTrees.createSnowTree(5,4.5,-30+x);
+    snowTrees.createSnowTree(15,4.5,-30+x);
 
     var snowLitleTrees = new CustomModels(scene);
-    snowLitleTrees.createLitleSnowTree(-5,3.5,-45+x);
-    snowLitleTrees.createLitleSnowTree(9,3.5,-45+x);
-    snowLitleTrees.createLitleSnowTree(15,3.5,-45+x);
+    snowLitleTrees.createLitleSnowTree(-5,3,-50+x);
+    snowLitleTrees.createLitleSnowTree(9,3,-50+x);
+    snowLitleTrees.createLitleSnowTree(15,3,-50+x);
 
 
     var snowMan= new CustomModels(scene);
-    //snowMan.createSnowMan(0,1,-50+x);
-    snowMan.createSnowMan(0,-2.5,-60+x);
-    snowMan.createSnowMan(-5,-2.5,-60+x);
-    snowMan.createSnowMan(5,-2.5,-60+x);
+    snowMan.createSnowMan(0,-2.5,-70+x);
+    snowMan.createSnowMan(-5,-2.5,-70+x);
+    snowMan.createSnowMan(5,-2.5,-70+x);
 
 
     var ascendingRampe= new CustomModels(scene);
-    //snowMan.createSnowMan(0,1,-50+x);
-    ascendingRampe.CreateRampe1(0,-2.5,-80+x);
-    //ascendingRampe.CreateRampe1(-5,-2.5,-70+x);
-    //ascendingRampe.CreateRampe1(5,-2.5,-70+x);
+
+    ascendingRampe.CreateRampe1(10,-5,-100+x);
+    
 
     var rampe_1 = new CustomModels(scene);
     //rampe_1.CreateRampe1(-10,1,-40);
@@ -220,9 +210,9 @@ function eventHandler(hk){
 }
 
 function launch() {
-    
+    /*
     var camera2 = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
-    camera2.attachControl(canvas);
+    camera2.attachControl(canvas);*/
 
     //camera2.cameraRotation = 0;
    
