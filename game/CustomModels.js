@@ -50,7 +50,7 @@ export class CustomModels {
         let boundingBox;
         let tronc;
        
-        BABYLON.SceneLoader.ImportMesh("", "./models/", "Pine Tree with Snow.glb", this.scene, (meshes) => {
+        return   BABYLON.SceneLoader.ImportMesh("", "./models/", "Pine Tree with Snow.glb", this.scene, (meshes) => {
             console.log("Chargement réussi arbre", meshes);
             meshes[0].scaling.x = 3
             meshes[0].scaling.y = 2
@@ -91,7 +91,7 @@ export class CustomModels {
 
      
     
-        return { boundingBox };
+       
     }
 
 
@@ -323,18 +323,22 @@ export class CustomModels {
         let boundingBox;
         let tronc;
        
-        BABYLON.SceneLoader.ImportMesh("", "./models/", "Snowman.glb", this.scene, (meshes) => {
+        BABYLON.SceneLoader.ImportMesh("", "./models/", "SnowManRotated.glb", this.scene, (meshes) => {
             console.log("Chargement réussi arbre", meshes);
             
             meshes[0].scaling.x = 1
             meshes[0].scaling.y = 1
             meshes[0].scaling.z = 1
-
+            //meshes[0].rotationQuaternion._y=250
+           
+            //meshes[0].absoluteRotationQuaternion._y= -110.0000;
+            //meshes[0].rotationQuaternion._y= -110.0000;
             let globalMesh = meshes[0];
+            //globalMesh.rotationQuaternion = -50;
             tronc = meshes[1];
 
-            tronc.name ="tronc"
-            console.log(tronc.name);
+            //tronc.name ="tronc"
+            console.log("SNOWMAN "+globalMesh.name);
 
             const shapeBox1 = new BABYLON.PhysicsShapeBox(
                 new BABYLON.Vector3(0, 4, 0),        // center of the box
@@ -370,6 +374,47 @@ export class CustomModels {
     
         return { boundingBox };
     }
+
+    CreateRampe1(x, y, z) {
+        let tree;
+        let boundingBox;
+        let tronc;
+       
+        
+        let bigMesh = BABYLON.SceneLoader.ImportMesh("", "./models/", "rampe_1.glb", this.scene, (meshes) => {
+            console.log("Chargement réussi", meshes);
+            meshes[1].rotationQuaternion._y = -1
+            meshes[0].scaling.x = 100
+            meshes[0].scaling.y = 100
+            meshes[0].scaling.z = 100
+            meshes[0].rotationQuaternion._y = 0
+            meshes[1].rotationQuaternion._y = 0
+           
+            let mesh = meshes[0];
+            //tronc = meshes[1];
+            mesh.name ="Rampe"
+            
+           
+            mesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+            
+        
+             
+
+            //var troncAggregate =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
+           // troncAggregate.shape.isTrigger =  true;
+
+            
+            //var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
+          
+          
+        }, undefined, undefined, ".glb");
+
+        bigMesh.position= new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+            
+    
+        return {  bigMesh};
+    }
+    
     
 
 

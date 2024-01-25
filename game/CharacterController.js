@@ -20,7 +20,7 @@ class CharacterController {
         engine.runRenderLoop(() => {
             // Vérifie l'état des touches dans l'objet "keys" et effectue des actions en conséquence.
 
-            if (this.keys['z']) {
+            if (this.keys['w']) {
                 console.log('Touche Z enfoncée');
                 
                 
@@ -40,15 +40,15 @@ class CharacterController {
 
             if (this.keys['q']) {
                 console.log('Touche Q enfoncée');
-                character.applyForce(new BABYLON.Vector3(15, 0, 0), new BABYLON.Vector3(0, 0, 0));
-                character.setAngularVelocity(new BABYLON.Vector3(0, -1, 0));
+                character.applyForce(new BABYLON.Vector3(15, 0, -2), new BABYLON.Vector3(0, 0, 0));
+                character.setAngularVelocity(new BABYLON.Vector3(0, -0.5, 0));
                 //character.position.x += 0.1; // Déplace le personnage vers la gauche (positif sur l'axe x).
             }
 
             if (this.keys['d']) {
                 console.log('Touche D enfoncée');
-                character.applyForce(new BABYLON.Vector3(-15, 0, 0), new BABYLON.Vector3(0, 0, 0));
-                character.setAngularVelocity(new BABYLON.Vector3(0, 1, 0));
+                character.applyForce(new BABYLON.Vector3(-15, 0, -2), new BABYLON.Vector3(0, 0, 0));
+                character.setAngularVelocity(new BABYLON.Vector3(0, 0.5, 0));
                 //character.position.x -= 0.1; // Déplace le personnage vers la droite (négatif sur l'axe x).
             }
         });
