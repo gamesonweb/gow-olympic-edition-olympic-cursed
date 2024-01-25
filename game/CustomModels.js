@@ -348,7 +348,7 @@ export class CustomModels {
             );
             
             const shapeBox2 = new BABYLON.PhysicsShapeBox(
-                new BABYLON.Vector3(0, 0, -1),        // center of the box
+                new BABYLON.Vector3(0, 4, -1),        // center of the box
                 new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
                 new BABYLON.Vector3(5, 10, 5),      // dimensions of the box
                 this.scene                                // scene of the shape
@@ -381,27 +381,28 @@ export class CustomModels {
         let tronc;
        
         
-        let bigMesh = BABYLON.SceneLoader.ImportMesh("", "./models/", "rampe_1.glb", this.scene, (meshes) => {
+        let bigMesh = BABYLON.SceneLoader.ImportMesh("", "./models/", "rampe_2.glb", this.scene, (meshes) => {
             console.log("Chargement réussi", meshes);
-            meshes[1].rotationQuaternion._y = -1
-            meshes[0].scaling.x = 100
-            meshes[0].scaling.y = 100
-            meshes[0].scaling.z = 100
-            meshes[0].rotationQuaternion._y = 0
-            meshes[1].rotationQuaternion._y = 0
+            //meshes[1].rotationQuaternion._y = -1
+            meshes[0].scaling.x = 5
+            meshes[0].scaling.y = 5
+            meshes[0].scaling.z = 5
+            //meshes[0].rotationQuaternion._y = 0
+            //meshes[1].rotationQuaternion._y = -5
            
             let mesh = meshes[0];
+            console.log(meshes[1].name);
             //tronc = meshes[1];
             mesh.name ="Rampe"
-            
+            let elment =meshes[1] ;
            
             mesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
             
         
              
 
-            //var troncAggregate =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
-           // troncAggregate.shape.isTrigger =  true;
+            var troncAggregate =new BABYLON.PhysicsAggregate(elment, BABYLON.PhysicsShapeType.MESH, { mass: 0 }, this.scene);
+           
 
             
             //var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);

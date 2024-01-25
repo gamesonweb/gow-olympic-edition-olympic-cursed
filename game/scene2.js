@@ -75,6 +75,13 @@ async function sceneData() {
     snowMan.createSnowMan(-5,-2.5,-60+x);
     snowMan.createSnowMan(5,-2.5,-60+x);
 
+
+    var ascendingRampe= new CustomModels(scene);
+    //snowMan.createSnowMan(0,1,-50+x);
+    ascendingRampe.CreateRampe1(0,-2.5,-80+x);
+    //ascendingRampe.CreateRampe1(-5,-2.5,-70+x);
+    //ascendingRampe.CreateRampe1(5,-2.5,-70+x);
+
     var rampe_1 = new CustomModels(scene);
     //rampe_1.CreateRampe1(-10,1,-40);
    
