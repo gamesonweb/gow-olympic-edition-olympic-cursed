@@ -329,12 +329,9 @@ export class CustomModels {
             meshes[0].scaling.x = 1
             meshes[0].scaling.y = 1
             meshes[0].scaling.z = 1
-            //meshes[0].rotationQuaternion._y=250
-           
-            //meshes[0].absoluteRotationQuaternion._y= -110.0000;
-            //meshes[0].rotationQuaternion._y= -110.0000;
+      
             let globalMesh = meshes[0];
-            //globalMesh.rotationQuaternion = -50;
+      ;
             tronc = meshes[1];
 
             //tronc.name ="tronc"
@@ -389,6 +386,46 @@ export class CustomModels {
             meshes[0].scaling.z = 5
             //meshes[0].rotationQuaternion._y = 0
             //meshes[1].rotationQuaternion._y = -5
+           
+            let mesh = meshes[0];
+            console.log(meshes[1].name);
+            //tronc = meshes[1];
+            mesh.name ="Rampe"
+            let elment =meshes[1] ;
+           
+            mesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+            
+        
+             
+
+            var troncAggregate =new BABYLON.PhysicsAggregate(elment, BABYLON.PhysicsShapeType.MESH, { mass: 0 }, this.scene);
+           
+
+            
+            //var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
+          
+          
+        }, undefined, undefined, ".glb");
+
+        bigMesh.position= new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+            
+    
+        return {  bigMesh};
+    }
+
+    createSnowMount(x, y, z) {
+        let tree;
+        let boundingBox;
+        let tronc;
+       
+        
+        let bigMesh = BABYLON.SceneLoader.ImportMesh("", "./models/", "Rock Forms 3 (White).glb", this.scene, (meshes) => {
+            console.log("Chargement réussi", meshes);
+           
+            meshes[0].scaling.x = 150
+            meshes[0].scaling.y = 150
+            meshes[0].scaling.z = 150
+       
            
             let mesh = meshes[0];
             console.log(meshes[1].name);

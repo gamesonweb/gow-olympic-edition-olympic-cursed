@@ -34,10 +34,11 @@ async function sceneData() {
     
 
     var sceneprod = new CustomModels(scene);
+    //PART 1 LEVEL
+
     //first plane 
     let plane = sceneprod.plane(5,0,-45,25,150,scene);
-    //second plane 
-    sceneprod.plane(5,-20,-180,25,150,scene);
+  
    
 
     let x = -10;
@@ -67,13 +68,30 @@ async function sceneData() {
     snowMan.createSnowMan(5,-2.5,-70+x);
 
 
+ 
+
+  
+
+  
+
+
     var ascendingRampe= new CustomModels(scene);
 
     ascendingRampe.CreateRampe1(10,-5,-100+x);
-    
+
+    //PART 2 LEVEL
+
+    //second plane 
+    sceneprod.plane(5,-20,-210,25,150,scene);
+
 
     var rampe_1 = new CustomModels(scene);
-    //rampe_1.CreateRampe1(-10,1,-40);
+
+    var snowMount= new CustomModels(scene);
+    snowMount.createSnowMount(0,-12,-150+x);
+    snowMount.createSnowMount(11,-18,-210+x);
+    snowMount.createSnowMount(0,-20,-255+x);
+    //ampe_1.CreateRampe1(-10,1,-40);
    
     /*
     var tree2 = new CustomModels(scene);
@@ -159,6 +177,7 @@ function testPlayer(){
    
     box.rotationQuaternion = BABYLON.Quaternion.Identity();
     box.position = new BABYLON.Vector3(0,5,0);
+
     var boxShape = new BABYLON.PhysicsShapeBox(new BABYLON.Vector3(0,0,0), BABYLON.Quaternion.Identity(), new BABYLON.Vector3(boxW, boxH, boxD), scene);
     var boxBody = new BABYLON.PhysicsBody(box, BABYLON.PhysicsMotionType.DYNAMIC, false, scene);
 
@@ -210,9 +229,9 @@ function eventHandler(hk){
 }
 
 function launch() {
-    /*
+    
     var camera2 = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
-    camera2.attachControl(canvas);*/
+    camera2.attachControl(canvas);
 
     //camera2.cameraRotation = 0;
    
