@@ -331,10 +331,9 @@ export class CustomModels {
             meshes[0].scaling.z = 1
       
             let globalMesh = meshes[0];
-      ;
+            
             tronc = meshes[1];
-
-            //tronc.name ="tronc"
+            tronc.name ="tronc"
             console.log("SNOWMAN "+globalMesh.name);
 
             const shapeBox1 = new BABYLON.PhysicsShapeBox(
@@ -380,12 +379,11 @@ export class CustomModels {
         
         let bigMesh = BABYLON.SceneLoader.ImportMesh("", "./models/", "rampe_2.glb", this.scene, (meshes) => {
             console.log("Chargement réussi", meshes);
-            //meshes[1].rotationQuaternion._y = -1
+ 
             meshes[0].scaling.x = 5
             meshes[0].scaling.y = 5
             meshes[0].scaling.z = 5
-            //meshes[0].rotationQuaternion._y = 0
-            //meshes[1].rotationQuaternion._y = -5
+   
            
             let mesh = meshes[0];
             console.log(meshes[1].name);
@@ -402,7 +400,7 @@ export class CustomModels {
            
 
             
-            //var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
+           // var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
           
           
         }, undefined, undefined, ".glb");
@@ -425,24 +423,35 @@ export class CustomModels {
             meshes[0].scaling.x = 150
             meshes[0].scaling.y = 150
             meshes[0].scaling.z = 150
+
+
+            const shapeBox1 = new BABYLON.PhysicsShapeBox(
+                new BABYLON.Vector3(0, 4, 0),        // center of the box
+                new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
+                new BABYLON.Vector3(10, 10, 20),      // dimensions of the box
+                this.scene                                // scene of the shape
+            );
+            
        
            
             let mesh = meshes[0];
+            mesh.name ="tronc"
             console.log(meshes[1].name);
             //tronc = meshes[1];
-            mesh.name ="Rampe"
-            let elment =meshes[1] ;
-           
+            //mesh.name ="tronc"
+            let element =meshes[1] ;
+            element.name ="tronc"
             mesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
             
         
              
-
-            var troncAggregate =new BABYLON.PhysicsAggregate(elment, BABYLON.PhysicsShapeType.MESH, { mass: 0 }, this.scene);
-           
+          
+            
+            var troncAggregate =new BABYLON.PhysicsAggregate(mesh, shapeBox1, { mass: 0 }, this.scene);
+            troncAggregate.shape.isTrigger =  true;
 
             
-            //var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
+            var troncAggregate2 =new BABYLON.PhysicsAggregate(element, BABYLON.PhysicsShapeType.MESH, { mass: 0 }, this.scene);
           
           
         }, undefined, undefined, ".glb");

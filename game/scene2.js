@@ -78,20 +78,23 @@ async function sceneData() {
     var ascendingRampe= new CustomModels(scene);
 
     ascendingRampe.CreateRampe1(10,-5,-100+x);
-
     //PART 2 LEVEL
 
     //second plane 
-    sceneprod.plane(5,-20,-210,25,150,scene);
+    sceneprod.plane(5,-25,-250,25,230,scene);
 
 
     var rampe_1 = new CustomModels(scene);
 
     var snowMount= new CustomModels(scene);
     snowMount.createSnowMount(0,-12,-150+x);
-    snowMount.createSnowMount(11,-18,-210+x);
-    snowMount.createSnowMount(0,-20,-255+x);
-    //ampe_1.CreateRampe1(-10,1,-40);
+    snowMount.createSnowMount(11,-20,-210+x);
+    snowMount.createSnowMount(0,-23,-255+x);
+    snowMount.createSnowMount(11,-25.5,-290+x);
+    
+
+    ascendingRampe.CreateRampe1(10,-34.5,-350+x);
+    
    
     /*
     var tree2 = new CustomModels(scene);
@@ -102,16 +105,10 @@ async function sceneData() {
 
     
 
-    //testPlayer()
-    //let player =testPlayer();
     testPlayer();
-   //CreateTree(0,0,-15);
+ 
    
-    
-
-    //var devcamera = new DevCamera(canvas, scene);
-   
-    // This creates and positions a free camera (non-mesh)
+  
 
   //montrer le layer
    scene.debugLayer.show();
@@ -119,21 +116,12 @@ async function sceneData() {
    
 
     var place = new CustomModels();
-    //place.CreateObject3(0,0,3,scene);
+
 
    
        
  
-    //tree.CreateObject(0,0,3);
 
-    // Créer un sol
-
-    /*
-    hk.onCollisionObservable.add((ev) => {
-        console.log(ev.type);
-    });*/ 
-   
-    //let playerMesh = scene.getMeshByUniqueId(6);
     
     let playerMesh = scene.getMeshByName("player");
     //console.log(scene.getMeshByName("player"));
@@ -229,7 +217,7 @@ function eventHandler(hk){
 }
 
 function launch() {
-    
+   
     var camera2 = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
     camera2.attachControl(canvas);
 
@@ -238,8 +226,8 @@ function launch() {
     //createCamPlayer and camera
     /*
     var camera = new BABYLON.FollowCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
-    camera.cameraRotation = 0;*/
-   
+    camera.cameraRotation = 0;
+   */
         
  
     sceneData().then(playerMesh => {
