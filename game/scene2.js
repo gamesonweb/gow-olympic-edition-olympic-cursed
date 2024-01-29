@@ -183,7 +183,7 @@ async function sceneData() {
 
 
 
-   
+   testPlayer();
   
 
    //montrer le layer
@@ -300,7 +300,7 @@ function launch() {
     //camera2.cameraRotation = 0;
    
     //createCamPlayer and camera
-    /** 
+    /*
     var camera = new BABYLON.FollowCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
     camera.cameraRotation = 0;*/
    
