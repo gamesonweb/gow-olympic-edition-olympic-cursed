@@ -131,7 +131,7 @@ async function sceneData() {
 //********************************************************** PART 5 LEVEL ******************************************************************************/////////////////
     //rajoute d'un plane 
     var plane3 = new CustomModels(scene);
-    plane3.flatplane(5,-24,-700,25,100,scene);
+    plane3.flatplane(5,-24,-750,25,200,scene);
 
     snowMan.createSnowTree(12,-20,-705);
     snowMount.createSnowTree(-4,-20,-705);
@@ -148,11 +148,41 @@ async function sceneData() {
     snowMan.createSnowTree(12,-20,-745);
     snowMount.createSnowTree(-4,-20,-745);
 
-    rampe_1.CreateRampe1(4,-24,-745);
+    snowMan.createSnowTree(12,-20,-755);
+    snowMount.createSnowTree(-4,-20,-755);
 
-  
-    testPlayer();
- 
+    snowMan.createSnowTree(12,-20,-765);
+    snowMount.createSnowTree(-4,-20,-765);
+
+    snowMan.createSnowTree(12,-20,-770);
+    snowMount.createSnowTree(-4,-20,-770);
+
+    snowMan.createSnowTree(12,-20,-775);
+    snowMount.createSnowTree(-4,-20,-775);
+
+
+    snowMan.createSnowTree(12,-20,-785);
+    snowMount.createSnowTree(-4,-20,-785);
+
+    snowMan.createSnowTree(12,-20,-800);
+    snowMount.createSnowTree(-4,-20,-800);
+
+    snowMan.createSnowTree(12,-20,-810);
+    snowMount.createSnowTree(-4,-20,-810);
+
+    snowMan.createSnowTree(12,-20,-820);
+    snowMount.createSnowTree(-4,-20,-820);
+
+    snowMan.createSnowTree(12,-20,-830);
+    snowMount.createSnowTree(-4,-20,-830);
+
+    snowMan.createSnowTree(12,-20,-840);
+    snowMount.createSnowTree(-4,-20,-840);
+
+    rampe_1.CreateRampe1(4,-24,-850);
+
+
+
    
   
 
