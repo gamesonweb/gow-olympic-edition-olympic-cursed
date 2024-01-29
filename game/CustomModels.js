@@ -173,6 +173,36 @@ export class CustomModels {
         return ground;
      
     }
+
+    async flatplane(x, y, z,width,height,scene) {
+      
+        let subdivisions = 1
+        
+        var ground = BABYLON.MeshBuilder.CreateGround("ground", { width, height, subdivisions },scene);
+        ground.position.addInPlace(new BABYLON.Vector3(x, y, z)); 
+        // Créez un quaternion pour représenter la rotation souhaitée
+       
+       
+        ground.rotation = new BABYLON.Vector3(0, 0, 0);
+
+        
+        //create physic impostor
+        var groundAggregate =new BABYLON.PhysicsAggregate(ground, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, scene);
+        
+            // Appliquez la rotation au sol
+      
+        // create Materials
+        var groundMaterial = new BABYLON.StandardMaterial("groundMaterial", scene);
+        groundMaterial.diffuseColor = new BABYLON.Color3(0.92, 0.29, 0.28); // Rouge doux
+         // Set position of the ground
+        //ground.position = new BABYLON.Vector3(x, y, z);
+        
+        //add material to the object
+        ground.material = groundMaterial;
+        //console.log(ground);
+        return ground;
+     
+    }
     async createDeadTree(x, y, z) {
         let tree;
         let boundingBox;

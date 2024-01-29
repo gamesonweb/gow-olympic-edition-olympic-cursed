@@ -78,7 +78,8 @@ async function sceneData() {
     var ascendingRampe= new CustomModels(scene);
 
     ascendingRampe.CreateRampe1(10,-5,-100+x);
-    //PART 2 LEVEL
+
+    //********************************************************** PART 2 LEVEL ******************************************************************************/////////////////
 
     //second plane 
     sceneprod.plane(5,-25,-250,25,230,scene);
@@ -86,31 +87,76 @@ async function sceneData() {
 
     var rampe_1 = new CustomModels(scene);
 
+    //rajout de neige
     var snowMount= new CustomModels(scene);
     snowMount.createSnowMount(0,-12,-150+x);
     snowMount.createSnowMount(11,-20,-210+x);
     snowMount.createSnowMount(0,-23,-255+x);
     snowMount.createSnowMount(11,-25.5,-290+x);
     
+    //rajout d'une rampe
+    ascendingRampe.CreateRampe1(-5,-34.5,-350+x);
 
-    ascendingRampe.CreateRampe1(10,-34.5,-350+x);
-    
-   
+
     /*
     var tree2 = new CustomModels(scene);
     tree2.CreateTree(0,0,-10 );*/
 
     
     var plane2 = new CustomModels();
+    sceneprod.plane(5,-25,-250,25,230,scene);
 
+ //********************************************************** PART 3 LEVEL ******************************************************************************/////////////////
+    //rajoute d'un plane 
+    var plane3 = new CustomModels(scene);
+    plane3.flatplane(5,-32,-445,25,100,scene);
+
+    rampe_1.CreateRampe1(12,-32,-500);
+    snowMan.createSnowMan(12,-28,-500);
     
+    rampe_1.CreateRampe1(4,-32,-500);
+    snowMan.createSnowMan(5,-28,-500);
 
+    rampe_1.CreateRampe1(-4,-32,-500);
+
+//********************************************************** PART 4 LEVEL ******************************************************************************/////////////////
+    //rajoute d'un plane 
+    var plane3 = new CustomModels(scene);
+    plane3.flatplane(5,-28,-580,25,100,scene);
+
+    rampe_1.CreateRampe1(12,-28,-630);
+
+    snowMount.createSnowMount(4,-24,-630);
+
+//********************************************************** PART 5 LEVEL ******************************************************************************/////////////////
+    //rajoute d'un plane 
+    var plane3 = new CustomModels(scene);
+    plane3.flatplane(5,-24,-700,25,100,scene);
+
+    snowMan.createSnowTree(12,-20,-705);
+    snowMount.createSnowTree(-4,-20,-705);
+
+    snowMan.createSnowTree(12,-20,-715);
+    snowMount.createSnowTree(-4,-20,-715);
+
+    snowMan.createSnowTree(12,-20,-725);
+    snowMount.createSnowTree(-4,-20,-725);
+    
+    snowMan.createSnowTree(12,-20,-735);
+    snowMount.createSnowTree(-4,-20,-735);
+
+    snowMan.createSnowTree(12,-20,-745);
+    snowMount.createSnowTree(-4,-20,-745);
+
+    rampe_1.CreateRampe1(4,-24,-745);
+
+  
     testPlayer();
  
    
   
 
-  //montrer le layer
+   //montrer le layer
    scene.debugLayer.show();
    
    
@@ -224,10 +270,10 @@ function launch() {
     //camera2.cameraRotation = 0;
    
     //createCamPlayer and camera
-    /*
+    /** 
     var camera = new BABYLON.FollowCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
-    camera.cameraRotation = 0;
-   */
+    camera.cameraRotation = 0;*/
+   
         
  
     sceneData().then(playerMesh => {
