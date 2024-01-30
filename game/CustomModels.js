@@ -491,6 +491,64 @@ export class CustomModels {
     
         return {  bigMesh};
     }
+
+
+    createFinalScene2(x, y, z) {
+        let tree;
+        let boundingBox;
+        let tronc;
+       
+        
+        let bigMesh = BABYLON.SceneLoader.ImportMesh("", "./models/", "finalscene2.glb", this.scene, (meshes) => {
+            console.log("Chargement réussi", meshes);
+           
+            //meshes[0].scaling.x = 150
+            //meshes[0].scaling.y = 150
+            //meshes[0].scaling.z = 150
+
+
+            const shapeBox1 = new BABYLON.PhysicsShapeBox(
+                new BABYLON.Vector3(0, 0, 0),        // center of the box
+                new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
+                new BABYLON.Vector3(10, 10, 20),      // dimensions of the box
+                this.scene                                // scene of the shape
+            );
+            
+       
+           
+            let mesh = meshes[0];
+            mesh.name ="tronc"
+            console.log(meshes[2].name);
+            //tronc = meshes[1];
+            //mesh.name ="tronc"
+            //let element =meshes[1] ;
+            let element = this.scene.getMeshByName("Cube (sol)");
+            //let element2 = this.scene.getMeshByName("Cube (sol)") ;
+            //let element3 = this.scene.getMeshByUniqueId(769) ;
+
+            //element.name ="tronc"
+            mesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+
+            //console.log();
+        
+            let i =1;
+            while( i <  meshes.length){
+                
+                var troncAggregate =new BABYLON.PhysicsAggregate(meshes[i], BABYLON.PhysicsShapeType.MESH, { mass: 0 }, this.scene);
+                i++
+            }
+            
+          
+          
+          
+        }, undefined, undefined, ".glb");
+
+        bigMesh.position= new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+            
+    
+        return {  bigMesh};
+    }
+    
     
     
 

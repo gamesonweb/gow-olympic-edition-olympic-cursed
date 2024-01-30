@@ -191,9 +191,8 @@ async function sceneData() {
    
    
 
-    var place = new CustomModels();
-
-
+    var place = new CustomModels(scene);
+    place.createFinalScene2(4,-24,-970);
    
        
  
