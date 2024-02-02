@@ -18,16 +18,22 @@ function Main() {
     //level1.launch();
     launchLevel2();
 }
-
+function launchLevel1(){
+    
+    level1.launch();
+}
 function launchLevel2(){
     scene2.killLevel();
     scene2.launch();
 }
 
-function launchLevel1(){
+
+function launchLevel3(){
     
-    level1.launch();
+    level3.launch();
 }
+
+
 
 // Exécute la fonction principale
 Main();

@@ -329,11 +329,11 @@ function triggerRespawn(){
     var boxD = 2000;
 
     var box = BABYLON.MeshBuilder.CreateBox("Die", {width: boxW, height: boxH, depth: boxD},scene);
-    //box.isVisible = false;
+    box.isVisible = false;
 
     box.position.x = 2;
     box.position.y = -45;
-    box.position.z = 0;
+    box.position.z = -800;
         
         
   
