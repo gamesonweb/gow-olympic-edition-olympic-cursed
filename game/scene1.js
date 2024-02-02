@@ -6,15 +6,15 @@ var name = "level1";
 import { CustomModels } from './CustomModels.js';
 function sceneData() {
     //activer la physique sur la scene 
-    var physicsEngine = new BABYLON.CannonJSPlugin();
-    scene.enablePhysics(new BABYLON.Vector3(0, -9.81, 0), physicsEngine);
-    scene.collisionsEnabled = true;
+    //var physicsEngine = new BABYLON.CannonJSPlugin();
+   // scene.enablePhysics(new BABYLON.Vector3(0, -9.81, 0), physicsEngine);
+    //scene.collisionsEnabled = true;
     
-   /*
+   
     // Configurez une caméra
-    var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
-    camera.setTarget(BABYLON.Vector3.Zero());
-    camera.attachControl();*/
+    //var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
+    //camera.setTarget(BABYLON.Vector3.Zero());
+    //camera.attachControl();
 
     // Ajoutez une lumière
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
@@ -25,37 +25,52 @@ function sceneData() {
 
     
 
-   
 
     // Créez un cube avec le matériau
     var cube = BABYLON.MeshBuilder.CreateBox("blueCube", { size: 2 }, scene);
     cube.material = material;
 
     // Positionnez le cube où vous le souhaitez
-    cube.position = new BABYLON.Vector3(0, 1, 20);
+    cube.position = new BABYLON.Vector3(0, 1, 20);   
 
+    /*
     var followCamera = new BABYLON.FollowCamera("FollowCam", new BABYLON.Vector3(0, 5, -10), scene,cube);
-    followCamera.attachControl(canvas, true);
+    followCamera.attachControl(canvas, true);*/
 
     //var devcamera = new DevCamera(canvas, scene);
-   
+  
 
-    var model = new CustomModels();
+    var model = new CustomModels(scene);
     model.CreateColiseum(0,0,0 );
-    
+  
+    scene.debugLayer.show();
+
+
     
 
 }
 
 function launch() {
+    
+    scene.meshes.forEach(function(mesh) {
+        mesh.dispose();
+    });
+    
+    var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
+    camera.attachControl();
     sceneData();
     engine.runRenderLoop(function () {
         scene.render();
     });
 }
 
+function killLevel(){
+    scene.dispose();
+}
+
+
 function getScene() {
     return scene;
 }
 
-export { name, scene, sceneData, launch };
+export { name, scene, sceneData, launch , killLevel };

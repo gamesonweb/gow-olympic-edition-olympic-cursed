@@ -4,14 +4,15 @@ import { CustomModels } from './CustomModels.js';
 import { TriggerEvent } from './trigger.js';
 import DevCamera from '/DevCamera.js';
 import PlayerCamera from '/PlayerCamera.js';
-//import { SceneLoader } from "@babylonjs/core";
-//import HavokPhysics from "@babylonjs/havok";
+import * as sceneManager from './SceneManager.js'
+
+
 
 var canvas = document.getElementById("renderCanvas");
 var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
 var name = "level2";
-
+var value = "start";     
 
 
 async function getInitializedHavok() {
@@ -181,13 +182,19 @@ async function sceneData() {
 
     rampe_1.CreateRampe1(4,-24,-850);
 
+    //trigger to die and pass
+    triggerDie();
+   
+
+    
+
 
 
    testPlayer();
-  
+   triggerRespawn();
 
    //montrer le layer
-   scene.debugLayer.show();
+   //scene.debugLayer.show();
    
    
 
@@ -276,6 +283,65 @@ function getForwardVector(_mesh) {
     let worldMatrix = _mesh.getWorldMatrix();
     return BABYLON.Vector3.TransformNormal(forward_local, worldMatrix);
 }
+function triggerDie(){
+
+    const shapeBox1 = new BABYLON.PhysicsShapeBox(
+        new BABYLON.Vector3(0, 0, 0),        // center of the box
+        new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
+        new BABYLON.Vector3(10, 10, 10),      // dimensions of the box
+        scene                                // scene of the shape
+    );
+    
+
+    let RainBowMesh = scene.getMeshByName("RainBow");
+
+    var boxW = 2;
+    var boxH = 2;
+    var boxD = 2;
+
+    var box = BABYLON.MeshBuilder.CreateBox("Ending", {width: boxW, height: boxH, depth: boxD},scene);
+    box.isVisible = false;
+
+    box.position.x = 2;
+    box.position.y = -24;
+    box.position.z = -1010;
+    //box.position = BABYLON.Vector3(4,-24,-850);    
+        
+    var Aggregate =new BABYLON.PhysicsAggregate(box, shapeBox1, { mass: 0 },scene);
+    Aggregate.shape.isTrigger =  true;
+
+    
+}
+
+function triggerRespawn(){
+
+    const shapeBox1 = new BABYLON.PhysicsShapeBox(
+        new BABYLON.Vector3(0, 0, 0),        // center of the box
+        new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
+        new BABYLON.Vector3(25, 2, 2000),      // dimensions of the box
+        scene                                // scene of the shape
+    );
+    
+
+
+    var boxW = 100;
+    var boxH = 2;
+    var boxD = 2000;
+
+    var box = BABYLON.MeshBuilder.CreateBox("Die", {width: boxW, height: boxH, depth: boxD},scene);
+    //box.isVisible = false;
+
+    box.position.x = 2;
+    box.position.y = -45;
+    box.position.z = 0;
+        
+        
+  
+    var Aggregate2 =new BABYLON.PhysicsAggregate(box, BABYLON.PhysicsShapeType.MESH, { mass: 0 }, scene);
+    Aggregate2.shape.isTrigger =  true;
+
+    
+}
 
 
 
@@ -288,24 +354,42 @@ function eventHandler(hk){
                 console.log("End OF the Game")
 
         }
+        if(ev.collidedAgainst.transformNode.name =="Ending"){
+            console.log("YOU WINNNNNNN")
+            killLevel();
+            loadNextLevel();
+
+        }
+        if(ev.collidedAgainst.transformNode.name =="Die"){
+            console.log("YOU DIEEEEEEEEEE");
+            value = "death";
+            reloadlevel();
+
+           
+            //return "death";
+        }
     });
 }
 
 function launch() {
-   
+   /*
     var camera2 = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
-    camera2.attachControl(canvas);
+    camera2.attachControl(canvas);*/
 
     //camera2.cameraRotation = 0;
    
     //createCamPlayer and camera
-    /*
+    scene.meshes.forEach(function(mesh) {
+        mesh.dispose();
+    });
+    
     var camera = new BABYLON.FollowCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
-    camera.cameraRotation = 0;*/
+    camera.cameraRotation = 0;
    
-        
+   
  
     sceneData().then(playerMesh => {
+        
         console.log(playerMesh); // Utilisez playerMesh comme nécessaire
     
         camera.lockedTarget = playerMesh;
@@ -315,12 +399,66 @@ function launch() {
     });
         //createCamPlayer
     
-
+       
 
     engine.runRenderLoop(function () {
-        scene.render();
+       //console.log(value)
+       scene.render();
        
+     
     });
+    
+   
+}
+function killLevel(){
+    //scene.dispose();
+     
+    scene.meshes.forEach(function(mesh) {
+        mesh.dispose();
+    });
+   
+    scene.cameras.forEach(function(mesh) {
+        mesh.dispose();
+    });
+    // Supprimer toutes les lumières de la scène
+    scene.lights.forEach(function(light) {
+        light.dispose();
+    });
+
+    
+    engine.stopRenderLoop();
 }
 
-export { name, scene, sceneData, launch };
+function EndOfTheGame(){
+ 
+}
+function reloadlevel(){
+     // Supprimer tous les meshs de la scène
+     
+    scene.meshes.forEach(function(mesh) {
+        mesh.dispose();
+    });
+   
+    scene.cameras.forEach(function(mesh) {
+        mesh.dispose();
+    });
+    // Supprimer toutes les lumières de la scène
+    scene.lights.forEach(function(light) {
+        light.dispose();
+    });
+
+    
+    engine.stopRenderLoop();
+
+    launch();
+
+}
+
+function loadNextLevel(){
+    // Supprimer tous les meshs de la scène
+    sceneManager.launchLevel1();
+
+}
+
+
+export { name, scene, sceneData, launch,killLevel };

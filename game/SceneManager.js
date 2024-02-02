@@ -3,6 +3,8 @@ import * as level1 from './scene1.js'; // Remplacez './scene1.js' par le chemin 
 import * as sceneTest2 from './sceneTest2.js'
 import * as scene2 from './scene2.js'
 import * as menu from './Menu.js'
+
+
 // Fonction principale
 function Main() {
     // Appelez la fonction "launch" du module "level2" pour lancer la scène 2
@@ -11,8 +13,22 @@ function Main() {
     //level2.launch(); 
     //sceneTest2.launch();
     //  sceneTest2.launch();
+    //scene2.launch();
+    //scene2.killLevel();
+    //level1.launch();
+    launchLevel2();
+}
+
+function launchLevel2(){
+    scene2.killLevel();
     scene2.launch();
+}
+
+function launchLevel1(){
+    
+    level1.launch();
 }
 
 // Exécute la fonction principale
 Main();
+export { launchLevel2 ,launchLevel1};
