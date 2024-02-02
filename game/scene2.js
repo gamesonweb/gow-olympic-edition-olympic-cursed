@@ -352,6 +352,7 @@ function eventHandler(hk){
         console.log(ev.type, ':', ev.collider.transformNode.name, '-', ev.collidedAgainst.transformNode.name);
         if(ev.collidedAgainst.transformNode.name =="tronc"){
                 console.log("End OF the Game")
+                reloadlevel();
 
         }
         if(ev.collidedAgainst.transformNode.name =="Ending"){
@@ -455,8 +456,8 @@ function reloadlevel(){
 }
 
 function loadNextLevel(){
-    // Supprimer tous les meshs de la scène
-    sceneManager.launchLevel1();
+    
+    sceneManager.launchLevel3();
 
 }
 
