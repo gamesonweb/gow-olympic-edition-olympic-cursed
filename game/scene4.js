@@ -4,6 +4,8 @@ var scene = new BABYLON.Scene(engine);
 var name = "level4";
 
 import { CustomModels } from './CustomModels.js';
+import CharacterController3 from './CharacterController3.js';
+
 async function sceneData() {
     //activer la physique sur la scene 
 
@@ -23,16 +25,16 @@ async function sceneData() {
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
     // Créez un matériau pour le cube (bleu)
-    var material = new BABYLON.StandardMaterial("blueMaterial", scene);
-    material.diffuseColor = new BABYLON.Color3(0, 0, 1); // Couleur bleue
-
-    // Créez un cube avec le matériau
-    var cube = BABYLON.MeshBuilder.CreateBox("blueCube", { size: 2 }, scene);
-    cube.material = material;
-
+    
     //var devcamera = new DevCamera(canvas, scene);
     // Positionnez le cube où vous le souhaitez
-    cube.position = new BABYLON.Vector3(0, 1, 20);
+
+    var model = new CustomModels(scene);
+    createPlayer(-20,10,0,'d','q');
+    model.CreatePlateform_Scene4();
+
+    scene.debugLayer.show();
+
 
 }
 
@@ -42,7 +44,7 @@ function launch() {
     var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
     camera.setTarget(BABYLON.Vector3.Zero());
     camera.attachControl();
-    
+
     sceneData();
     engine.runRenderLoop(function () {
         scene.render();
@@ -52,5 +54,47 @@ function launch() {
 function getScene() {
     return scene;
 }
+
+
+function createPlayer(x,y,z , inputRight,inputLeft){
+
+    var boxW = 2;
+    var boxH = 2;
+    var boxD = 2;
+    
+    var box = BABYLON.MeshBuilder.CreateBox("player", {width: boxW, height: boxH, depth: boxD},scene);
+   
+    box.rotationQuaternion = BABYLON.Quaternion.Identity();
+    //box.position = new BABYLON.Vector3(0,5,0);
+    box.position = new BABYLON.Vector3(x,y,z);
+    var boxShape = new BABYLON.PhysicsShapeBox(new BABYLON.Vector3(0,0,0), BABYLON.Quaternion.Identity(), new BABYLON.Vector3(boxW, boxH, boxD), scene);
+    var boxBody = new BABYLON.PhysicsBody(box, BABYLON.PhysicsMotionType.DYNAMIC, false, scene);
+
+    boxBody.shape = boxShape;
+    boxBody.setMassProperties({mass : 1})
+
+
+    //add create material add tothe cube
+    var blueMaterial = new BABYLON.StandardMaterial("groundMaterial", scene);
+    blueMaterial.diffuseColor = new BABYLON.Color3(0, 0, 1); // Rouge doux
+    box.material = blueMaterial;
+   
+    
+    boxBody.setCollisionCallbackEnabled(true)
+  
+   
+    
+ 
+
+ 
+ 
+    
+
+    //boxBody.applyForce()
+    //let control = new CharacterController2(canvas,scene,engine,boxBody,'s',' ');
+    let control = new CharacterController3(canvas,scene,engine,boxBody, inputRight,inputLeft);
+    return box;
+}
+
 
 export { name, scene, sceneData, launch };
