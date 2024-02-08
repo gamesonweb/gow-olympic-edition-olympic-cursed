@@ -4,17 +4,21 @@ var scene = new BABYLON.Scene(engine);
 var name = "level4";
 
 import { CustomModels } from './CustomModels.js';
-function sceneData() {
+async function sceneData() {
     //activer la physique sur la scene 
-    var physicsEngine = new BABYLON.CannonJSPlugin();
-    scene.enablePhysics(new BABYLON.Vector3(0, -9.81, 0), physicsEngine);
+
+    const havokInstance = await HavokPhysics();
+
+
+    // pass the engine to the plugin
+    const hk = new BABYLON.HavokPlugin(true, havokInstance);
+
+
+    scene.enablePhysics(new BABYLON.Vector3(0, -9.81, 0), hk);
     scene.collisionsEnabled = true;
+       
     
-   
-    // Configurez une caméra
-    var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
-    camera.setTarget(BABYLON.Vector3.Zero());
-    camera.attachControl();
+
     // Ajoutez une lumière
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
@@ -33,6 +37,12 @@ function sceneData() {
 }
 
 function launch() {
+       
+    // Configurez une caméra
+    var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
+    camera.setTarget(BABYLON.Vector3.Zero());
+    camera.attachControl();
+    
     sceneData();
     engine.runRenderLoop(function () {
         scene.render();

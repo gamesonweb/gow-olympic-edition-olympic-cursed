@@ -380,9 +380,10 @@ function launch() {
     //camera2.cameraRotation = 0;
    
     //createCamPlayer and camera
+    /*
     scene.meshes.forEach(function(mesh) {
         mesh.dispose();
-    });
+    });*/
     
     var camera = new BABYLON.FollowCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
     camera.cameraRotation = 0;

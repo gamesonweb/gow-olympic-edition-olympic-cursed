@@ -3,6 +3,7 @@ import * as level1 from './scene1.js'; // Remplacez './scene1.js' par le chemin 
 import * as sceneTest2 from './sceneTest2.js'
 import * as scene2 from './scene2.js'
 import * as scene3 from './scene3.js'
+import * as scene4 from './scene4.js'
 import * as menu from './Menu.js'
 
 
@@ -13,6 +14,7 @@ function Main() {
    // launchLevel3();
    //launchLevel2();
    launchLevel3();
+   //launchLevel4();
    
 }
 function launchLevelMenu(){
@@ -34,8 +36,14 @@ function launchLevel3(){
    scene3.launch();
 }
 
+function launchLevel4(){
+    
+    scene4.launch();
+}
+ 
+
 
 
 // Exécute la fonction principale
 Main();
-export { launchLevel2 ,launchLevel1,launchLevel3,launchLevelMenu};
+export { launchLevel2 ,launchLevel1,launchLevel3,launchLevel4,launchLevelMenu};

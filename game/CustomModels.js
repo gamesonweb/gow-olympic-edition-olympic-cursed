@@ -551,7 +551,40 @@ export class CustomModels {
     
     
     
+    /** ######################################################################## Scene3 3D MODEL #########################################################################**/
 
+
+        // Crée un modèle d'arbre 3D et le positionne aux coordonnées spécifiées (x, y, z)
+        CreatePlateform(x, y, z) {
+            let tree;
+            let boundingBox;
+            let tronc;
+        
+            BABYLON.SceneLoader.ImportMesh("", "./models/", "plateforme_scene3.glb", this.scene, (meshes) => {
+                console.log("Chargement réussi plateform", meshes);
+            
+                let mesh = meshes[0];
+                //tronc = meshes[1];
+                mesh.name ="colision"
+                
+            
+                mesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+                
+                
+                let i =1;
+                while( i <  meshes.length){
+                    
+                    var troncAggregate =new BABYLON.PhysicsAggregate(meshes[i], BABYLON.PhysicsShapeType.MESH, { mass: 0 }, this.scene);
+                    i++
+                }
+            
+            
+            }, undefined, undefined, ".glb");
+
+        
+
+            return { boundingBox };
+        }
 
 
 
@@ -588,6 +621,9 @@ export class CustomModels {
     
                 
                 //var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
+
+                 
+            
               
               
             }, undefined, undefined, ".glb");
