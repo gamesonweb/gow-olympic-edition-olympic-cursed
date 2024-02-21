@@ -621,6 +621,33 @@ export class CustomModels {
         return { boundingBox };
     }
 
+    CreateBowlingBall(x, y, z) {
+        let tree;
+        let boundingBox;
+        let tronc;
+    
+        BABYLON.SceneLoader.ImportMesh("", "./models/", "Spiky Ball.glb", this.scene, (meshes) => {
+            console.log("Chargement réussi ball", meshes);
+        
+            let mesh = meshes[0];
+          
+            mesh.name ="ball"
+            
+        
+            mesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+            
+            var troncAggregate =new BABYLON.PhysicsAggregate(mesh, BABYLON.PhysicsShapeType.SPHERE, { mass: 0 }, this.scene);
+         
+        
+        }, undefined, undefined, ".glb");
+
+    
+
+        return { boundingBox };
+    }
+
+
+
 
 
     /** ######################################################################## MENU 3D MODEL #########################################################################**/

@@ -23,9 +23,11 @@ class CharacterController {
             if (this.keys['w']) {
                 //console.log('Touche Z enfoncée');
                 
+                let forward = character.transformNode.forward.scale(5);
+                console.log(forward);
 
-                character.applyForce(new BABYLON.Vector3(0, 0, -5), new BABYLON.Vector3(0, 0, 0));
-                character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
+                character.applyForce(forward, character.transformNode.position);
+                character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
           
             }
 
@@ -34,7 +36,7 @@ class CharacterController {
                 character.applyForce(new BABYLON.Vector3(0, 0, 10), new BABYLON.Vector3(0, 0, 0));
                 
                 character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
-                //character.position.z += 0.1; // Déplace le personnage vers l'avant (positif sur l'axe z).
+                //charater.position.z += 0.1; // Déplace le personnage vers l'avant (positif sur l'axe z).
             }
 
             if (this.keys['q']) {

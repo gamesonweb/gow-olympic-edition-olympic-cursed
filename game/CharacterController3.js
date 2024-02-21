@@ -51,14 +51,14 @@ class CharacterController2 {
 
             if (this.keys[input1]) {
                 //console.log('Touche Q enfoncée');
-                character.applyForce(new BABYLON.Vector3(0, 0, -5), new BABYLON.Vector3(0, 0, 0));
+                character.applyForce(new BABYLON.Vector3(5, 0, 0), new BABYLON.Vector3(0, 0, 0));
                 character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
           
             }
 
             if (this.keys[inputJump]) {
                 //console.log('Touche D enfoncée');
-                character.applyForce(new BABYLON.Vector3(0, 0, 5), new BABYLON.Vector3(0, 0, 0));
+                character.applyForce(new BABYLON.Vector3(-5, 0, 0), new BABYLON.Vector3(0, 0, 0));
                 character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
      
             }
@@ -66,27 +66,7 @@ class CharacterController2 {
             character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
         });
     }
-    setRaycastPlayer(canvas, engine, character,scene) {
-       
-        //rayHelper.show(scene, new BABYLON.Color3(1, 1, 0)); // Couleur du rayon (jaune ici)
-        /*
-        var raycastResult = new BABYLON.PhysicsRaycastResult();
-        var start = character.position;
-        var end = new BABYLON.Vector3(20, 0, 0);
-        physicsEngine.raycastToRef(start, end, raycastResult);*/
 
-
-        var rayOrigin = new BABYLON.Vector3(0, 1, -2);
-        var ray1Dir = new BABYLON.Vector3(0.1,0,1);
-        var ray1Len = 8;
-        var ray1Dest = rayOrigin.add(ray1Dir.scale(ray1Len));
-    
-        var ray1 = new BABYLON.Ray(rayOrigin, ray1Dir, ray1Len);
-        var ray1Helper = new BABYLON.RayHelper(ray1);
-        ray1Helper.show(scene, new BABYLON.Color3(1,1,0));
-            
-   
-    }
     
 }
 

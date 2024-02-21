@@ -11,10 +11,10 @@ import * as menu from './Menu.js'
 function Main() {
     // Appelez la fonction "launch" du module "level2" pour lancer la scène 2
     
-   // launchLevel3();
-   //launchLevel2();
+   //launchLevel1();
+   launchLevel2();
    //launchLevel3();
-   launchLevel4();
+   //launchLevel4();
    
 }
 function launchLevelMenu(){
