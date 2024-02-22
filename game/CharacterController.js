@@ -20,35 +20,36 @@ class CharacterController {
         engine.runRenderLoop(() => {
             // Vérifie l'état des touches dans l'objet "keys" et effectue des actions en conséquence.
 
-            if (this.keys['w']) {
+            if (this.keys['z']) {
                 //console.log('Touche Z enfoncée');
                 
-                let forward = character.transformNode.forward.scale(5);
+                let forward = character.transformNode.forward.scale(-5);
                 console.log(forward);
 
-                character.applyForce(forward, character.transformNode.position);
+                character.applyForce(forward , character.transformNode.position);
                 character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
           
             }
 
             if (this.keys['s']) {
                 //console.log('Touche S enfoncée');
-                character.applyForce(new BABYLON.Vector3(0, 0, 10), new BABYLON.Vector3(0, 0, 0));
-                
-                character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
+                character.applyForce(new BABYLON.Vector3(0, 0, 5), new BABYLON.Vector3(0, 0, 0));
+                character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
+                //character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
                 //charater.position.z += 0.1; // Déplace le personnage vers l'avant (positif sur l'axe z).
             }
 
             if (this.keys['q']) {
                 //console.log('Touche Q enfoncée');
-                character.applyForce(new BABYLON.Vector3(15, 0, -2), new BABYLON.Vector3(0, 0, 0));
+                character.applyForce(new BABYLON.Vector3(5, 0, 0), new BABYLON.Vector3(0, 0, 0));
                 character.setAngularVelocity(new BABYLON.Vector3(0, -0.5, 0));
+                //character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
                 //character.position.x += 0.1; // Déplace le personnage vers la gauche (positif sur l'axe x).
             }
 
             if (this.keys['d']) {
                 //console.log('Touche D enfoncée');
-                character.applyForce(new BABYLON.Vector3(-15, 0, -2), new BABYLON.Vector3(0, 0, 0));
+                character.applyForce(new BABYLON.Vector3(-5, 0, 0), new BABYLON.Vector3(0, 0, 0));
                 character.setAngularVelocity(new BABYLON.Vector3(0, 0.5, 0));
                 //character.position.x -= 0.1; // Déplace le personnage vers la droite (négatif sur l'axe x).
             }

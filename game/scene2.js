@@ -5,7 +5,7 @@ import { TriggerEvent } from './trigger.js';
 import DevCamera from '/DevCamera.js';
 import PlayerCamera from '/PlayerCamera.js';
 import * as sceneManager from './SceneManager.js'
-
+import {PlayerLevel1} from "./PlayerLevel1.js";
 
 
 var canvas = document.getElementById("renderCanvas");
@@ -190,11 +190,13 @@ async function sceneData() {
 
 
 
-   testPlayer();
+   //testPlayer();
+   //let player = new PlayerLevel1();
+   let player = new PlayerLevel1(scene,canvas,engine);
    triggerRespawn();
 
    //montrer le layer
-   //scene.debugLayer.show();
+   scene.debugLayer.show();
    
    
 
