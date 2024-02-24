@@ -1,18 +1,25 @@
 
 import CharacterController from './CharacterController.js';
-export class PlayerLevel1 {
 
-    constructor(scene,engine,canvas) {
-        this.testPlayer(scene,engine,canvas);
+var canvas2 = document.getElementById("renderCanvas");
+//var engine2 = new BABYLON.Engine(canvas2, true);
+
+//variables
+let control ;
+export class PlayerLevel1 {
+   
+    constructor(scene,engine,name,forward,backward,left,right) {
+        this.testPlayer(scene,engine,name,forward,backward,left,right);
     }
 
 
-    testPlayer(scene,engine,canvas){
+    testPlayer(scene,engine,name,forward,backward,left,right){
+       
         var boxW = 2;
         var boxH = 2;
         var boxD = 2;
         
-        var box = BABYLON.MeshBuilder.CreateBox("player", {width: boxW, height: boxH, depth: boxD},scene);
+        var box = BABYLON.MeshBuilder.CreateBox(name, {width: boxW, height: boxH, depth: boxD},scene);
        
         box.rotationQuaternion = BABYLON.Quaternion.Identity();
         box.position = new BABYLON.Vector3(0,5,0);
@@ -41,10 +48,15 @@ export class PlayerLevel1 {
         
     
         //boxBody.applyForce()
-        let control = new CharacterController(canvas,scene,engine,boxBody);
+        control = new CharacterController(canvas2,engine,boxBody,forward,backward,left,right);
         return box;
     
         
+    }
+
+    destroyPlayer(){
+        
+        control = null;
     }
 
 

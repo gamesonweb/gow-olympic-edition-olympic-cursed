@@ -13,7 +13,7 @@ var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
 var name = "level2";
 var value = "start";     
-
+//var player = new PlayerLevel1(scene);
 
 async function getInitializedHavok() {
   return await HavokPhysics();
@@ -30,6 +30,7 @@ async function sceneData() {
     const hk = new BABYLON.HavokPlugin(true, havokInstance);
    
     
+
     scene.enablePhysics(new BABYLON.Vector3(0, -9.81, 0),  hk);
     scene.collisionsEnabled = true;
     
@@ -191,8 +192,10 @@ async function sceneData() {
 
 
    //testPlayer();
-   //let player = new PlayerLevel1();
-   let player = new PlayerLevel1(scene,canvas,engine);
+
+   let player = new PlayerLevel1(scene,engine,'player1','z','s','q','d');
+   let player2 = new PlayerLevel1(scene,engine,'player2','i','k','j','l');
+   //player.destroyPlayer();
    triggerRespawn();
 
    //montrer le layer
@@ -203,15 +206,16 @@ async function sceneData() {
     var place = new CustomModels(scene);
     place.createFinalScene2(4,-24,-970);
    
-       
+    
  
 
     
-    let playerMesh = scene.getMeshByName("player");
+    let playerMesh = scene.getMeshByName("player1");
+    //let playerMesh2 = scene.getMeshByName("player2");
     //console.log(scene.getMeshByName("player"));
     //console.log(scene.getMeshByUniqueId(6));
     
-    eventHandler(hk);
+    eventHandler(hk,player);
    return playerMesh;
 }
 
@@ -223,23 +227,7 @@ function getScene() {
     return scene;
 }
 
-function testphysics2(){
-   
-    var boxW = 2;
-    var boxH = 2;
-    var boxD = 2;
-    var box = BABYLON.MeshBuilder.CreateBox("blueCube", {width: boxW, height: boxH, depth: boxD});
-    box.rotationQuaternion = BABYLON.Quaternion.Identity();
 
-    var boxShape = new BABYLON.PhysicsShapeBox(new BABYLON.Vector3(0,0,0), BABYLON.Quaternion.Identity(), new BABYLON.Vector3(boxW, boxH, boxD), scene);
-    var boxBody = new BABYLON.PhysicsBody(box, BABYLON.PhysicsMotionType.DYNAMIC, false, scene);
-
-    boxBody.shape = boxShape;
-    boxBody.setMassProperties({mass : 1})
-
-    // Apply a vertical force on all the 3 spheres
-    boxBody.applyForce(new BABYLON.Vector3(500, 500, 0), new BABYLON.Vector3(0, 0, 0));
-}
 function testPlayer(){
     var boxW = 2;
     var boxH = 2;
@@ -279,12 +267,7 @@ function testPlayer(){
 
     
 }
-function getForwardVector(_mesh) {
-    _mesh.computeWorldMatrix(true);
-    var forward_local = new BABYLON.Vector3(0, 0, 1);
-    let worldMatrix = _mesh.getWorldMatrix();
-    return BABYLON.Vector3.TransformNormal(forward_local, worldMatrix);
-}
+
 function triggerDie(){
 
     const shapeBox1 = new BABYLON.PhysicsShapeBox(
@@ -347,7 +330,7 @@ function triggerRespawn(){
 
 
 
-function eventHandler(hk){
+function eventHandler(hk,player){
     
     hk.onTriggerCollisionObservable.add((ev) => {
         // console.log(ev);
@@ -355,19 +338,22 @@ function eventHandler(hk){
         if(ev.collidedAgainst.transformNode.name =="tronc"){
                 console.log("End OF the Game")
                 reloadlevel();
-
+               
+                player = null;
         }
         if(ev.collidedAgainst.transformNode.name =="Ending"){
             console.log("YOU WINNNNNNN")
             killLevel();
             loadNextLevel();
+            player = null;
+  
 
         }
         if(ev.collidedAgainst.transformNode.name =="Die"){
             console.log("YOU DIEEEEEEEEEE");
             value = "death";
             reloadlevel();
-
+            player = null;
            
             //return "death";
         }
@@ -389,19 +375,27 @@ function launch() {
     
     var camera = new BABYLON.FollowCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
     camera.cameraRotation = 0;
+    camera.viewport = new BABYLON.Viewport(0, 0.5, 0.5, 0.5);
+    
+    var camera2 = new BABYLON.FollowCamera("camera2", new BABYLON.Vector3(0, 5, -10), scene);
+    camera2.cameraRotation = 0;
+    camera2.viewport = new BABYLON.Viewport(0.5, 0.5, 0.5, 0.5); 
    
-   
- 
+    scene.activeCameras.push(camera);
+    scene.activeCameras.push(camera2);
+
+    //cam1
     sceneData().then(playerMesh => {
-        
+        let playerMesh2 = scene.getMeshByName("player2");
         console.log(playerMesh); // Utilisez playerMesh comme nécessaire
     
         camera.lockedTarget = playerMesh;
+        camera2.lockedTarget = playerMesh2;
         
     }).catch(error => {
         console.error(error);
     });
-        //createCamPlayer
+
     
        
 
@@ -414,7 +408,7 @@ function launch() {
     
    
 }
-function killLevel(){
+function killLevel(player){
     //scene.dispose();
      
     scene.meshes.forEach(function(mesh) {
@@ -428,17 +422,14 @@ function killLevel(){
     scene.lights.forEach(function(light) {
         light.dispose();
     });
-
-    
+  
+  
     engine.stopRenderLoop();
 }
 
-function EndOfTheGame(){
- 
-}
 function reloadlevel(){
      // Supprimer tous les meshs de la scène
-     
+     /*
     scene.meshes.forEach(function(mesh) {
         mesh.dispose();
     });
@@ -451,10 +442,9 @@ function reloadlevel(){
         light.dispose();
     });
 
-    
     engine.stopRenderLoop();
 
-    launch();
+    launch();*/
 
 }
 
