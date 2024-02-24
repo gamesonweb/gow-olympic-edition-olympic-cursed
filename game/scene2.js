@@ -194,6 +194,7 @@ async function sceneData() {
    //testPlayer();
 
    let player = new PlayerLevel1(scene,engine,'player1','z','s','q','d');
+   player.setPosition(5,5,0);
    let player2 = new PlayerLevel1(scene,engine,'player2','i','k','j','l');
    //player.destroyPlayer();
    triggerRespawn();
@@ -398,7 +399,7 @@ function launch() {
 
     
        
-
+ 
     engine.runRenderLoop(function () {
        //console.log(value)
        scene.render();
@@ -428,6 +429,11 @@ function killLevel(player){
 }
 
 function reloadlevel(){
+    let playerMesh = scene.getMeshByName("player1");
+    let playerMesh2 = scene.getMeshByName("player2");
+
+    //playerMesh.physicsBody.dispose();
+    
      // Supprimer tous les meshs de la scène
      /*
     scene.meshes.forEach(function(mesh) {

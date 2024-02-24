@@ -5,15 +5,23 @@ var canvas2 = document.getElementById("renderCanvas");
 //var engine2 = new BABYLON.Engine(canvas2, true);
 
 //variables
-let control ;
+
+
+
 export class PlayerLevel1 {
-   
+
     constructor(scene,engine,name,forward,backward,left,right) {
+        this.scene = scene;
+        this.engine = engine;
+        this.boxBody ;
+
         this.testPlayer(scene,engine,name,forward,backward,left,right);
+        this.enablePlayerControl(forward,backward,left,right);
+     
     }
+    
 
-
-    testPlayer(scene,engine,name,forward,backward,left,right){
+    testPlayer(scene,engine,name){
        
         var boxW = 2;
         var boxH = 2;
@@ -39,19 +47,27 @@ export class PlayerLevel1 {
         
         boxBody.setCollisionCallbackEnabled(true)
       
+        this.boxBody = boxBody;
+        
+     
+    
+     
+     
+        
+    
        
-        
-     
-    
-     
-     
-        
-    
-        //boxBody.applyForce()
-        control = new CharacterController(canvas2,engine,boxBody,forward,backward,left,right);
+        //control = new CharacterController(canvas2,engine,boxBody,forward,backward,left,right);
         return box;
     
         
+    }
+    setPosition(x,y,z){
+        let playerMesh = this.scene.getMeshByName("player1");
+        
+        playerMesh.position = new BABYLON.Vector3(x,y,z);
+    }
+    enablePlayerControl(forward,backward,left,right){
+       let control = new CharacterController(canvas2,this.engine,this.boxBody,forward,backward,left,right);
     }
 
     destroyPlayer(){
