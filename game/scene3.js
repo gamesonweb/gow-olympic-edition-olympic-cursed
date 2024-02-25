@@ -130,11 +130,6 @@ function createPlayer(x,y,z , input1,inputJump){
     return box;
 }
 
-function testPlayer(){
-   
-
-    
-}
 
 function getScene() {
     return scene;

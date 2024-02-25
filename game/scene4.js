@@ -5,6 +5,7 @@ var name = "level4";
 
 import { CustomModels } from './CustomModels.js';
 import CharacterController3 from './CharacterController3.js';
+import PlayerLevel3 from './PlayerLevel3.js';
 
 async function sceneData() {
     //activer la physique sur la scene 
@@ -35,8 +36,9 @@ async function sceneData() {
 
     //model.CreateBowlingBall(0,12,0)
 
-    //createPlayer(0,10,0,'d','q');
-    createPlayer2(0,20,0,'d','q');
+    createPlayer(0,10,0,'d','q');
+    let player2 = new PlayerLevel3(scene,engine,"player2",'j','l',-5,5,0)
+    //createPlayer2(0,20,0,'d','q');
 
     CreateBowlingBall(0,6,0);
 
@@ -115,50 +117,11 @@ function createPlayer(x,y,z , inputRight,inputLeft){
 
     //boxBody.applyForce()
     //let control = new CharacterController2(canvas,scene,engine,boxBody,'s',' ');
-    let control = new CharacterController3(canvas,scene,engine,boxBody, inputRight,inputLeft);
+    let control = new CharacterController3(canvas,engine,boxBody, inputRight,inputLeft);
     return box;
 }
 
 
-function createPlayer2(x,y,z , inputRight,inputLeft){
-
-    var boxW = 2;
-    var boxH = 2;
-    var boxD = 2;
-    
-    //var box = BABYLON.MeshBuilder.CreateBox("player", {width: boxW, height: boxH, depth: boxD},scene);
-    let box = CreateBowlingBall(x,y,z);
-    //let box = scene.getMeshByName("player");
-   
-   
-    //box.position = new BABYLON.Vector3(0,5,0);
-    box.position = new BABYLON.Vector3(x,y,z);
-    //var boxShape = new BABYLON.PhysicsShapeBox(new BABYLON.Vector3(0,0,0), BABYLON.Quaternion.Identity(), new BABYLON.Vector3(boxW, boxH, boxD), scene);
-    var sphereshape = new BABYLON.PhysicsShapeSphere(new BABYLON.Vector3(0,0,0), 15,scene);
-    var boxBody = new BABYLON.PhysicsBody(box, BABYLON.PhysicsMotionType.DYNAMIC, false, scene);
-
-    //boxBody.shape = sphereshape;
-    //boxBody.setMassProperties({mass : 1})
-
-
- /*
-   
-    
-    boxBody.setCollisionCallbackEnabled(true)
-  
-   
-    
- 
-
- 
- 
-    
-
-    //boxBody.applyForce()
-    //let control = new CharacterController2(canvas,scene,engine,boxBody,'s',' ');
-    let control = new CharacterController3(canvas,scene,engine,boxBody, inputRight,inputLeft);*/
-    return box;
-}
 
 function raycast() {
     // Get the player mesh by name

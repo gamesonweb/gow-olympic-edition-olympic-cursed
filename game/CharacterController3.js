@@ -1,5 +1,5 @@
 class CharacterController2 {
-    constructor(canvas, scene, engine, character1, inputLeft, inputRight) {
+    constructor(canvas, engine, character1, inputLeft, inputRight) {
         this.setupKeyboardInputPlayer(canvas, engine, character1, inputLeft, inputRight);
     }
 
@@ -50,14 +50,14 @@ class CharacterController2 {
           
 
             if (this.keys[input1]) {
-                //console.log('Touche Q enfoncée');
+                console.log('Touche Q enfoncée');
                 character.applyForce(new BABYLON.Vector3(5, 0, 0), new BABYLON.Vector3(0, 0, 0));
                 character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
           
             }
 
             if (this.keys[inputJump]) {
-                //console.log('Touche D enfoncée');
+                console.log('Touche D enfoncée');
                 character.applyForce(new BABYLON.Vector3(-5, 0, 0), new BABYLON.Vector3(0, 0, 0));
                 character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
      
