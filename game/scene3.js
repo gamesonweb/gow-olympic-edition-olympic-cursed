@@ -6,6 +6,7 @@ var name = "level3";
 import { CustomModels } from './CustomModels.js';
 import CharacterController2 from './CharacterController2.js';
 import * as sceneManager from './SceneManager.js';
+import PlayerLevel2 from './PlayerLevel2.js';
 
 async function getInitializedHavok() {
     return await HavokPhysics();
@@ -35,8 +36,9 @@ async function sceneData() {
 
     // Créez un cube avec le matériau
   
-    let player1 = createPlayer(0,5,0,'s','f');
-    let player2 = createPlayer(10,5,0,'k','m');
+    //let player1 = createPlayer(0,5,0,'s','f');
+    let player1 = new PlayerLevel2(scene,engine,name,'s','f', 10,15,0);
+    let player2 = new PlayerLevel2(scene,engine,"player2",'k','m',0,10,0);
     //player2.position.x =0;
     //player2.position.y =0;
     //player2.position.z =0;

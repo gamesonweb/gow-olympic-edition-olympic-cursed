@@ -36,15 +36,18 @@ async function sceneData() {
 
     //model.CreateBowlingBall(0,12,0)
 
-    createPlayer(0,10,0,'d','q');
-    let player2 = new PlayerLevel3(scene,engine,"player2",'j','l',-5,5,0)
-    //createPlayer2(0,20,0,'d','q');
 
-    CreateBowlingBall(0,6,0);
+    //let player1 = new PlayerLevel3(scene,engine,"player1",'q','d','z',0,5,0)
+    let player2 = new PlayerLevel3(scene,engine,"player2",'j','l','i',-5,5,0)
+    
+    player2.shootBall();
+    
+    //let player2 = new PlayerLevel3(scene,engine,"player2","ArrowLeft","ArrowRight","ArrowUp",-5,5,0)
+    //CreateBowlingBall(0,6,0);
 
     model.CreatePlateform_Scene4();
 
-    raycast();
+    //raycast();
     
         
 
@@ -75,84 +78,8 @@ function launch() {
     });
 }
 
-function getScene() {
-    return scene;
-}
 
 
-function createPlayer(x,y,z , inputRight,inputLeft){
-
-    var boxW = 2;
-    var boxH = 2;
-    var boxD = 2;
-    
-    var box = BABYLON.MeshBuilder.CreateBox("player", {width: boxW, height: boxH, depth: boxD},scene);
-
-   
-    box.rotationQuaternion = BABYLON.Quaternion.Identity();
-    //box.position = new BABYLON.Vector3(0,5,0);
-    box.position = new BABYLON.Vector3(x,y,z);
-    var boxShape = new BABYLON.PhysicsShapeBox(new BABYLON.Vector3(0,0,0), BABYLON.Quaternion.Identity(), new BABYLON.Vector3(boxW, boxH, boxD), scene);
-    var boxBody = new BABYLON.PhysicsBody(box, BABYLON.PhysicsMotionType.DYNAMIC, false, scene);
-
-    boxBody.shape = boxShape;
-    boxBody.setMassProperties({mass : 1})
-
-
-    //add create material add tothe cube
-    var blueMaterial = new BABYLON.StandardMaterial("groundMaterial", scene);
-    blueMaterial.diffuseColor = new BABYLON.Color3(0, 0, 1); // Rouge doux
-    box.material = blueMaterial;
-   
-    
-    boxBody.setCollisionCallbackEnabled(true)
-  
-   
-    
- 
-
- 
- 
-    
-
-    //boxBody.applyForce()
-    //let control = new CharacterController2(canvas,scene,engine,boxBody,'s',' ');
-    let control = new CharacterController3(canvas,engine,boxBody, inputRight,inputLeft);
-    return box;
-}
-
-
-
-function raycast() {
-    // Get the player mesh by name
-    var playerMesh = scene.getMeshByName("player");
-    // Ensure the player mesh exists
-    if (!playerMesh) {
-        console.error("Player mesh not found");
-        return;
-    }
-    // Get the player's position
-    var rayOrigin = playerMesh.position;
-    // Set the ray direction along the positive Z-axis
-    var rayDirection = new BABYLON.Vector3(0, 0, 1);
-    // Set the ray length
-    var rayLength = 50;
-    // Calculate the destination point of the ray
-    var rayDestination = rayOrigin.add(rayDirection.scale(rayLength));
-    // Create the ray
-    var ray = new BABYLON.Ray(rayOrigin, rayDirection, rayLength);
-    // Create a ray helper for visualization (optional)
-    var rayHelper = new BABYLON.RayHelper(ray);
-    rayHelper.show(scene, new BABYLON.Color3(0.9, 0, 0));
-    // Perform raycasting or any other actions with the ray
-    // Example: Check if the ray intersects with a mesh
-    var hit = scene.pickWithRay(ray);
-    /*
-    if (hit.pickedMesh) {
-        console.log("Ray hits:", hit.pickedMesh.name);
-        // Do something with the intersected mesh
-    }*/
-}
 
 function CreateBowlingBall(x, y, z) {
     let tree;

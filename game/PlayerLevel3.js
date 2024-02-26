@@ -10,13 +10,15 @@ var canvas2 = document.getElementById("renderCanvas");
 
 export class PlayerLevel3 {
 
-    constructor(scene,engine,name,left,right,x,y,z) {
+    constructor(scene,engine,name,left,right,jump,x,y,z) {
         this.scene = scene;
         this.engine = engine;
+        this.name= name;
         this.boxBody ;
-
+        this.box;
         this.testPlayer(scene,engine,name,x,y,z);
-        this.enablePlayerControl(left,right);
+        this.enablePlayerControl(left,right,jump);
+        this.raycast();
      
     }
     
@@ -28,7 +30,7 @@ export class PlayerLevel3 {
         
        
         var box = BABYLON.MeshBuilder.CreateBox(name, {width: boxW, height: boxH, depth: boxD},scene);
-
+        this.box =box;
    
         box.rotationQuaternion = BABYLON.Quaternion.Identity();
         //box.position = new BABYLON.Vector3(0,5,0);
@@ -62,9 +64,68 @@ export class PlayerLevel3 {
     }
   
  
-    enablePlayerControl(inputLeft,inputRight){
+    enablePlayerControl(inputLeft,inputRight,jump){
        //let control = new CharacterController(canvas2,this.engine,this.boxBody,forward,backward,left,right);
-       let control = new CharacterController3(canvas2,this.engine,this.boxBody, inputRight,inputLeft);
+       let control = new CharacterController3(canvas2,this.engine,this.boxBody, inputRight,inputLeft,jump);
+    }
+
+    raycast() {
+        // Get the player mesh by name
+        var playerMesh = this.scene.getMeshByName(this.name);
+        // Ensure the player mesh exists
+        if (!playerMesh) {
+            console.error("Player mesh not found");
+            return;
+        }
+        // Get the player's position
+        var rayOrigin = playerMesh.position;
+        // Set the ray direction along the positive Z-axis
+        var rayDirection = new BABYLON.Vector3(0, 0, 1);
+        // Set the ray length
+        var rayLength = 50;
+        // Calculate the destination point of the ray
+        var rayDestination = rayOrigin.add(rayDirection.scale(rayLength));
+        // Create the ray
+        var ray = new BABYLON.Ray(rayOrigin, rayDirection, rayLength);
+        // Create a ray helper for visualization (optional)
+        var rayHelper = new BABYLON.RayHelper(ray);
+        rayHelper.show(this.scene, new BABYLON.Color3(0.9, 0, 0));
+        // Perform raycasting or any other actions with the ray
+        // Example: Check if the ray intersects with a mesh
+        var hit = this.scene.pickWithRay(ray);
+        /*
+        if (hit.pickedMesh) {
+            console.log("Ray hits:", hit.pickedMesh.name);
+            // Do something with the intersected mesh
+        }*/
+    }
+
+    shootBall(){
+        let segments = 16;
+        let diameter = 1;
+
+        const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { segments, diameter }, this.scene);
+        sphere.position = new BABYLON.Vector3(0,10,0);
+
+       
+        var sphereShape = new BABYLON.PhysicsShapeSphere(new BABYLON.Vector3(0,0,0),diameter,this.scene);
+        var sphereBody = new BABYLON.PhysicsBody(sphere, BABYLON.PhysicsMotionType.DYNAMIC, false, this.scene);
+        sphereBody.shape = sphereShape;
+        sphereBody.setMassProperties({mass : 1});
+
+        //sphere.addChild(this.box);
+        
+  
+
+        //sphereBody.applyForce(new BABYLON.Vector3(0, 0, -30), new BABYLON.Vector3(0, 0, 0));
+        //sphereBody.applyImpulse(new BABYLON.Vector3(0, 0, -0.1), new BABYLON.Vector3(0, 0, 0));
+        /*
+        let forward = sphereBody.transformNode.forward.scale(5);
+   
+
+        sphereBody.applyForce(forward , sphereBody.transformNode.position);
+        console.log(forward);*/
+
     }
     
 
@@ -72,6 +133,8 @@ export class PlayerLevel3 {
         
         control = null;
     }
+
+
 
 
 

@@ -1,9 +1,9 @@
 class CharacterController2 {
-    constructor(canvas, engine, character1, inputLeft, inputRight) {
-        this.setupKeyboardInputPlayer(canvas, engine, character1, inputLeft, inputRight);
+    constructor(canvas, engine, character1, inputLeft, inputRight,inputJump) {
+        this.setupKeyboardInputPlayer(canvas, engine, character1, inputLeft, inputRight,inputJump);
     }
 
-    setupKeyboardInputPlayer(canvas, engine, character, input1, inputJump) {
+    setupKeyboardInputPlayer(canvas, engine, character, input1,input2, inputJump) {
         this.keys = {};
         let isKeyPressed = false;
         let isKeyPressed2 = false;
@@ -50,20 +50,28 @@ class CharacterController2 {
           
 
             if (this.keys[input1]) {
-                console.log('Touche Q enfoncée');
+                console.log('Touche gauche enfoncée');
                 character.applyForce(new BABYLON.Vector3(5, 0, 0), new BABYLON.Vector3(0, 0, 0));
-                character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
+                character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
           
             }
 
-            if (this.keys[inputJump]) {
-                console.log('Touche D enfoncée');
+            if (this.keys[input2]) {
+                console.log('Touche Droite enfoncée');
                 character.applyForce(new BABYLON.Vector3(-5, 0, 0), new BABYLON.Vector3(0, 0, 0));
-                character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
+                character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
      
             }
 
-            character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
+            
+            if (this.keys[inputJump]) {
+                console.log('Touche JUMP enfoncée');
+                character.applyForce(new BABYLON.Vector3(0, 30, 0), new BABYLON.Vector3(0, 0, 0));
+                character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
+     
+            }
+
+            character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
         });
     }
 
