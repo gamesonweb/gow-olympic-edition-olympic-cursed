@@ -11,19 +11,20 @@ var canvas2 = document.getElementById("renderCanvas");
 export class PlayerLevel3 {
 
     constructor(scene,engine,name,left,right,jump,action,x,y,z) {
+        this.control;
         this.scene = scene;
         this.engine = engine;
         this.name= name;
         this.boxBody ;
         this.sphereBody;
         this.box;
-
+        this.rayHelper;
         //this.testPlayer(scene,engine,name,x,y,z);
       
         this.shootBall(left,right,jump,action,x,y,z);
         //this.disableSphereBody();
-        //this.enablePlayerControl(left,right,jump,action);
-        this.raycast();
+        this.enablePlayerControl(left,right,jump,action);
+        //this.raycast();
      
     }
     
@@ -57,7 +58,7 @@ export class PlayerLevel3 {
       
        
         this.boxBody = boxBody;
-     
+        
     
      
      
@@ -71,7 +72,9 @@ export class PlayerLevel3 {
  
     enablePlayerControl(inputLeft,inputRight,jump,action){
        //let control = new CharacterController(canvas2,this.engine,this.boxBody,forward,backward,left,right);
-       let control = new CharacterController3(canvas2,this.engine,this.sphereBody, inputRight,inputLeft,jump,action);
+        let control2 = new CharacterController3(canvas2,this.engine,this.sphereBody, inputRight,inputLeft,jump,action);
+        this.control = control2;
+     
       
     }
 
@@ -100,6 +103,7 @@ export class PlayerLevel3 {
         // Example: Check if the ray intersects with a mesh
         var hit = this.scene.pickWithRay(ray);
         
+        this.rayHelper = rayHelper;
         //rayHelper.hide();
 
         /*
@@ -122,20 +126,22 @@ export class PlayerLevel3 {
         sphereBody.shape = sphereShape;
         sphereBody.setMassProperties({mass : 1});
 
-     
+       
         
         this.sphereBody = sphereBody;
-        
+        //this.sphereBody.dispose();
 
     }
-    disableSphereBody(){
-        this.sphereBody.dispose();
+    disableThisObject(){
+        //delete this.control;
+        this.control.destroy();
+        this.control = null;
+        
+        //this.sphereBody.dispose();
+       
     }
 
-    destroyPlayer(){
-        
-        control = null;
-    }
+    
 
 
 

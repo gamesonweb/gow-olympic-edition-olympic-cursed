@@ -1,5 +1,7 @@
 class CharacterController2 {
     constructor(canvas, engine, character1, inputLeft, inputRight,inputJump,inputLaunch) {
+        this.destroyed = false;
+        this.action = false;
         this.setupKeyboardInputPlayer(canvas, engine, character1, inputLeft, inputRight,inputJump,inputLaunch);
     }
 
@@ -12,73 +14,73 @@ class CharacterController2 {
             if (!this.keys[event.key]) {
                 this.keys[event.key] = true;
 
-                /*
-                // Vérifie si la touche est celle que vous souhaitez traiter
-                if (event.key === input1 && !isKeyPressed) {
-                    isKeyPressed = true;
-                    //console.log("Touche enfoncée, action effectuée");
-                 
-                }
-                if (event.key === inputJump && !isKeyPressed2) {
-                    isKeyPressed2 = true;
-                    console.log("Touche enfoncée, action effectuée jump");
-              
-                }*/
+             
             }
         });
 
         // Écoute l'événement "keyup" (touche relâchée) sur le canvas.
         canvas.addEventListener('keyup', (event) => {
             this.keys[event.key] = false;
-            /*
-            // Ensuite, planifiez la mise à false après une seconde
-            if (event.key === inputJump ) {
-                isKeyPressed2 = false;
-                console.log("Touche relâchée jump");
-                // Ajoutez ici la logique pour arrêter le saut du personnage si nécessaire
-            }
-
-            // Vérifie si la touche est celle que vous souhaitez traiter
-            if (event.key === input1) {
-                isKeyPressed = false;
-                //console.log("Touche relâchée");
-            }*/
+            
         });
 
         // Démarre la boucle de rendu du moteur Babylon.js.
         engine.runRenderLoop(() => {
           
-
-            if (this.keys[input1]) {
-                console.log('Touche gauche enfoncée');
-                character.applyForce(new BABYLON.Vector3(5, 0, 0), new BABYLON.Vector3(0, 0, 0));
-                character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
-          
-            }
-
-            if (this.keys[input2]) {
-                console.log('Touche Droite enfoncée');
-                character.applyForce(new BABYLON.Vector3(-5, 0, 0), new BABYLON.Vector3(0, 0, 0));
-                character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
-     
-            }
-
+            if(!this.destroyed){
+                if (this.keys[input1]) {
+                    console.log('Touche gauche enfoncée');
+                    character.applyForce(new BABYLON.Vector3(5, 0, 0), new BABYLON.Vector3(0, 0, 0));
+                    character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
             
-            if (this.keys[inputJump]) {
-                console.log('Touche JUMP enfoncée');
-                character.applyForce(new BABYLON.Vector3(0, 30, 0), new BABYLON.Vector3(0, 0, 0));
-                character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
-     
-            }
-            if (this.keys[inputLaunch]) {
-                console.log('Touche LAUNCH enfoncée');
-                character.applyForce(new BABYLON.Vector3(0, 0, 700), new BABYLON.Vector3(0, 0, 0));
-                //character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
-     
-            }
+                }
 
-            character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
+                if (this.keys[input2]) {
+                    console.log('Touche Droite enfoncée');
+                    character.applyForce(new BABYLON.Vector3(-5, 0, 0), new BABYLON.Vector3(0, 0, 0));
+                    character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
+        
+                }
+
+                
+                if (this.keys[inputJump] && !this.action) {
+                    console.log('Touche JUMP enfoncée');
+                    character.applyForce(new BABYLON.Vector3(0, 30, 0), new BABYLON.Vector3(0, 0, 0));
+                    character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
+        
+                }
+                if (this.keys[inputLaunch] && !this.action) {
+                    console.log('Touche LAUNCH enfoncée');
+                    this.action = true;
+                    character.applyForce(new BABYLON.Vector3(0, 0, 700*2), new BABYLON.Vector3(0, 0, 0));
+                    //character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
+        
+                }
+
+                //character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
+            }
         });
+
+       
+    }
+
+
+    destroy() {
+     
+        this.destroyed = true;
+
+        // Libérez les références aux objets
+        this.canvas = null;
+        this.engine = null;
+
+        //this.character1.dispose();
+        this.character1 = null;
+        this.inputLeft = null;
+        this.inputRight = null;
+        this.inputJump = null;
+        this.inputLaunch = null;
+
+        // Réinitialisez ou supprimez d'autres ressources si nécessaire
     }
 
     

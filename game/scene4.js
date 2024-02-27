@@ -36,16 +36,15 @@ async function sceneData() {
 
     //model.CreateBowlingBall(0,12,0)
 
-
+  //let player2 = new PlayerLevel3(scene,engine,"player2","ArrowLeft","ArrowRight","ArrowUp",-5,5,0)
     
     let player1 = new PlayerLevel3(scene,engine,"player1",'q','d','s',' ',-5,5,0);
     let player2 = new PlayerLevel3(scene,engine,"player2",'j','l','i','Enter',0,5,0);
     //player2.shootBall();
 
     let ball1 = scene.getMeshByName("player1");
-    //ball1.dispose();
+   
     
-    //let player2 = new PlayerLevel3(scene,engine,"player2","ArrowLeft","ArrowRight","ArrowUp",-5,5,0)
     //CreateBowlingBall(0,6,0);
 
     eventHandler(hk,player1,player2);
@@ -166,14 +165,18 @@ function eventHandler(hk,player1,player2){
 
             if(ev.collider.transformNode.name == "player1"){
                 let ball1 = scene.getMeshByName("player1");
-                ball1.physicsBody.dispose();
-                ball1.dispose();
+         
+                player1.disableThisObject();
                 player1 = null;
+                ball1.dispose();
+            
      
             }else{
                 let ball2 = scene.getMeshByName("player2");
-                ball2.dispose()
+                player2.disableThisObject();
                 player2 = null;
+                ball2.dispose()
+              
             }
           
          
