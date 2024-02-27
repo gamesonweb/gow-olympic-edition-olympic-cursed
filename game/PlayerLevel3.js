@@ -10,14 +10,19 @@ var canvas2 = document.getElementById("renderCanvas");
 
 export class PlayerLevel3 {
 
-    constructor(scene,engine,name,left,right,jump,x,y,z) {
+    constructor(scene,engine,name,left,right,jump,action,x,y,z) {
         this.scene = scene;
         this.engine = engine;
         this.name= name;
         this.boxBody ;
+        this.sphereBody;
         this.box;
-        this.testPlayer(scene,engine,name,x,y,z);
-        this.enablePlayerControl(left,right,jump);
+
+        //this.testPlayer(scene,engine,name,x,y,z);
+      
+        this.shootBall(left,right,jump,action,x,y,z);
+        //this.disableSphereBody();
+        //this.enablePlayerControl(left,right,jump,action);
         this.raycast();
      
     }
@@ -64,9 +69,10 @@ export class PlayerLevel3 {
     }
   
  
-    enablePlayerControl(inputLeft,inputRight,jump){
+    enablePlayerControl(inputLeft,inputRight,jump,action){
        //let control = new CharacterController(canvas2,this.engine,this.boxBody,forward,backward,left,right);
-       let control = new CharacterController3(canvas2,this.engine,this.boxBody, inputRight,inputLeft,jump);
+       let control = new CharacterController3(canvas2,this.engine,this.sphereBody, inputRight,inputLeft,jump,action);
+      
     }
 
     raycast() {
@@ -93,6 +99,9 @@ export class PlayerLevel3 {
         // Perform raycasting or any other actions with the ray
         // Example: Check if the ray intersects with a mesh
         var hit = this.scene.pickWithRay(ray);
+        
+        //rayHelper.hide();
+
         /*
         if (hit.pickedMesh) {
             console.log("Ray hits:", hit.pickedMesh.name);
@@ -100,34 +109,28 @@ export class PlayerLevel3 {
         }*/
     }
 
-    shootBall(){
+    shootBall(left,right,jump,action,x,y,z){
         let segments = 16;
-        let diameter = 1;
+        let diameter = 3;
 
-        const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { segments, diameter }, this.scene);
-        sphere.position = new BABYLON.Vector3(0,10,0);
+        const sphere = BABYLON.MeshBuilder.CreateSphere(this.name, { segments, diameter }, this.scene);
+        sphere.position = new BABYLON.Vector3(x,y,z);
 
        
-        var sphereShape = new BABYLON.PhysicsShapeSphere(new BABYLON.Vector3(0,0,0),diameter,this.scene);
+        var sphereShape = new BABYLON.PhysicsShapeSphere(new BABYLON.Vector3(0,0,0),diameter-1,this.scene);
         var sphereBody = new BABYLON.PhysicsBody(sphere, BABYLON.PhysicsMotionType.DYNAMIC, false, this.scene);
         sphereBody.shape = sphereShape;
         sphereBody.setMassProperties({mass : 1});
 
-        //sphere.addChild(this.box);
+     
         
-  
-
-        //sphereBody.applyForce(new BABYLON.Vector3(0, 0, -30), new BABYLON.Vector3(0, 0, 0));
-        //sphereBody.applyImpulse(new BABYLON.Vector3(0, 0, -0.1), new BABYLON.Vector3(0, 0, 0));
-        /*
-        let forward = sphereBody.transformNode.forward.scale(5);
-   
-
-        sphereBody.applyForce(forward , sphereBody.transformNode.position);
-        console.log(forward);*/
+        this.sphereBody = sphereBody;
+        
 
     }
-    
+    disableSphereBody(){
+        this.sphereBody.dispose();
+    }
 
     destroyPlayer(){
         

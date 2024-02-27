@@ -37,13 +37,18 @@ async function sceneData() {
     //model.CreateBowlingBall(0,12,0)
 
 
-    //let player1 = new PlayerLevel3(scene,engine,"player1",'q','d','z',0,5,0)
-    let player2 = new PlayerLevel3(scene,engine,"player2",'j','l','i',-5,5,0)
     
-    player2.shootBall();
+    let player1 = new PlayerLevel3(scene,engine,"player1",'q','d','s',' ',-5,5,0);
+    let player2 = new PlayerLevel3(scene,engine,"player2",'j','l','i','Enter',0,5,0);
+    //player2.shootBall();
+
+    let ball1 = scene.getMeshByName("player1");
+    //ball1.dispose();
     
     //let player2 = new PlayerLevel3(scene,engine,"player2","ArrowLeft","ArrowRight","ArrowUp",-5,5,0)
     //CreateBowlingBall(0,6,0);
+
+    eventHandler(hk,player1,player2);
 
     model.CreatePlateform_Scene4();
 
@@ -57,6 +62,7 @@ async function sceneData() {
 
     console.log(ball);
     
+    triggerRespawn();
     
 
   
@@ -108,7 +114,75 @@ function CreateBowlingBall(x, y, z) {
 }
 
 
+function triggerRespawn(){
 
+    const shapeBox1 = new BABYLON.PhysicsShapeBox(
+        new BABYLON.Vector3(0, 0, 0),        // center of the box
+        new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
+        new BABYLON.Vector3(30, 30, 10),      // dimensions of the box
+        scene                                // scene of the shape
+    );
+    
+
+    //let RainBowMesh = scene.getMeshByName("RainBow");
+
+    var boxW = 2;
+    var boxH = 2;
+    var boxD = 2;
+
+    var box = BABYLON.MeshBuilder.CreateBox("Respawn", {width: boxW, height: boxH, depth: boxD},scene);
+    box.isVisible = false;
+
+    box.position.x = 0;
+    box.position.y = 2;
+    box.position.z = 97,43;
+    //box.position = BABYLON.Vector3(4,-24,-850);    
+        
+    var Aggregate =new BABYLON.PhysicsAggregate(box, shapeBox1, { mass: 0 },scene);
+    Aggregate.shape.isTrigger =  true;
+    
+
+    
+    //Aggregate.dispose();
+    
+}
+
+function eventHandler(hk,player1,player2){
+    
+    hk.onTriggerCollisionObservable.add((ev) => {
+        // console.log(ev);
+        console.log(ev.type, ':', ev.collider.transformNode.name, '-', ev.collidedAgainst.transformNode.name);
+       
+        if(ev.collidedAgainst.transformNode.name =="Ending"){
+            console.log("YOU WINNNNNNN")
+            //killLevel();
+            //loadNextLevel();
+            player1 = null;
+  
+
+        }
+        if(ev.collidedAgainst.transformNode.name =="Respawn"){
+            console.log("YOU RESPAWNWNNN");
+
+            if(ev.collider.transformNode.name == "player1"){
+                let ball1 = scene.getMeshByName("player1");
+                ball1.physicsBody.dispose();
+                ball1.dispose();
+                player1 = null;
+     
+            }else{
+                let ball2 = scene.getMeshByName("player2");
+                ball2.dispose()
+                player2 = null;
+            }
+          
+         
+
+            
+          
+        }
+    });
+}
 
 
 export { name, scene, sceneData, launch };
