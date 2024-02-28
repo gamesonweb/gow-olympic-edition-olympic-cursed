@@ -22,8 +22,10 @@ export class PlayerLevel3 {
         //this.testPlayer(scene,engine,name,x,y,z);
       
         this.shootBall(left,right,jump,action,x,y,z);
-        //this.disableSphereBody();
+    
         this.enablePlayerControl(left,right,jump,action);
+
+        
         //this.raycast();
      
     }
@@ -121,7 +123,7 @@ export class PlayerLevel3 {
         sphere.position = new BABYLON.Vector3(x,y,z);
 
        
-        var sphereShape = new BABYLON.PhysicsShapeSphere(new BABYLON.Vector3(0,0,0),diameter-1,this.scene);
+        var sphereShape = new BABYLON.PhysicsShapeSphere(new BABYLON.Vector3(0,0,0),diameter-1.5,this.scene);
         var sphereBody = new BABYLON.PhysicsBody(sphere, BABYLON.PhysicsMotionType.DYNAMIC, false, this.scene);
         sphereBody.shape = sphereShape;
         sphereBody.setMassProperties({mass : 1});
@@ -139,6 +141,9 @@ export class PlayerLevel3 {
         
         //this.sphereBody.dispose();
        
+    }
+    instanciate(){
+
     }
 
     

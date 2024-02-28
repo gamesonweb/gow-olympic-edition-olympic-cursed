@@ -6,7 +6,8 @@ var name = "level4";
 import { CustomModels } from './CustomModels.js';
 import CharacterController3 from './CharacterController3.js';
 import PlayerLevel3 from './PlayerLevel3.js';
-
+let player1;
+let player2;
 async function sceneData() {
     //activer la physique sur la scene 
 
@@ -38,10 +39,9 @@ async function sceneData() {
 
   //let player2 = new PlayerLevel3(scene,engine,"player2","ArrowLeft","ArrowRight","ArrowUp",-5,5,0)
     
-    let player1 = new PlayerLevel3(scene,engine,"player1",'q','d','s',' ',-5,5,0);
-    let player2 = new PlayerLevel3(scene,engine,"player2",'j','l','i','Enter',0,5,0);
+     player1 = new PlayerLevel3(scene,engine,"player1",'q','d','s',' ',-5,5,0);
+     player2 = new PlayerLevel3(scene,engine,"player2",'j','l','i','Enter',0,5,0);
     //player2.shootBall();
-
     let ball1 = scene.getMeshByName("player1");
    
     
@@ -60,9 +60,12 @@ async function sceneData() {
     
 
     console.log(ball);
-    
-    triggerRespawn();
-    
+
+    //trigger1
+    triggerRespawn(0,2,97.43,30, 30, 10);
+    //trigger2
+    triggerRespawn(7.5,2,48,1, 30,90);
+    triggerRespawn(-7.5,2,48,1, 30,90);
 
   
     scene.debugLayer.show();
@@ -113,12 +116,12 @@ function CreateBowlingBall(x, y, z) {
 }
 
 
-function triggerRespawn(){
+function triggerRespawn(x,y,z,sizeX,sizeY,sizeZ){
 
     const shapeBox1 = new BABYLON.PhysicsShapeBox(
         new BABYLON.Vector3(0, 0, 0),        // center of the box
         new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
-        new BABYLON.Vector3(30, 30, 10),      // dimensions of the box
+        new BABYLON.Vector3(sizeX,sizeY,sizeZ),      // dimensions of the box
         scene                                // scene of the shape
     );
     
@@ -132,9 +135,9 @@ function triggerRespawn(){
     var box = BABYLON.MeshBuilder.CreateBox("Respawn", {width: boxW, height: boxH, depth: boxD},scene);
     box.isVisible = false;
 
-    box.position.x = 0;
-    box.position.y = 2;
-    box.position.z = 97,43;
+    box.position.x = x;
+    box.position.y = y;
+    box.position.z = z;
     //box.position = BABYLON.Vector3(4,-24,-850);    
         
     var Aggregate =new BABYLON.PhysicsAggregate(box, shapeBox1, { mass: 0 },scene);
@@ -167,15 +170,19 @@ function eventHandler(hk,player1,player2){
                 let ball1 = scene.getMeshByName("player1");
          
                 player1.disableThisObject();
-                player1 = null;
+                //player1 = null;
                 ball1.dispose();
+                
+                player1 = new PlayerLevel3(scene,engine,"player1",'q','d','s',' ',-5,5,0);
             
      
             }else{
                 let ball2 = scene.getMeshByName("player2");
                 player2.disableThisObject();
-                player2 = null;
+                //player2 = null;
                 ball2.dispose()
+
+                player2= new PlayerLevel3(scene,engine,"player2",'j','l','i','Enter',0,5,0);
               
             }
           
