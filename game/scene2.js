@@ -1,9 +1,6 @@
 
 import CharacterController from './CharacterController.js';
 import { CustomModels } from './CustomModels.js';
-import { TriggerEvent } from './trigger.js';
-import DevCamera from '/DevCamera.js';
-import PlayerCamera from '/PlayerCamera.js';
 import * as sceneManager from './SceneManager.js'
 import {PlayerLevel1} from "./PlayerLevel1.js";
 

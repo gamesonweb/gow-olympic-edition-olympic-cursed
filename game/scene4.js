@@ -6,6 +6,7 @@ var name = "level4";
 import { CustomModels } from './CustomModels.js';
 import CharacterController3 from './CharacterController3.js';
 import PlayerLevel3 from './PlayerLevel3.js';
+import BowlingPin from './BowlingPin.js';
 let player1;
 let player2;
 async function sceneData() {
@@ -67,7 +68,8 @@ async function sceneData() {
     triggerRespawn(7.5,2,48,1, 30,90);
     triggerRespawn(-7.5,2,48,1, 30,90);
 
-  
+    let pin = new BowlingPin(scene,0,2,19.397);
+    pin.createBowlingPin();
     scene.debugLayer.show();
 
 
@@ -193,6 +195,26 @@ function eventHandler(hk,player1,player2){
         }
     });
 }
+
+function killLevel(player){
+    //scene.dispose();
+     
+    scene.meshes.forEach(function(mesh) {
+        mesh.dispose();
+    });
+   
+    scene.cameras.forEach(function(mesh) {
+        mesh.dispose();
+    });
+    // Supprimer toutes les lumières de la scène
+    scene.lights.forEach(function(light) {
+        light.dispose();
+    });
+  
+  
+    engine.stopRenderLoop();
+}
+
 
 
 export { name, scene, sceneData, launch };
