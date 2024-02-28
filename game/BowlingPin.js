@@ -14,7 +14,7 @@ export class BowlingPin {
      
     }
     
-    createBowlingPin(x,y,z){
+    createBowlingPin(){
 
         BABYLON.SceneLoader.ImportMesh("", "./models/", "Bowling Pin.glb", this.scene, (meshes) => {
 
@@ -35,16 +35,16 @@ export class BowlingPin {
             let mesh = meshes[0];
             mesh.scaling._z =  mesh.scaling._z *-1;
             mesh.name ="Pin"
-            
+            /*
             let mesh2 = meshes[1];
             mesh2.name ="UnderPin"
-            console.log(mesh);
+            console.log(mesh);*/
         
     
             mesh.position = new BABYLON.Vector3(this.x, this.y, this.z); // Positionne l'objet
             
             var Aggregate =new BABYLON.PhysicsAggregate(mesh, shapeBox1, { mass: 1 }, this.scene);
-            //var Aggregate2 =new BABYLON.PhysicsAggregate(mesh2, shapeBox1, { mass: 0 }, this.scene);
+            //var Aggregate2 =new BABYLON.PhysicsAggregate(mesh, shapeBox1, { mass: 0 }, this.scene);
             
             //Aggregate2.shape.isTrigger = true;
                      

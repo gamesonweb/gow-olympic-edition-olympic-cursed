@@ -165,7 +165,8 @@ function eventHandler(hk,player1,player2){
   
 
         }
-        if(ev.collidedAgainst.transformNode.name =="Respawn"){
+
+        if(ev.collidedAgainst.transformNode.name =="Respawn" && ( ev.collider.transformNode.name == "player1" || ev.collider.transformNode.name == "player2" ) ){
             console.log("YOU RESPAWNWNNN");
 
             if(ev.collider.transformNode.name == "player1"){

@@ -117,13 +117,13 @@ export class PlayerLevel3 {
 
     shootBall(left,right,jump,action,x,y,z){
         let segments = 16;
-        let diameter = 3;
+        let diameter = 2;
 
         const sphere = BABYLON.MeshBuilder.CreateSphere(this.name, { segments, diameter }, this.scene);
         sphere.position = new BABYLON.Vector3(x,y,z);
 
        
-        var sphereShape = new BABYLON.PhysicsShapeSphere(new BABYLON.Vector3(0,0,0),diameter-1.5,this.scene);
+        var sphereShape = new BABYLON.PhysicsShapeSphere(new BABYLON.Vector3(0,0,0),diameter-1,this.scene);
         var sphereBody = new BABYLON.PhysicsBody(sphere, BABYLON.PhysicsMotionType.DYNAMIC, false, this.scene);
         sphereBody.shape = sphereShape;
         sphereBody.setMassProperties({mass : 1});
