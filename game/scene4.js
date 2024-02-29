@@ -9,6 +9,9 @@ import PlayerLevel3 from './PlayerLevel3.js';
 import BowlingPin from './BowlingPin.js';
 let player1;
 let player2;
+let listPins = [];
+let countPlayer1 ;
+let countPlayer2 ;
 async function sceneData() {
     //activer la physique sur la scene 
 
@@ -39,12 +42,30 @@ async function sceneData() {
     //model.CreateBowlingBall(0,12,0)
 
   //let player2 = new PlayerLevel3(scene,engine,"player2","ArrowLeft","ArrowRight","ArrowUp",-5,5,0)
+
+    const listeQuilles = [
+        new BowlingPin(scene, 0, 0, 0),
+        new BowlingPin(scene, 1, 0, 0),
+    
+    ];
+
+    // Accédez à l'meshId de la première quille dans la liste
+    const meshIdPremiereQuille = await listeQuilles[0].getMeshId();
+
+    // Affichez l'meshId de la première quille
+    console.log("MESHID PREMIRE QUILLE"+ meshIdPremiereQuille);
+
+
+
     
      player1 = new PlayerLevel3(scene,engine,"player1",'q','d','s',' ',-5,5,0);
      player2 = new PlayerLevel3(scene,engine,"player2",'j','l','i','Enter',0,5,0);
-    //player2.shootBall();
-    let ball1 = scene.getMeshByName("player1");
+
+     let pin = new BowlingPin(scene,0,2,19.397);
+    
    
+    let ball1 = scene.getMeshByName("player1");
+    
     
     //CreateBowlingBall(0,6,0);
 
@@ -60,7 +81,7 @@ async function sceneData() {
     
     
 
-    console.log(ball);
+  
 
     //trigger1
     triggerRespawn(0,2,97.43,30, 30, 10);
@@ -68,8 +89,8 @@ async function sceneData() {
     triggerRespawn(7.5,2,48,1, 30,90);
     triggerRespawn(-7.5,2,48,1, 30,90);
 
-    let pin = new BowlingPin(scene,0,2,19.397);
-    pin.createBowlingPin();
+   
+    //pin.createBowlingPin();
     scene.debugLayer.show();
 
 
@@ -152,6 +173,7 @@ function triggerRespawn(x,y,z,sizeX,sizeY,sizeZ){
 }
 
 function eventHandler(hk,player1,player2){
+
     
     hk.onTriggerCollisionObservable.add((ev) => {
         // console.log(ev);
@@ -194,7 +216,12 @@ function eventHandler(hk,player1,player2){
             
           
         }
+     
     });
+
+   pinsCount(hk);
+
+   
 }
 
 function killLevel(player){
@@ -217,5 +244,47 @@ function killLevel(player){
 }
 
 
+function searchPin(id){
+    for(element in listPins){
+        if(element.getMeshId() == id){
+            return true;
+        }
+    }
+}
+
+function getPin(id){
+    for(element in listPins){
+        if(element.getMeshId() == id){
+            return element;
+        }
+    }
+}
+
+function pinsCount(hk){
+
+    hk.onCollisionObservable.add((ev) => {
+        //console.log(ev.type);
+        //console.log(ev.type, ':', ev.collider.transformNode.name, '-', ev.collidedAgainst.transformNode.name);
+       //check if Pin is collided add count to counter of the player
+       if(ev.collidedAgainst.transformNode.name =="Pin"){
+        //console.log("YOU collide a pin");
+            let uniqueId =ev.collidedAgainst.transformNode.uniqueId;
+            console.log(ev.collidedAgainst.transformNode.uniqueId);
+            //list.push();
+            if(ev.collider.transformNode.name == "player1"){
+
+                console.log("player1 IS ON THE PLACE")
+                if(searchPin(uniqueId)){
+                    countPlayer1 ++;
+                    getPin().disableThisObject();
+                }
+
+                console.log(countPlayer1);
+                
+            }
+        }
+});
+
+}
 
 export { name, scene, sceneData, launch };

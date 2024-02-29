@@ -610,6 +610,7 @@ export class CustomModels {
             while( i <  meshes.length){
                 
                 var troncAggregate =new BABYLON.PhysicsAggregate(meshes[i], BABYLON.PhysicsShapeType.MESH, { mass: 0 }, this.scene);
+                //troncAggregate.body.setCollisionCallbackEnabled(true);
                 i++
             }
         
