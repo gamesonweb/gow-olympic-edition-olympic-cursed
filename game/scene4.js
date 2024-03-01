@@ -9,9 +9,12 @@ import PlayerLevel3 from './PlayerLevel3.js';
 import BowlingPin from './BowlingPin.js';
 let player1;
 let player2;
-let listPins = [];
-let countPlayer1 ;
-let countPlayer2 ;
+
+let countPlayer1 =0;
+let countPlayer2 =0;
+
+
+
 async function sceneData() {
     //activer la physique sur la scene 
 
@@ -30,38 +33,55 @@ async function sceneData() {
     // Ajoutez une lumière
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
-    // Créez un matériau pour le cube (bleu)
-    
-    //var devcamera = new DevCamera(canvas, scene);
-    // Positionnez le cube où vous le souhaitez
-    
-    
+   
 
     var model = new CustomModels(scene);
+    
+    var listeQuilles1 = [
+        new BowlingPin(scene, -1, 2, 26),
+        new BowlingPin(scene, -1.5, 2, 26),
+        new BowlingPin(scene, -2, 2, 26),
+        new BowlingPin(scene, -2.5, 2, 26),
+        new BowlingPin(scene, -3, 2, 26),
+        new BowlingPin(scene, -3.5, 2, 26),
+        new BowlingPin(scene, -4, 2, 26),
+        new BowlingPin(scene, -4.5, 2, 26),
+        new BowlingPin(scene, -5, 2, 26),
+        //new BowlingPin(scene, -5.5, 2, 26),
+        //new BowlingPin(scene, -6, 2, 26),
+        
+        new BowlingPin(scene, 0, 2, 26),
+        new BowlingPin(scene, 0.5, 2, 26),
+        new BowlingPin(scene, 1, 2, 26),
+        new BowlingPin(scene, 1.5, 2, 26),
+        new BowlingPin(scene, 2, 2, 26),
+        new BowlingPin(scene, 2.5, 2, 26),
+        new BowlingPin(scene, 3, 2, 26),
+        new BowlingPin(scene, 3.5, 2, 26),
+        new BowlingPin(scene, 4, 2, 26),
+        new BowlingPin(scene, 4.5, 2, 26),
+        new BowlingPin(scene, 5, 2, 26),
+
+    
+    ];
+    //var listeQuilles1 = [];
+    //addQuille(listeQuilles1);
+    
+    
+    testSearch(listeQuilles1);
+    console.log(countPlayer1);
+ 
 
     //model.CreateBowlingBall(0,12,0)
 
   //let player2 = new PlayerLevel3(scene,engine,"player2","ArrowLeft","ArrowRight","ArrowUp",-5,5,0)
 
-    const listeQuilles = [
-        new BowlingPin(scene, 0, 0, 0),
-        new BowlingPin(scene, 1, 0, 0),
-    
-    ];
+ 
+   // console.log(countPlayer1);
+     player1 = new PlayerLevel3(scene,engine,"player1",'q','d','s',' ',0,5,0);
+     player2 = new PlayerLevel3(scene,engine,"player2",'j','l','i','Enter',28,5,0);
 
-    // Accédez à l'meshId de la première quille dans la liste
-    const meshIdPremiereQuille = await listeQuilles[0].getMeshId();
-
-    // Affichez l'meshId de la première quille
-    console.log("MESHID PREMIRE QUILLE"+ meshIdPremiereQuille);
-
-
-
-    
-     player1 = new PlayerLevel3(scene,engine,"player1",'q','d','s',' ',-5,5,0);
-     player2 = new PlayerLevel3(scene,engine,"player2",'j','l','i','Enter',0,5,0);
-
-     let pin = new BowlingPin(scene,0,2,19.397);
+     //let pin = new BowlingPin(scene,0,2,19.397);
     
    
     let ball1 = scene.getMeshByName("player1");
@@ -83,11 +103,15 @@ async function sceneData() {
 
   
 
-    //trigger1
+    //trigger Player1
     triggerRespawn(0,2,97.43,30, 30, 10);
-    //trigger2
     triggerRespawn(7.5,2,48,1, 30,90);
     triggerRespawn(-7.5,2,48,1, 30,90);
+
+    //trigger Player2
+    //triggerRespawn(10,2,97.43,30, 30, 10);
+    triggerRespawn(17.5,2,48,1, 30,90);
+    triggerRespawn(35.5,2,48,1, 30,90);
 
    
     //pin.createBowlingPin();
@@ -219,7 +243,7 @@ function eventHandler(hk,player1,player2){
      
     });
 
-   pinsCount(hk);
+   //pinsCount(hk);
 
    
 }
@@ -244,21 +268,6 @@ function killLevel(player){
 }
 
 
-function searchPin(id){
-    for(element in listPins){
-        if(element.getMeshId() == id){
-            return true;
-        }
-    }
-}
-
-function getPin(id){
-    for(element in listPins){
-        if(element.getMeshId() == id){
-            return element;
-        }
-    }
-}
 
 function pinsCount(hk){
 
@@ -266,19 +275,19 @@ function pinsCount(hk){
         //console.log(ev.type);
         //console.log(ev.type, ':', ev.collider.transformNode.name, '-', ev.collidedAgainst.transformNode.name);
        //check if Pin is collided add count to counter of the player
-       if(ev.collidedAgainst.transformNode.name =="Pin"){
-        //console.log("YOU collide a pin");
+   
+       if(ev.collidedAgainst.transformNode.name =="Pin" ){
+            //console.log("YOU collide a pin");
             let uniqueId =ev.collidedAgainst.transformNode.uniqueId;
-            console.log(ev.collidedAgainst.transformNode.uniqueId);
+            //console.log(ev.collidedAgainst.transformNode.uniqueId);
             //list.push();
-            if(ev.collider.transformNode.name == "player1"){
+            if(ev.collider.transformNode.name == "player2"){
 
-                console.log("player1 IS ON THE PLACE")
-                if(searchPin(uniqueId)){
-                    countPlayer1 ++;
-                    getPin().disableThisObject();
-                }
+                //console.log("player1 IS ON THE PLACE")
 
+                testSearch(uniqueId);
+              
+                countPlayer1++;
                 console.log(countPlayer1);
                 
             }
@@ -287,4 +296,79 @@ function pinsCount(hk){
 
 }
 
+async function testSearch(listeQuilles1){
+
+ 
+    engine.runRenderLoop(async () => {
+
+        for(let i=0;i<listeQuilles1.length; i++){
+            const meshIdQuille = await listeQuilles1[i].getMeshId();
+            const quille =  listeQuilles1[i];
+            //console.log(meshIdQuille);
+            /*
+            if(meshIdQuille == id){
+                
+                quille.disableThisObject();
+            
+            }*/
+            if(!quille.isPinUp()){
+                countPlayer1++;
+                
+                listeQuilles1.splice(i, 1);
+
+                // Décrémenter i pour compenser la suppression de l'élément
+                i--;
+                    
+            };
+        }
+        console.log("compteur player1 : " +countPlayer1);
+
+
+
+
+    })
+   
+  
+    
+ 
+}
+
+
+function addQuille( listeQuilles1){
+
+     
+     listeQuilles1 = [
+
+       
+
+        //7
+        new BowlingPin(scene, -1, 2, 26),
+        new BowlingPin(scene, -1.5, 2, 26),
+        new BowlingPin(scene, -2, 2, 26),
+        new BowlingPin(scene, -2.5, 2, 26),
+        new BowlingPin(scene, -3, 2, 26),
+        new BowlingPin(scene, -3.5, 2, 26),
+        new BowlingPin(scene, -4, 2, 26),
+        new BowlingPin(scene, -4.5, 2, 26),
+        new BowlingPin(scene, -5, 2, 26),
+        //new BowlingPin(scene, -5.5, 2, 26),
+        //new BowlingPin(scene, -6, 2, 26),
+        
+        new BowlingPin(scene, 0, 2, 26),
+        new BowlingPin(scene, 0.5, 2, 26),
+        new BowlingPin(scene, 1, 2, 26),
+        new BowlingPin(scene, 1.5, 2, 26),
+        new BowlingPin(scene, 2, 2, 26),
+        new BowlingPin(scene, 2.5, 2, 26),
+        new BowlingPin(scene, 3, 2, 26),
+        new BowlingPin(scene, 3.5, 2, 26),
+        new BowlingPin(scene, 4, 2, 26),
+        new BowlingPin(scene, 4.5, 2, 26),
+        new BowlingPin(scene, 5, 2, 26),
+        //new BowlingPin(scene, 5.5, 2, 26),
+        //new BowlingPin(scene, 6, 2, 26),
+     
+    ];
+
+}
 export { name, scene, sceneData, launch };
