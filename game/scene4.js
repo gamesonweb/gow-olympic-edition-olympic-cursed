@@ -37,39 +37,34 @@ async function sceneData() {
 
     var model = new CustomModels(scene);
     
-    var listeQuilles1 = [
-        new BowlingPin(scene, -1, 2, 26),
-        new BowlingPin(scene, -1.5, 2, 26),
-        new BowlingPin(scene, -2, 2, 26),
-        new BowlingPin(scene, -2.5, 2, 26),
-        new BowlingPin(scene, -3, 2, 26),
-        new BowlingPin(scene, -3.5, 2, 26),
-        new BowlingPin(scene, -4, 2, 26),
-        new BowlingPin(scene, -4.5, 2, 26),
-        new BowlingPin(scene, -5, 2, 26),
-        //new BowlingPin(scene, -5.5, 2, 26),
-        //new BowlingPin(scene, -6, 2, 26),
+    var listeQuilles1 = [];
+
+    
+
+    let add =13 ;
+    var listeQuilles2 = [
         
-        new BowlingPin(scene, 0, 2, 26),
-        new BowlingPin(scene, 0.5, 2, 26),
-        new BowlingPin(scene, 1, 2, 26),
-        new BowlingPin(scene, 1.5, 2, 26),
-        new BowlingPin(scene, 2, 2, 26),
-        new BowlingPin(scene, 2.5, 2, 26),
-        new BowlingPin(scene, 3, 2, 26),
-        new BowlingPin(scene, 3.5, 2, 26),
-        new BowlingPin(scene, 4, 2, 26),
-        new BowlingPin(scene, 4.5, 2, 26),
-        new BowlingPin(scene, 5, 2, 26),
+       
+        new BowlingPin(scene, 10+add, 2, 26),
+        new BowlingPin(scene, 10.5+add, 2, 26),
+        new BowlingPin(scene, 11+add, 2, 26),
+        new BowlingPin(scene, 11.5+add, 2, 26),
+        new BowlingPin(scene, 12+add, 2, 26),
+        new BowlingPin(scene, 12.5+add, 2, 26),
+        new BowlingPin(scene, 13+add, 2, 26),
+        new BowlingPin(scene, 13.5+add, 2, 26),
+        new BowlingPin(scene, 14+add, 2, 26),
+        new BowlingPin(scene, 14.5+add, 2, 26),
+        new BowlingPin(scene, 15+add, 2, 26),
 
     
     ];
-    //var listeQuilles1 = [];
-    //addQuille(listeQuilles1);
+   
     
     
-    testSearch(listeQuilles1);
-    console.log(countPlayer1);
+    testSearch(listeQuilles1,countPlayer1,"player1");
+    testSearch(listeQuilles2,countPlayer2,"player2");
+   // console.log(countPlayer1);
  
 
     //model.CreateBowlingBall(0,12,0)
@@ -92,7 +87,7 @@ async function sceneData() {
     eventHandler(hk,player1,player2);
 
     model.CreatePlateform_Scene4();
-
+    addQuille(listeQuilles1);
     //raycast();
     
         
@@ -109,8 +104,8 @@ async function sceneData() {
     triggerRespawn(-7.5,2,48,1, 30,90);
 
     //trigger Player2
-    //triggerRespawn(10,2,97.43,30, 30, 10);
-    triggerRespawn(17.5,2,48,1, 30,90);
+    triggerRespawn(30,2,97.43,30, 30, 10);
+    triggerRespawn(20,2,48,1, 30,90);
     triggerRespawn(35.5,2,48,1, 30,90);
 
    
@@ -231,7 +226,7 @@ function eventHandler(hk,player1,player2){
                 //player2 = null;
                 ball2.dispose()
 
-                player2= new PlayerLevel3(scene,engine,"player2",'j','l','i','Enter',0,5,0);
+                player2= new PlayerLevel3(scene,engine,"player2",'j','l','i','Enter',28,5,0);
               
             }
           
@@ -296,7 +291,7 @@ function pinsCount(hk){
 
 }
 
-async function testSearch(listeQuilles1){
+async function testSearch(listeQuilles1,countPlayer1,playerText){
 
  
     engine.runRenderLoop(async () => {
@@ -321,7 +316,7 @@ async function testSearch(listeQuilles1){
                     
             };
         }
-        console.log("compteur player1 : " +countPlayer1);
+        //console.log("compteur "+playerText+" " +countPlayer1);
 
 
 
@@ -337,11 +332,162 @@ async function testSearch(listeQuilles1){
 function addQuille( listeQuilles1){
 
      
-     listeQuilles1 = [
+    listeQuilles1 = [
+        //-3
+        new BowlingPin(scene, 0.25, 2,21),
+        //-2
+             
+        //new BowlingPin(scene, 0, 2, 21.5),
+       
+        
+        new BowlingPin(scene, 0, 2,21.5),
+        new BowlingPin(scene, 0.50, 2,21.5),
+        //new BowlingPin(scene, 0.60, 2,21.5),
+      
 
+
+        //-1
+        
+        new BowlingPin(scene, 0, 2, 22),
+       
+        
+        new BowlingPin(scene, 0.25, 2, 22),
+        new BowlingPin(scene, 0.60, 2,22),
+        
+      
+
+
+        //0
+        new BowlingPin(scene, -0.5, 2, 22.5),
+       
+        
+        new BowlingPin(scene, 0, 2, 22.5),
+        new BowlingPin(scene, 0.5, 2,22.5),
+        new BowlingPin(scene, 1, 2,22.5),
+        
+        //1
+        new BowlingPin(scene, -0.5, 2, 23),
+        new BowlingPin(scene, -1, 2, 23),
+       
+        
+        new BowlingPin(scene, 0, 2, 23),
+        new BowlingPin(scene, 0.5, 2,23),
+        new BowlingPin(scene, 1, 2,23),
+        new BowlingPin(scene, 1.5, 2,23),
+   
+        //2
+        new BowlingPin(scene, -0.5, 2, 23.5),
+        new BowlingPin(scene, -1, 2, 23.5),
+        new BowlingPin(scene, -1.5, 2, 23.5),
+
+   
+      
+      
+        
+ 
+                
+        
+        new BowlingPin(scene, 0, 2, 23.5),
+        new BowlingPin(scene, 0.5, 2,23.5),
+        new BowlingPin(scene, 1, 2,23.5),
+        new BowlingPin(scene, 1.5, 2,23.5),
+        new BowlingPin(scene, 2, 2,23.5),
+      
+        
+        //3
+        new BowlingPin(scene, -0.5, 2, 24),
+        new BowlingPin(scene, -1, 2, 24),
+        new BowlingPin(scene, -1.5, 2, 24),
+        new BowlingPin(scene, -2, 2, 24),
+   
+      
+      
+        
+ 
+                
+        
+        new BowlingPin(scene, 0, 2, 24),
+        new BowlingPin(scene, 0.5, 2, 24),
+        new BowlingPin(scene, 1, 2, 24),
+        new BowlingPin(scene, 1.5, 2, 24),
+        new BowlingPin(scene, 2, 2,24),
+        new BowlingPin(scene, 2.5, 2, 24),
+        
+        //4
+        new BowlingPin(scene, -0.5, 2, 24.5),
+        new BowlingPin(scene, -1, 2, 24.5),
+        new BowlingPin(scene, -1.5, 2, 24.5),
+        new BowlingPin(scene, -2, 2, 24.5),
+        new BowlingPin(scene, -2.5, 2, 24.5),
+      
+      
+        
+ 
+                
+        
+        new BowlingPin(scene, 0, 2, 24.5),
+        new BowlingPin(scene, 0.5, 2, 24.5),
+        new BowlingPin(scene, 1, 2, 24.5),
+        new BowlingPin(scene, 1.5, 2, 24.5),
+        new BowlingPin(scene, 2, 2,24.5),
+        new BowlingPin(scene, 2.5, 2, 24.5),
+        new BowlingPin(scene, 3, 2, 24.5),
        
 
+
+        
+        //5
+
+        new BowlingPin(scene, -0.5, 2, 25),
+        new BowlingPin(scene, -1, 2, 25),
+        new BowlingPin(scene, -1.5, 2, 25),
+        new BowlingPin(scene, -2, 2, 25),
+        new BowlingPin(scene, -2.5, 2, 25),
+        new BowlingPin(scene, -3, 2, 25),
+      
+        
+ 
+                
+        
+        new BowlingPin(scene, 0, 2, 25),
+        new BowlingPin(scene, 0.5, 2, 25),
+        new BowlingPin(scene, 1, 2, 25),
+        new BowlingPin(scene, 1.5, 2, 25),
+        new BowlingPin(scene, 2, 2, 25),
+        new BowlingPin(scene, 2.5, 2, 25),
+        new BowlingPin(scene, 3, 2, 25),
+        new BowlingPin(scene, 3.5, 2, 25),
+        //new BowlingPin(scene, 4, 2, 25),
+        
+        
+
+       //6
+       
+        new BowlingPin(scene, -0.5, 2, 25.5),
+        new BowlingPin(scene, -1, 2, 25.5),
+        new BowlingPin(scene, -1.5, 2, 25.5),
+        new BowlingPin(scene, -2, 2, 25.5),
+        new BowlingPin(scene, -2.5, 2, 25.5),
+        new BowlingPin(scene, -3, 2, 25.5),
+        new BowlingPin(scene, -3.5, 2, 25.5),
+        
+ 
+                
+        
+        new BowlingPin(scene, 0, 2, 25.5),
+        new BowlingPin(scene, 0.5, 2, 25.5),
+        new BowlingPin(scene, 1, 2, 25.5),
+        new BowlingPin(scene, 1.5, 2, 25.5),
+        new BowlingPin(scene, 2, 2, 25.5),
+        new BowlingPin(scene, 2.5, 2, 25.5),
+        new BowlingPin(scene, 3, 2, 25.5),
+        new BowlingPin(scene, 3.5, 2, 25.5),
+        new BowlingPin(scene, 4, 2, 25.5),
+   
+        
+
         //7
+        new BowlingPin(scene, -0.5, 2, 26),
         new BowlingPin(scene, -1, 2, 26),
         new BowlingPin(scene, -1.5, 2, 26),
         new BowlingPin(scene, -2, 2, 26),
@@ -349,10 +495,8 @@ function addQuille( listeQuilles1){
         new BowlingPin(scene, -3, 2, 26),
         new BowlingPin(scene, -3.5, 2, 26),
         new BowlingPin(scene, -4, 2, 26),
-        new BowlingPin(scene, -4.5, 2, 26),
-        new BowlingPin(scene, -5, 2, 26),
-        //new BowlingPin(scene, -5.5, 2, 26),
-        //new BowlingPin(scene, -6, 2, 26),
+ 
+                
         
         new BowlingPin(scene, 0, 2, 26),
         new BowlingPin(scene, 0.5, 2, 26),
@@ -364,9 +508,9 @@ function addQuille( listeQuilles1){
         new BowlingPin(scene, 3.5, 2, 26),
         new BowlingPin(scene, 4, 2, 26),
         new BowlingPin(scene, 4.5, 2, 26),
-        new BowlingPin(scene, 5, 2, 26),
-        //new BowlingPin(scene, 5.5, 2, 26),
-        //new BowlingPin(scene, 6, 2, 26),
+
+        //listeQuilles1.forEach(pin => pin.position.y += 5)
+    
      
     ];
 
