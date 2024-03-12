@@ -42,28 +42,11 @@ async function sceneData() {
     
 
     let add =13 ;
-    var listeQuilles2 = [
-        
-       
-        new BowlingPin(scene, 10+add, 2, 26),
-        new BowlingPin(scene, 10.5+add, 2, 26),
-        new BowlingPin(scene, 11+add, 2, 26),
-        new BowlingPin(scene, 11.5+add, 2, 26),
-        new BowlingPin(scene, 12+add, 2, 26),
-        new BowlingPin(scene, 12.5+add, 2, 26),
-        new BowlingPin(scene, 13+add, 2, 26),
-        new BowlingPin(scene, 13.5+add, 2, 26),
-        new BowlingPin(scene, 14+add, 2, 26),
-        new BowlingPin(scene, 14.5+add, 2, 26),
-        new BowlingPin(scene, 15+add, 2, 26),
-
-    
-    ];
+    var listeQuilles2 = [];
    
     
     
-    testSearch(listeQuilles1,countPlayer1,"player1");
-    testSearch(listeQuilles2,countPlayer2,"player2");
+   
    // console.log(countPlayer1);
  
 
@@ -73,8 +56,8 @@ async function sceneData() {
 
  
    // console.log(countPlayer1);
-     player1 = new PlayerLevel3(scene,engine,"player1",'q','d','s',' ',0,5,0);
-     player2 = new PlayerLevel3(scene,engine,"player2",'j','l','i','Enter',28,5,0);
+     player1 = new PlayerLevel3(scene,engine,"player1",'q','d','s',' ',0,8,0);
+     player2 = new PlayerLevel3(scene,engine,"player2",'j','l','i','Enter',28,8,0);
 
      //let pin = new BowlingPin(scene,0,2,19.397);
     
@@ -87,8 +70,12 @@ async function sceneData() {
     eventHandler(hk,player1,player2);
 
     model.CreatePlateform_Scene4();
-    addQuille(listeQuilles1);
-    //raycast();
+    listeQuilles1 =  addQuille(listeQuilles1,0,0,-10);
+    listeQuilles2 =  addQuille(listeQuilles2,28,0,-10);
+
+    //testSearch(listeQuilles1,countPlayer1,"player1");
+    //testSearch(listeQuilles2,countPlayer2,"player2");
+
     
         
 
@@ -109,20 +96,51 @@ async function sceneData() {
     triggerRespawn(35.5,2,48,1, 30,90);
 
    
-    //pin.createBowlingPin();
-    scene.debugLayer.show();
+    
+    //scene.debugLayer.show();
 
 
 }
 
 function launch() {
-       
-    // Configurez une caméra
+      
     var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
-    camera.setTarget(BABYLON.Vector3.Zero());
-    camera.attachControl();
+    camera.inertia = 0;
+    camera.angularSensibility = 0;
+    camera.detachControl(canvas);
+    camera.cameraRotation = 0;
+    scene.activeCameras.push(camera);
+    camera.viewport = new BABYLON.Viewport(0, 0, 0.5, 1);
+    scene.activeCameras.push(camera);
+
+
+    var camera2 = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(27, 5, -10), scene);
+    camera2.inertia = 0;
+    camera2.angularSensibility = 0;
+    camera2.detachControl(canvas);
+    camera2.cameraRotation = 0;
+    scene.activeCameras.push(camera2);
+    camera2.viewport = new BABYLON.Viewport(0.5,0 , 0.5, 1);
+    scene.activeCameras.push(camera2);
+    /*
+    var camera2 = new BABYLON.FollowCamera("camera2", new BABYLON.Vector3(0, 5, -10), scene);
+    camera2.cameraRotation = 0;
+    camera2.viewport = new BABYLON.Viewport(0.5, 0.5, 0.5, 0.5); 
+    scene.activeCameras.push(camera2);*/
+ 
+   
 
     sceneData();
+  
+
+    let playerMesh = scene.getMeshByName("player1");
+    let playerMesh2 = scene.getMeshByName("player2");
+    console.log(playerMesh2);
+    //console.log(playerMesh); // Utilisez playerMesh comme nécessaire
+    
+    camera.lockedTarget = playerMesh;
+    //camera2.lockedTarget = playerMesh2;
+
     engine.runRenderLoop(function () {
         scene.render();
     });
@@ -286,6 +304,7 @@ function pinsCount(hk){
                 console.log(countPlayer1);
                 
             }
+      
         }
 });
 
@@ -316,7 +335,7 @@ async function testSearch(listeQuilles1,countPlayer1,playerText){
                     
             };
         }
-        //console.log("compteur "+playerText+" " +countPlayer1);
+        console.log("compteur "+playerText+" " +countPlayer1);
 
 
 
@@ -329,56 +348,56 @@ async function testSearch(listeQuilles1,countPlayer1,playerText){
 }
 
 
-function addQuille( listeQuilles1){
+function addQuille( listeQuilles1,x,y,z){
 
-     
+
     listeQuilles1 = [
         //-3
-        new BowlingPin(scene, 0.25, 2,21),
+        new BowlingPin(scene, 0.25+x, 2+y,21+z),
         //-2
              
         //new BowlingPin(scene, 0, 2, 21.5),
        
         
-        new BowlingPin(scene, 0, 2,21.5),
-        new BowlingPin(scene, 0.50, 2,21.5),
+        new BowlingPin(scene, 0+x, 2+y,21.5+z),
+        new BowlingPin(scene, 0.50+x, 2+y,21.5+z),
         //new BowlingPin(scene, 0.60, 2,21.5),
       
 
 
         //-1
         
-        new BowlingPin(scene, 0, 2, 22),
+        new BowlingPin(scene, 0+x, 2+y, 22+z),
        
         
-        new BowlingPin(scene, 0.25, 2, 22),
-        new BowlingPin(scene, 0.60, 2,22),
+        new BowlingPin(scene, 0.25+x, 2+y, 22+z),
+        new BowlingPin(scene, 0.60+x, 2+y,22+z),
         
       
 
 
         //0
-        new BowlingPin(scene, -0.5, 2, 22.5),
+        new BowlingPin(scene, -0.5+x, 2+y, 22.5+z),
        
         
-        new BowlingPin(scene, 0, 2, 22.5),
-        new BowlingPin(scene, 0.5, 2,22.5),
-        new BowlingPin(scene, 1, 2,22.5),
+        new BowlingPin(scene, 0+x, 2+y, 22.5+z),
+        new BowlingPin(scene, 0.5+x, 2+y,22.5+z),
+        new BowlingPin(scene, 1+x, 2+y,22.5+z),
         
         //1
-        new BowlingPin(scene, -0.5, 2, 23),
-        new BowlingPin(scene, -1, 2, 23),
+        new BowlingPin(scene, -0.5+x, 2+y, 23+z),
+        new BowlingPin(scene, -1+x, 2+y, 23+z),
        
         
-        new BowlingPin(scene, 0, 2, 23),
-        new BowlingPin(scene, 0.5, 2,23),
-        new BowlingPin(scene, 1, 2,23),
-        new BowlingPin(scene, 1.5, 2,23),
+        new BowlingPin(scene, 0+x, 2+y, 23+z),
+        new BowlingPin(scene, 0.5+x, 2+y,23+z),
+        new BowlingPin(scene, 1+x, 2+y,23+z),
+        new BowlingPin(scene, 1.5+x, 2+y,23+z),
    
         //2
-        new BowlingPin(scene, -0.5, 2, 23.5),
-        new BowlingPin(scene, -1, 2, 23.5),
-        new BowlingPin(scene, -1.5, 2, 23.5),
+        new BowlingPin(scene, -0.5+x, 2+y, 23.5+z),
+        new BowlingPin(scene, -1+x, 2+y, 23.5+z),
+        new BowlingPin(scene, -1.5+x, 2+y, 23.5+z),
 
    
       
@@ -387,18 +406,18 @@ function addQuille( listeQuilles1){
  
                 
         
-        new BowlingPin(scene, 0, 2, 23.5),
-        new BowlingPin(scene, 0.5, 2,23.5),
-        new BowlingPin(scene, 1, 2,23.5),
-        new BowlingPin(scene, 1.5, 2,23.5),
-        new BowlingPin(scene, 2, 2,23.5),
+        new BowlingPin(scene, 0+x, 2+y, 23.5+z),
+        new BowlingPin(scene, 0.5+x, 2+y,23.5+z),
+        new BowlingPin(scene, 1+x, 2+y,23.5+z),
+        new BowlingPin(scene, 1.5+x, 2+y,23.5+z),
+        new BowlingPin(scene, 2+x, 2+y,23.5+z),
       
         
         //3
-        new BowlingPin(scene, -0.5, 2, 24),
-        new BowlingPin(scene, -1, 2, 24),
-        new BowlingPin(scene, -1.5, 2, 24),
-        new BowlingPin(scene, -2, 2, 24),
+        new BowlingPin(scene, -0.5+x, 2+y, 24+z),
+        new BowlingPin(scene, -1+x, 2+y, 24+z),
+        new BowlingPin(scene, -1.5+x, 2+y, 24+z),
+        new BowlingPin(scene, -2+x, 2+y, 24+z),
    
       
       
@@ -406,113 +425,113 @@ function addQuille( listeQuilles1){
  
                 
         
-        new BowlingPin(scene, 0, 2, 24),
-        new BowlingPin(scene, 0.5, 2, 24),
-        new BowlingPin(scene, 1, 2, 24),
-        new BowlingPin(scene, 1.5, 2, 24),
-        new BowlingPin(scene, 2, 2,24),
-        new BowlingPin(scene, 2.5, 2, 24),
+        new BowlingPin(scene, 0+x, 2+y, 24+z),
+        new BowlingPin(scene, 0.5+x, 2+y, 24+z),
+        new BowlingPin(scene, 1+x, 2+y, 24+z),
+        new BowlingPin(scene, 1.5+x, 2+y, 24+z),
+        new BowlingPin(scene, 2+x, 2+y,24+z),
+        new BowlingPin(scene, 2.5+x, 2+y, 24+z),
         
         //4
-        new BowlingPin(scene, -0.5, 2, 24.5),
-        new BowlingPin(scene, -1, 2, 24.5),
-        new BowlingPin(scene, -1.5, 2, 24.5),
-        new BowlingPin(scene, -2, 2, 24.5),
-        new BowlingPin(scene, -2.5, 2, 24.5),
+        new BowlingPin(scene, -0.5+x, 2+y, 24.5+z),
+        new BowlingPin(scene, -1+x, 2+y, 24.5+z),
+        new BowlingPin(scene, -1.5+x, 2+y, 24.5+z),
+        new BowlingPin(scene, -2+x, 2+y, 24.5+z),
+        new BowlingPin(scene, -2.5+x, 2+y, 24.5+z),
       
       
         
  
                 
         
-        new BowlingPin(scene, 0, 2, 24.5),
-        new BowlingPin(scene, 0.5, 2, 24.5),
-        new BowlingPin(scene, 1, 2, 24.5),
-        new BowlingPin(scene, 1.5, 2, 24.5),
-        new BowlingPin(scene, 2, 2,24.5),
-        new BowlingPin(scene, 2.5, 2, 24.5),
-        new BowlingPin(scene, 3, 2, 24.5),
+        new BowlingPin(scene, 0+x, 2+y, 24.5+z),
+        new BowlingPin(scene, 0.5+x, 2+y, 24.5+z),
+        new BowlingPin(scene, 1+x, 2+y, 24.5+z),
+        new BowlingPin(scene, 1.5+x, 2+y, 24.5+z),
+        new BowlingPin(scene, 2+x, 2+y,24.5+z),
+        new BowlingPin(scene, 2.5+x, 2+y, 24.5+z),
+        new BowlingPin(scene, 3+x, 2+y, 24.5+z),
        
 
 
         
         //5
 
-        new BowlingPin(scene, -0.5, 2, 25),
-        new BowlingPin(scene, -1, 2, 25),
-        new BowlingPin(scene, -1.5, 2, 25),
-        new BowlingPin(scene, -2, 2, 25),
-        new BowlingPin(scene, -2.5, 2, 25),
-        new BowlingPin(scene, -3, 2, 25),
+        new BowlingPin(scene, -0.5+x, 2+y, 25+z),
+        new BowlingPin(scene, -1+x, 2+y, 25+z),
+        new BowlingPin(scene, -1.5+x, 2+y, 25+z),
+        new BowlingPin(scene, -2+x, 2+y, 25+z),
+        new BowlingPin(scene, -2.5+x, 2+y, 25+z),
+        new BowlingPin(scene, -3+x, 2+y, 25+z),
       
         
  
                 
         
-        new BowlingPin(scene, 0, 2, 25),
-        new BowlingPin(scene, 0.5, 2, 25),
-        new BowlingPin(scene, 1, 2, 25),
-        new BowlingPin(scene, 1.5, 2, 25),
-        new BowlingPin(scene, 2, 2, 25),
-        new BowlingPin(scene, 2.5, 2, 25),
-        new BowlingPin(scene, 3, 2, 25),
-        new BowlingPin(scene, 3.5, 2, 25),
+        new BowlingPin(scene, 0+x, 2+y, 25+z),
+        new BowlingPin(scene, 0.5+x, 2+y, 25+z),
+        new BowlingPin(scene, 1+x, 2+y, 25+z),
+        new BowlingPin(scene, 1.5+x, 2+y, 25+z),
+        new BowlingPin(scene, 2+x, 2+y, 25+z),
+        new BowlingPin(scene, 2.5+x, 2+y, 25+z),
+        new BowlingPin(scene, 3+x, 2+y, 25+z),
+        new BowlingPin(scene, 3.5+x, 2+y, 25+z),
         //new BowlingPin(scene, 4, 2, 25),
         
         
 
        //6
        
-        new BowlingPin(scene, -0.5, 2, 25.5),
-        new BowlingPin(scene, -1, 2, 25.5),
-        new BowlingPin(scene, -1.5, 2, 25.5),
-        new BowlingPin(scene, -2, 2, 25.5),
-        new BowlingPin(scene, -2.5, 2, 25.5),
-        new BowlingPin(scene, -3, 2, 25.5),
-        new BowlingPin(scene, -3.5, 2, 25.5),
+        new BowlingPin(scene, -0.5+x, 2+y, 25.5+z),
+        new BowlingPin(scene, -1+x, 2+y, 25.5+z),
+        new BowlingPin(scene, -1.5+x, 2+y, 25.5+z),
+        new BowlingPin(scene, -2+x, 2+y, 25.5+z),
+        new BowlingPin(scene, -2.5+x, 2+y, 25.5+z),
+        new BowlingPin(scene, -3+x, 2+y, 25.5+z),
+        new BowlingPin(scene, -3.5+x, 2+y, 25.5+z),
         
  
                 
         
-        new BowlingPin(scene, 0, 2, 25.5),
-        new BowlingPin(scene, 0.5, 2, 25.5),
-        new BowlingPin(scene, 1, 2, 25.5),
-        new BowlingPin(scene, 1.5, 2, 25.5),
-        new BowlingPin(scene, 2, 2, 25.5),
-        new BowlingPin(scene, 2.5, 2, 25.5),
-        new BowlingPin(scene, 3, 2, 25.5),
-        new BowlingPin(scene, 3.5, 2, 25.5),
-        new BowlingPin(scene, 4, 2, 25.5),
+        new BowlingPin(scene, 0+x, 2+y, 25.5+z),
+        new BowlingPin(scene, 0.5+x, 2+y, 25.5+z),
+        new BowlingPin(scene, 1+x, 2+y, 25.5+z),
+        new BowlingPin(scene, 1.5+x, 2+y, 25.5+z),
+        new BowlingPin(scene, 2+x, 2+y, 25.5+z),
+        new BowlingPin(scene, 2.5+x, 2+y, 25.5+z),
+        new BowlingPin(scene, 3+x, 2+y, 25.5+z),
+        new BowlingPin(scene, 3.5+x, 2+y, 25.5+z),
+        new BowlingPin(scene, 4+x, 2+y, 25.5+z),
    
         
 
         //7
-        new BowlingPin(scene, -0.5, 2, 26),
-        new BowlingPin(scene, -1, 2, 26),
-        new BowlingPin(scene, -1.5, 2, 26),
-        new BowlingPin(scene, -2, 2, 26),
-        new BowlingPin(scene, -2.5, 2, 26),
-        new BowlingPin(scene, -3, 2, 26),
-        new BowlingPin(scene, -3.5, 2, 26),
-        new BowlingPin(scene, -4, 2, 26),
+        new BowlingPin(scene, -0.5+x, 2+y, 26+z),
+        new BowlingPin(scene, -1+x, 2+y, 26+z),
+        new BowlingPin(scene, -1.5+x, 2+y, 26+z),
+        new BowlingPin(scene, -2+x, 2+y, 26+z),
+        new BowlingPin(scene, -2.5+x, 2+y, 26+z),
+        new BowlingPin(scene, -3+x, 2+y, 26+z),
+        new BowlingPin(scene, -3.5+x, 2+y, 26+z),
+        new BowlingPin(scene, -4+x, 2+y, 26+z),
  
                 
         
-        new BowlingPin(scene, 0, 2, 26),
-        new BowlingPin(scene, 0.5, 2, 26),
-        new BowlingPin(scene, 1, 2, 26),
-        new BowlingPin(scene, 1.5, 2, 26),
-        new BowlingPin(scene, 2, 2, 26),
-        new BowlingPin(scene, 2.5, 2, 26),
-        new BowlingPin(scene, 3, 2, 26),
-        new BowlingPin(scene, 3.5, 2, 26),
-        new BowlingPin(scene, 4, 2, 26),
-        new BowlingPin(scene, 4.5, 2, 26),
+        new BowlingPin(scene, 0+x, 2+y, 26+z),
+        new BowlingPin(scene, 0.5+x, 2+y, 26+z),
+        new BowlingPin(scene, 1+x, 2+y, 26+z),
+        new BowlingPin(scene, 1.5+x, 2+y, 26+z),  
+        new BowlingPin(scene, 2+x, 2+y, 26+z),
+        new BowlingPin(scene, 2.5+x, 2+y, 26+z),
+        new BowlingPin(scene, 3+x, 2+y, 26+z),
+        new BowlingPin(scene, 3.5+x, 2+y, 26+z),
+        new BowlingPin(scene, 4+x, 2+y, 26+z),
+        new BowlingPin(scene, 4.5+x, 2+y, 26+z),
 
         //listeQuilles1.forEach(pin => pin.position.y += 5)
     
      
     ];
-
+    return listeQuilles1;
 }
 export { name, scene, sceneData, launch };

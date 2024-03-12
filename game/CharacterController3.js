@@ -30,14 +30,14 @@ class CharacterController2 {
             if(!this.destroyed){
                 if (this.keys[input1]) {
                     console.log('Touche gauche enfoncée');
-                    character.applyForce(new BABYLON.Vector3(5, 0, 0), new BABYLON.Vector3(0, 0, 0));
+                    character.applyForce(new BABYLON.Vector3(5*2, 0, 0), new BABYLON.Vector3(0, 0, 0));
                     character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
             
                 }
 
                 if (this.keys[input2]) {
                     console.log('Touche Droite enfoncée');
-                    character.applyForce(new BABYLON.Vector3(-5, 0, 0), new BABYLON.Vector3(0, 0, 0));
+                    character.applyForce(new BABYLON.Vector3(-5*2, 0, 0), new BABYLON.Vector3(0, 0, 0));
                     character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
         
                 }
@@ -52,7 +52,7 @@ class CharacterController2 {
                 if (this.keys[inputLaunch] && !this.action) {
                     console.log('Touche LAUNCH enfoncée');
                     this.action = true;
-                    character.applyForce(new BABYLON.Vector3(0, 0, 700*2), new BABYLON.Vector3(0, 0, 0));
+                    character.applyForce(new BABYLON.Vector3(0, 0, 700*4), new BABYLON.Vector3(0, 0, 0));
                     //character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
         
                 }

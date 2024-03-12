@@ -126,7 +126,7 @@ export class PlayerLevel3 {
         var sphereShape = new BABYLON.PhysicsShapeSphere(new BABYLON.Vector3(0,0,0),diameter-1,this.scene);
         var sphereBody = new BABYLON.PhysicsBody(sphere, BABYLON.PhysicsMotionType.DYNAMIC, false, this.scene);
         sphereBody.shape = sphereShape;
-        sphereBody.setMassProperties({mass : 1});
+        sphereBody.setMassProperties({mass : 2});
         //sphereBody.setCollisionCallbackEnabled(true);
        
         
