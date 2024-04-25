@@ -19,6 +19,7 @@ export class PlayerLevel2 {
 
         this.createPlayer(x,y,z);
         this.enablePlayerControl(forward,jump);
+        this.Character(x,y,z);
      
     }
     
@@ -75,17 +76,18 @@ export class PlayerLevel2 {
         control = null;
     }
 
-    Character(){
+    Character(x,y,z){
        
         let mesh; // Déclaration de mesh à un niveau supérieur pour qu'il soit accessible en dehors de la fonction de rappel
     
         // Charger le modèle 3D
-        BABYLON.SceneLoader.ImportMesh("", "./models/", "snowman_on_skis.glb", this.scene, (meshes) => {
-            console.log("Chargement réussi SnowMan", meshes);
+        BABYLON.SceneLoader.ImportMesh("", "./models/character1_anim/", "idle.glb", this.scene, (meshes) => {
+            console.log("Chargement réussi Personnage", meshes);
             mesh = meshes[0]; // Assignation de meshes[0] à mesh
-            mesh.name = "SnowMan";
-            mesh.position = new BABYLON.Vector3(x, y, z); // Positionne le modèle une fois chargé
+            mesh.name = "RUNNER";
+            mesh.position = new BABYLON.Vector3(x, y-14, z); // Positionne le modèle une fois chargé
             mesh.setParent(parent);
+           // mesh.scaling(new BABYLON.Vector3(0.01, 0.01, 0.01))
     
             //mesh.rotationQuaternion._y = 85;
 

@@ -38,7 +38,7 @@ async function sceneData() {
   
     
     let player1 = new PlayerLevel2(scene,engine,"player1",'s','f', 10,15,0);
-    let player2 = new PlayerLevel2(scene,engine,"player2",'k','m',0,10,0);
+    let player2 = new PlayerLevel2(scene,engine,"player2",'k','m',0,15,0);
 
 
 

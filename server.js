@@ -31,6 +31,7 @@ app.use(express.static('./view/css'));
 app.use(express.static('./view/img'));
 app.use(express.static('game'));
 app.use(express.static('game/models'));
+//app.use(express.static('game/models/character1_anim'));
 app.use(addSecurityHeader);  
 app.use(cookieSession({
   secret: 'mot-de-passe-du-cookie',
