@@ -73,8 +73,8 @@ async function sceneData() {
     listeQuilles1 =  addQuille(listeQuilles1,0,0,-10);
     listeQuilles2 =  addQuille(listeQuilles2,28,0,-10);
 
-    //testSearch(listeQuilles1,countPlayer1,"player1");
-    //testSearch(listeQuilles2,countPlayer2,"player2");
+    testSearch(listeQuilles1,countPlayer1,"player1");
+    testSearch(listeQuilles2,countPlayer2,"player2");
 
     
         
@@ -534,4 +534,6 @@ function addQuille( listeQuilles1,x,y,z){
     ];
     return listeQuilles1;
 }
+
+
 export { name, scene, sceneData, launch };

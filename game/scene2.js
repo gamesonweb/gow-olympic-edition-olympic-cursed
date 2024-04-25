@@ -42,7 +42,7 @@ async function sceneData() {
 
     let x = -10;
     var pineTree = new CustomModels(scene);
-
+    
     pineTree.CreatePineTree(0,3,-10+x);
     pineTree.CreatePineTree(10,3,-10+x);
     pineTree.CreatePineTree(15,3,-10+x);
@@ -88,6 +88,7 @@ async function sceneData() {
 
     //rajout de neige
     var snowMount= new CustomModels(scene);
+    
     snowMount.createSnowMount(0,-12,-150+x);
     snowMount.createSnowMount(11,-20,-210+x);
     snowMount.createSnowMount(0,-23,-255+x);
@@ -97,9 +98,9 @@ async function sceneData() {
     ascendingRampe.CreateRampe1(-5,-34.5,-350+x);
 
 
-    /*
+    
     var tree2 = new CustomModels(scene);
-    tree2.CreateTree(0,0,-10 );*/
+    tree2.CreateTree(0,0,-10 );
 
     
     var plane2 = new CustomModels();
@@ -108,6 +109,7 @@ async function sceneData() {
  //********************************************************** PART 3 LEVEL ******************************************************************************/////////////////
     //rajoute d'un plane 
     var plane3 = new CustomModels(scene);
+    
     plane3.flatplane(5,-32,-445,25,100,scene);
 
     rampe_1.CreateRampe1(12,-32,-500);
@@ -121,6 +123,7 @@ async function sceneData() {
 //********************************************************** PART 4 LEVEL ******************************************************************************/////////////////
     //rajoute d'un plane 
     var plane3 = new CustomModels(scene);
+    
     plane3.flatplane(5,-28,-580,25,100,scene);
 
     rampe_1.CreateRampe1(12,-28,-630);
@@ -128,7 +131,8 @@ async function sceneData() {
     snowMount.createSnowMount(4,-24,-630);
 
 //********************************************************** PART 5 LEVEL ******************************************************************************/////////////////
-    //rajoute d'un plane 
+    //rajoute d'un plane
+    
     var plane3 = new CustomModels(scene);
     plane3.flatplane(5,-24,-750,25,200,scene);
 
@@ -190,7 +194,7 @@ async function sceneData() {
 
    //testPlayer();
 
-   let player = new PlayerLevel1(scene,engine,'player1','w','s','q','d',5,5,0);
+   let player = new PlayerLevel1(scene,engine,'player1','z','s','q','d',5,5,0);
 
    let player2 = new PlayerLevel1(scene,engine,'player2','i','k','j','l',0,5,0);
 
@@ -373,11 +377,11 @@ function launch() {
     
     var camera = new BABYLON.FollowCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
     camera.cameraRotation = 0;
-    camera.viewport = new BABYLON.Viewport(0, 0.5, 0.5, 0.5);
+    camera.viewport = new BABYLON.Viewport(0, 0, 0.5, 0.5);
     
     var camera2 = new BABYLON.FollowCamera("camera2", new BABYLON.Vector3(0, 5, -10), scene);
     camera2.cameraRotation = 0;
-    camera2.viewport = new BABYLON.Viewport(0.5, 0.5, 0.5, 0.5); 
+    camera2.viewport = new BABYLON.Viewport(0.5, 0, 0.5, 0.5); 
    
     scene.activeCameras.push(camera);
     scene.activeCameras.push(camera2);
@@ -386,7 +390,7 @@ function launch() {
     sceneData().then(playerMesh => {
         let playerMesh2 = scene.getMeshByName("player2");
         console.log(playerMesh); // Utilisez playerMesh comme nécessaire
-    
+        
         camera.lockedTarget = playerMesh;
         camera2.lockedTarget = playerMesh2;
         

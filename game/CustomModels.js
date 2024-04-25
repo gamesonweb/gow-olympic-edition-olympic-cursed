@@ -96,38 +96,25 @@ export class CustomModels {
 
 
 
-    CreateSnowManOnSki(x, y, z) {
-        let tree;
-        let boundingBox;
-        let tronc;
-       
-        
-        let bigMesh = BABYLON.SceneLoader.ImportMesh("", "./models/", "snowman_on_skis.glb", this.scene, (meshes) => {
-            console.log("Chargement réussi coliseum", meshes);
-            
-            mesh = meshes[0];
-            //tronc = meshes[1];
-            mesh.name ="SnowMan"
-            
-           
-            //mesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
-            
-            
+    CreateSnowManOnSki(x, y, z,parent) {
+        let mesh; // Déclaration de mesh à un niveau supérieur pour qu'il soit accessible en dehors de la fonction de rappel
+    
+        // Charger le modèle 3D
+        BABYLON.SceneLoader.ImportMesh("", "./models/", "snowman_on_skis.glb", this.scene, (meshes) => {
+            console.log("Chargement réussi SnowMan", meshes);
+            mesh = meshes[0]; // Assignation de meshes[0] à mesh
+            mesh.name = "SnowMan";
+            mesh.position = new BABYLON.Vector3(x, y, z); // Positionne le modèle une fois chargé
+            mesh.setParent(parent);
+ 
+            //mesh.rotationQuaternion._y = 85;
 
-            //var troncAggregate =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
-           // troncAggregate.shape.isTrigger =  true;
-
-            
-            //var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
-          
           
         }, undefined, undefined, ".glb");
-
-        bigMesh.position= new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
-            
     
-        return {  bigMesh};
+        return { mesh }; // Retourne mesh
     }
+    
     
   
     
@@ -656,6 +643,41 @@ export class CustomModels {
 
 
         // Crée un modèle d'arbre 3D et le positionne aux coordonnées spécifiées (x, y, z)
+        CreateColiseum(x, y, z) {
+            let tree;
+            let boundingBox;
+            let tronc;
+           
+            BABYLON.SceneLoader.ImportMesh("", "./models/", "coliseum.glb", this.scene, (meshes) => {
+                console.log("Chargement réussi coliseum", meshes);
+             
+                let mesh = meshes[0];
+                //tronc = meshes[1];
+                mesh.name ="coliseum"
+                
+               
+                mesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+                
+                
+    
+                //var troncAggregate =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
+               // troncAggregate.shape.isTrigger =  true;
+    
+                
+                //var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
+
+                 
+            
+              
+              
+            }, undefined, undefined, ".glb");
+    
+         
+        
+            return { boundingBox };
+        }
+
+               // Crée un modèle d'arbre 3D et le positionne aux coordonnées spécifiées (x, y, z)
         CreateColiseum(x, y, z) {
             let tree;
             let boundingBox;

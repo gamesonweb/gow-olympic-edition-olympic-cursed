@@ -36,9 +36,12 @@ async function sceneData() {
 
     // Créez un cube avec le matériau
   
-    //let player1 = createPlayer(0,5,0,'s','f');
-    let player1 = new PlayerLevel2(scene,engine,name,'s','f', 10,15,0);
+    
+    let player1 = new PlayerLevel2(scene,engine,"player1",'s','f', 10,15,0);
     let player2 = new PlayerLevel2(scene,engine,"player2",'k','m',0,10,0);
+
+
+
     //player2.position.x =0;
     //player2.position.y =0;
     //player2.position.z =0;
@@ -58,17 +61,56 @@ async function sceneData() {
     plane2.CreatePlateform(0,0, -472,678);
 
    
-    scene.debugLayer.show();
+    //scene.debugLayer.show();
 
 }
 
 function launch() {
-    var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
-    
-    camera.setTarget(BABYLON.Vector3.Zero());
-    camera.attachControl();
+   
 
-    sceneData();
+    
+   
+    //var camera = new BABYLON.FollowCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
+    var camera = new BABYLON.FollowCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
+    camera.cameraRotation = 0;
+    camera.viewport = new BABYLON.Viewport(0.5, 0, 0.5, 0.5);
+    
+    
+    var camera2 = new BABYLON.FollowCamera("camera2", new BABYLON.Vector3(-3, 5, -10), scene);
+    camera2.cameraRotation = 0;
+    camera2.viewport = new BABYLON.Viewport(0, 0, 0.5, 0.5); 
+   
+    //scene.activeCameras.push(camera);
+    scene.activeCameras.push(camera2);
+    scene.activeCameras.push(camera)
+
+
+
+  
+
+    
+
+
+
+    
+
+
+    //cam1
+    sceneData().then(playerMesh => {
+        let playerMesh2 = scene.getMeshByName("player2");
+        console.log("MESH PLAYER2"+playerMesh2); // Utilisez playerMesh comme nécessaire
+
+        let playerMesh1 = scene.getMeshByName("player1");
+        //console.log("MESH PLAYER2"+playerMesh); // Utilisez playerMesh comme nécessaire
+        
+        camera.lockedTarget = playerMesh2;
+        camera2.lockedTarget = playerMesh1;
+        
+    }).catch(error => {
+        console.error(error);
+    });
+
+
     engine.runRenderLoop(function () {
         scene.render();
     });

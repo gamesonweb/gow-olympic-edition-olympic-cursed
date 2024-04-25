@@ -1,5 +1,6 @@
 
 import CharacterController from './CharacterController.js';
+import { CustomModels } from './CustomModels.js';
 
 var canvas2 = document.getElementById("renderCanvas");
 //var engine2 = new BABYLON.Engine(canvas2, true);
@@ -22,13 +23,24 @@ export class PlayerLevel1 {
     
 
     testPlayer(scene,engine,name,x,y,z){
+
+        
+
+
        
         var boxW = 2;
         var boxH = 2;
         var boxD = 2;
-        
+
         var box = BABYLON.MeshBuilder.CreateBox(name, {width: boxW, height: boxH, depth: boxD},scene);
+        box.isVisible = false;
+        //var box2 = BABYLON.MeshBuilder.CreateBox(name, {width: boxW, height: boxH, depth: boxD},scene);
+        //box.addChild(snowMan);
+        let snowMan = new CustomModels(scene).CreateSnowManOnSki(x,y-0.5,z,box);
+      
        
+        //box.addChild(box2);
+        
         box.rotationQuaternion = BABYLON.Quaternion.Identity();
         box.position = new BABYLON.Vector3(x,y,z);
         
@@ -46,12 +58,15 @@ export class PlayerLevel1 {
        
         
         boxBody.setCollisionCallbackEnabled(true)
+
+        //rotate character
+      
       
         this.boxBody = boxBody;
         
      
-    
-     
+        
+      
      
         
     

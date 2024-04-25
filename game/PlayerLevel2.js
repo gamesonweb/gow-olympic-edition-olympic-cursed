@@ -75,6 +75,30 @@ export class PlayerLevel2 {
         control = null;
     }
 
+    Character(){
+       
+        let mesh; // Déclaration de mesh à un niveau supérieur pour qu'il soit accessible en dehors de la fonction de rappel
+    
+        // Charger le modèle 3D
+        BABYLON.SceneLoader.ImportMesh("", "./models/", "snowman_on_skis.glb", this.scene, (meshes) => {
+            console.log("Chargement réussi SnowMan", meshes);
+            mesh = meshes[0]; // Assignation de meshes[0] à mesh
+            mesh.name = "SnowMan";
+            mesh.position = new BABYLON.Vector3(x, y, z); // Positionne le modèle une fois chargé
+            mesh.setParent(parent);
+    
+            //mesh.rotationQuaternion._y = 85;
+
+            
+        }, undefined, undefined, ".glb");
+    
+        return { mesh }; // Retourne mesh
+        
+        
+
+    }
+
+
 
 
 }
