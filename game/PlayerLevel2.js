@@ -16,22 +16,30 @@ export class PlayerLevel2 {
         this.engine = engine;
         this.name = name;
         this.boxBody ;
+        this.boxMesh;
+        this.animationGroups;
 
         this.createPlayer(x,y,z);
         this.enablePlayerControl(forward,jump);
-        this.Character(x,y,z);
+       // this.Character(x,y,z);
      
     }
     
 
-    createPlayer(x,y,z ){
+    async createPlayer(x,y,z){
 
         var boxW = 2;
         var boxH = 2;
         var boxD = 2;
         
         var box = BABYLON.MeshBuilder.CreateBox(this.name, {width: boxW, height: boxH, depth: boxD},this.scene);
-       
+        this.boxMesh = box;
+        //ADD character disable box visibility 
+        //box.visibility = false;
+       //this.Character(x, y, z, box); 
+
+
+
         box.rotationQuaternion = BABYLON.Quaternion.Identity();
         //box.position = new BABYLON.Vector3(0,5,0);
         box.position = new BABYLON.Vector3(x,y,z);
@@ -49,7 +57,7 @@ export class PlayerLevel2 {
        
         
         boxBody.setCollisionCallbackEnabled(true)
-      
+        await this.Character(x, y, z, box);
        
         
      
@@ -67,7 +75,7 @@ export class PlayerLevel2 {
   
  
     enablePlayerControl(forward,jump){
-       let control = new CharacterController2(canvas,this.scene,this.engine,this.boxBody,forward,jump);
+       let control = new CharacterController2(canvas,this.scene,this.engine,this.boxBody,forward,jump,this.animationGroups);
     }
     
 
@@ -76,29 +84,32 @@ export class PlayerLevel2 {
         control = null;
     }
 
-    Character(x,y,z){
-       
+   
+    async Character(x, y, z, parent) {
         let mesh; // Déclaration de mesh à un niveau supérieur pour qu'il soit accessible en dehors de la fonction de rappel
     
-        // Charger le modèle 3D
-        BABYLON.SceneLoader.ImportMesh("", "./models/character1_anim/", "idle.glb", this.scene, (meshes) => {
-            console.log("Chargement réussi Personnage", meshes);
-            mesh = meshes[0]; // Assignation de meshes[0] à mesh
-            mesh.name = "RUNNER";
-            mesh.position = new BABYLON.Vector3(x, y-14, z); // Positionne le modèle une fois chargé
-            mesh.setParent(parent);
-           // mesh.scaling(new BABYLON.Vector3(0.01, 0.01, 0.01))
+        const { meshes, animationGroups } = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/character1_anim/", "animCharacter.glb", this.scene);
     
-            //mesh.rotationQuaternion._y = 85;
-
-            
-        }, undefined, undefined, ".glb");
+        mesh = meshes[0]; // Assignation de meshes[0] à mesh
+        mesh.name = "RUNNER";
+        mesh.position = new BABYLON.Vector3(x, y - 1.05, z); // Positionne le modèle une fois chargé
     
-        return { mesh }; // Retourne mesh
-        
-        
-
+        if (parent) {
+            mesh.setParent(parent); // Attacher le modèle au parent si spécifié
+        }
+        this.animationGroups = animationGroups;
+        // Vous pouvez ajouter des manipulations supplémentaires sur le mesh ici, comme l'échelle ou la rotation
+    
+        console.log("Chargement réussi Personnage", mesh);
+        //gerer les animations
+        //console.log("ANIMATION GROUP :"+animationGroups)
+  
+        //animationGroups[0].play();
+        //animationGroups[1].play();
+    
+        return { mesh };
     }
+    
 
 
 

@@ -1,9 +1,9 @@
 class CharacterController2 {
-    constructor(canvas, scene, engine, character1, input1, inputJump) {
-        this.setupKeyboardInputPlayer(canvas, engine, character1, input1, inputJump);
+    constructor(canvas, scene, engine, character1, input1, inputJump,animationGroup) {
+        this.setupKeyboardInputPlayer(canvas, engine, character1, input1, inputJump,animationGroup);
     }
 
-    setupKeyboardInputPlayer(canvas, engine, character, input1, inputJump) {
+    setupKeyboardInputPlayer(canvas, engine, character, input1, inputJump,animationGroup) {
         this.keys = {};
         let isKeyPressed = false;
         let isKeyPressed2 = false;
@@ -17,6 +17,7 @@ class CharacterController2 {
                 if (event.key === input1 && !isKeyPressed) {
                     isKeyPressed = true;
                     //console.log("Touche enfoncée, action effectuée");
+                    
                  
                 }
                 if (event.key === inputJump && !isKeyPressed2) {
@@ -54,6 +55,7 @@ class CharacterController2 {
                 character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
                
                 isKeyPressed = false;
+                //animationGroup[2].play();
             }
             
             if (isKeyPressed2) {
