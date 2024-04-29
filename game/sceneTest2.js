@@ -1,8 +1,8 @@
 
 import CharacterController from './CharacterController.js';
 import { CustomModels } from './CustomModels.js';
-import DevCamera from '/DevCamera.js';
-import PlayerCamera from '/PlayerCamera.js';
+
+
 //import { SceneLoader } from "@babylonjs/core";
 
 
