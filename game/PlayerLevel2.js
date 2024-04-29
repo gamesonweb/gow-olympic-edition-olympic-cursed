@@ -88,7 +88,7 @@ export class PlayerLevel2 {
     async Character(x, y, z, parent) {
         let mesh; // Déclaration de mesh à un niveau supérieur pour qu'il soit accessible en dehors de la fonction de rappel
     
-        const { meshes, animationGroups } = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/character1_anim/", "animCharacter.glb", this.scene);
+        const { meshes, animationGroups } = await BABYLON.SceneLoader.ImportMeshAsync("", "../models/character1_anim/", "animCharacter.glb", this.scene);
     
         mesh = meshes[0]; // Assignation de meshes[0] à mesh
         mesh.name = "RUNNER";

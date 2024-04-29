@@ -19,7 +19,7 @@ export class BowlingPin {
 
         return new Promise((resolve) => {
 
-            BABYLON.SceneLoader.ImportMesh("", "./models/", "Bowling Pin.glb", this.scene, (meshes) => {
+            BABYLON.SceneLoader.ImportMesh("", "../models/", "Bowling Pin.glb", this.scene, (meshes) => {
 
                 const shape = new BABYLON.PhysicsShapeCapsule(
                     new BABYLON.Vector3(0,0,0), // center of the sphere in local space

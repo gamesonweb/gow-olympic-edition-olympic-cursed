@@ -15,7 +15,6 @@
     "lint": "npx eslint . --ext .js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
-
   },
   "name": "gaw",
   "description": "Mohamed Rayan Boudiba",

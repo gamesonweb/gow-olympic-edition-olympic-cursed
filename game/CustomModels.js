@@ -17,7 +17,7 @@ export class CustomModels {
         let boundingBox;
         let tronc;
        
-        BABYLON.SceneLoader.ImportMesh("", "./models/", "Tree.glb", this.scene, (meshes) => {
+        BABYLON.SceneLoader.ImportMesh("", "../models/", "Tree.glb", this.scene, (meshes) => {
             console.log("Chargement réussi arbre", meshes);
          
             tree = meshes[0];
@@ -50,7 +50,7 @@ export class CustomModels {
         let boundingBox;
         let tronc;
        
-        return   BABYLON.SceneLoader.ImportMesh("", "./models/", "Pine Tree with Snow.glb", this.scene, (meshes) => {
+        return   BABYLON.SceneLoader.ImportMesh("", "../models/", "Pine Tree with Snow.glb", this.scene, (meshes) => {
             console.log("Chargement réussi arbre", meshes);
             meshes[0].scaling.x = 3
             meshes[0].scaling.y = 2
@@ -100,7 +100,7 @@ export class CustomModels {
         let mesh; // Déclaration de mesh à un niveau supérieur pour qu'il soit accessible en dehors de la fonction de rappel
     
         // Charger le modèle 3D
-        BABYLON.SceneLoader.ImportMesh("", "./models/", "snowman_on_skis.glb", this.scene, (meshes) => {
+        BABYLON.SceneLoader.ImportMesh("", "../models/", "snowman_on_skis.glb", this.scene, (meshes) => {
             console.log("Chargement réussi SnowMan", meshes);
             mesh = meshes[0]; // Assignation de meshes[0] à mesh
             mesh.name = "SnowMan";
@@ -195,7 +195,7 @@ export class CustomModels {
         let boundingBox;
         let tronc;
        
-        BABYLON.SceneLoader.ImportMesh("", "./models/", "Dead Trees With Snow.glb", this.scene, (meshes) => {
+        BABYLON.SceneLoader.ImportMesh("", "../models/", "Dead Trees With Snow.glb", this.scene, (meshes) => {
             console.log("Chargement réussi arbre", meshes);
             
             meshes[0].scaling.x = 30
@@ -240,7 +240,7 @@ export class CustomModels {
         let boundingBox;
         let tronc;
        
-        BABYLON.SceneLoader.ImportMesh("", "./models/", "Snow Tree.glb", this.scene, (meshes) => {
+        BABYLON.SceneLoader.ImportMesh("", "../models/", "Snow Tree.glb", this.scene, (meshes) => {
             console.log("Chargement réussi arbre", meshes);
             
             meshes[0].scaling.x = 10
@@ -289,7 +289,7 @@ export class CustomModels {
         let boundingBox;
         let tronc;
        
-        BABYLON.SceneLoader.ImportMesh("", "./models/", "Pine Tree with Snow two.glb", this.scene, (meshes) => {
+        BABYLON.SceneLoader.ImportMesh("", "../models/", "Pine Tree with Snow two.glb", this.scene, (meshes) => {
             console.log("Chargement réussi arbre", meshes);
             
             meshes[0].scaling.x = 10
@@ -340,7 +340,7 @@ export class CustomModels {
         let boundingBox;
         let tronc;
        
-        BABYLON.SceneLoader.ImportMesh("", "./models/", "SnowManRotated.glb", this.scene, (meshes) => {
+        BABYLON.SceneLoader.ImportMesh("", "../models/", "SnowManRotated.glb", this.scene, (meshes) => {
             console.log("Chargement réussi arbre", meshes);
             
             meshes[0].scaling.x = 1
@@ -394,7 +394,7 @@ export class CustomModels {
         let tronc;
        
         
-        let bigMesh = BABYLON.SceneLoader.ImportMesh("", "./models/", "rampe_2.glb", this.scene, (meshes) => {
+        let bigMesh = BABYLON.SceneLoader.ImportMesh("", "../models/", "rampe_2.glb", this.scene, (meshes) => {
             console.log("Chargement réussi", meshes);
  
             meshes[0].scaling.x = 5
@@ -434,7 +434,7 @@ export class CustomModels {
         let tronc;
        
         
-        let bigMesh = BABYLON.SceneLoader.ImportMesh("", "./models/", "Rock Forms 3 (White).glb", this.scene, (meshes) => {
+        let bigMesh = BABYLON.SceneLoader.ImportMesh("", "../models/", "Rock Forms 3 (White).glb", this.scene, (meshes) => {
             console.log("Chargement réussi", meshes);
            
             meshes[0].scaling.x = 150
@@ -486,7 +486,7 @@ export class CustomModels {
         let tronc;
        
         
-        let bigMesh = BABYLON.SceneLoader.ImportMesh("", "./models/", "finalscene2.glb", this.scene, (meshes) => {
+        let bigMesh = BABYLON.SceneLoader.ImportMesh("", "../models/", "finalscene2.glb", this.scene, (meshes) => {
             console.log("Chargement réussi", meshes);
            
             //meshes[0].scaling.x = 150
@@ -547,7 +547,7 @@ export class CustomModels {
             let boundingBox;
             let tronc;
         
-            BABYLON.SceneLoader.ImportMesh("", "./models/", "plateforme_scene3.glb", this.scene, (meshes) => {
+            BABYLON.SceneLoader.ImportMesh("", "../models/", "plateforme_scene3.glb", this.scene, (meshes) => {
                 console.log("Chargement réussi plateform", meshes);
             
                 let mesh = meshes[0];
@@ -582,7 +582,7 @@ export class CustomModels {
         let boundingBox;
         let tronc;
     
-        BABYLON.SceneLoader.ImportMesh("", "./models/", "scene4_gameplay_ELEMENT.glb", this.scene, (meshes) => {
+        BABYLON.SceneLoader.ImportMesh("", "../models/", "scene4_gameplay_ELEMENT.glb", this.scene, (meshes) => {
             console.log("Chargement réussi plateform", meshes);
         
             let mesh = meshes[0];
@@ -614,7 +614,7 @@ export class CustomModels {
         let boundingBox;
         let tronc;
     
-        BABYLON.SceneLoader.ImportMesh("", "./models/", "Spiky Ball.glb", this.scene, (meshes) => {
+        BABYLON.SceneLoader.ImportMesh("", "../models/", "Spiky Ball.glb", this.scene, (meshes) => {
             console.log("Chargement réussi ball", meshes);
         
             let mesh = meshes[0];
@@ -648,7 +648,7 @@ export class CustomModels {
             let boundingBox;
             let tronc;
            
-            BABYLON.SceneLoader.ImportMesh("", "./models/", "coliseum.glb", this.scene, (meshes) => {
+            BABYLON.SceneLoader.ImportMesh("", "../models/", "coliseum.glb", this.scene, (meshes) => {
                 console.log("Chargement réussi coliseum", meshes);
              
                 let mesh = meshes[0];
@@ -683,7 +683,7 @@ export class CustomModels {
             let boundingBox;
             let tronc;
            
-            BABYLON.SceneLoader.ImportMesh("", "./models/", "coliseum.glb", this.scene, (meshes) => {
+            BABYLON.SceneLoader.ImportMesh("", "../models/", "coliseum.glb", this.scene, (meshes) => {
                 console.log("Chargement réussi coliseum", meshes);
              
                 let mesh = meshes[0];
