@@ -9,7 +9,7 @@ module.exports = merge(common, {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: 'models', // Dossier source des modèles 3D
+          from: 'game/models', // Dossier source des modèles 3D
           to: 'models' // Dossier de destination dans le dossier de sortie final
         }
       ]
