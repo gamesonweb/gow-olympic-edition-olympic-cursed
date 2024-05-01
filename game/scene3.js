@@ -61,7 +61,7 @@ async function sceneData() {
     plane2.CreatePlateform(0,0, -472,678);
 
    
-    //scene.debugLayer.show();
+   //scene.debugLayer.show();
 
 }
 

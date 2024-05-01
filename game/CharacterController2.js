@@ -37,6 +37,7 @@ class CharacterController2 {
                 isKeyPressed2 = false;
                 console.log("Touche relâchée jump");
                 // Ajoutez ici la logique pour arrêter le saut du personnage si nécessaire
+            
             }
 
             // Vérifie si la touche est celle que vous souhaitez traiter
@@ -55,13 +56,15 @@ class CharacterController2 {
                 character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
                
                 isKeyPressed = false;
-                //animationGroup[2].play();
+                //console.log(  animationGroup)
+               //animationGroup[1].play();
             }
             
             if (isKeyPressed2) {
                 character.applyForce(new BABYLON.Vector3(0, 100, 0), new BABYLON.Vector3(0, 0, 0));
                 character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
                 isKeyPressed2 = false;
+                //animationGroup[2].play();
             }
 
             character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
