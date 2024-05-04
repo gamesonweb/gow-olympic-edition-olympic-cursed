@@ -3,10 +3,12 @@ var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
 var name = "level4";
 
+
 import { CustomModels } from './CustomModels.js';
 import CharacterController3 from './CharacterController3.js';
 import PlayerLevel3 from './PlayerLevel3.js';
 import BowlingPin from './BowlingPin.js';
+
 let player1;
 let player2;
 
@@ -29,7 +31,7 @@ async function sceneData() {
     scene.collisionsEnabled = true;
        
     
-
+    
     // Ajoutez une lumière
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
@@ -57,7 +59,7 @@ async function sceneData() {
  
    // console.log(countPlayer1);
      player1 = new PlayerLevel3(scene,engine,"player1",'q','d','s',' ',0,8,0);
-     player2 = new PlayerLevel3(scene,engine,"player2",'j','l','i','Enter',28,8,0);
+     player2 = new PlayerLevel3(scene,engine,"player2",'ArrowLeft','ArrowRight','i','Enter',28,8,0);
 
      //let pin = new BowlingPin(scene,0,2,19.397);
     
@@ -84,7 +86,7 @@ async function sceneData() {
     
 
   
-
+    /*
     //trigger Player1
     triggerRespawn(0,2,97.43,30, 30, 10);
     triggerRespawn(7.5,2,48,1, 30,90);
@@ -93,11 +95,23 @@ async function sceneData() {
     //trigger Player2
     triggerRespawn(30,2,97.43,30, 30, 10);
     triggerRespawn(20,2,48,1, 30,90);
-    triggerRespawn(35.5,2,48,1, 30,90);
+    triggerRespawn(35.5,2,48,1, 30,90);*/
 
-   
-    
-    //scene.debugLayer.show();
+    respawnPlayerInput(player1,player2);
+
+    /*
+    var button1 = BABYLON.GUI.Button.CreateSimpleButton("but1", "Click Me");
+    button1.width = "150px"
+    button1.height = "40px";
+    button1.color = "white";
+    button1.cornerRadius = 20;
+    button1.background = "green";
+    button1.onPointerUpObservable.add(function() {
+        alert("you did it!");
+    });*/
+
+    //advancedTexture.addControl(button1);    
+    scene.debugLayer.show();
 
 
 }
@@ -110,6 +124,7 @@ function launch() {
     camera.detachControl(canvas);
     camera.cameraRotation = 0;
     scene.activeCameras.push(camera);
+    /*
     camera.viewport = new BABYLON.Viewport(0, 0, 0.5, 1);
     scene.activeCameras.push(camera);
 
@@ -121,21 +136,23 @@ function launch() {
     camera2.cameraRotation = 0;
     scene.activeCameras.push(camera2);
     camera2.viewport = new BABYLON.Viewport(0.5,0 , 0.5, 1);
-    scene.activeCameras.push(camera2);
+    scene.activeCameras.push(camera2);*/
     /*
     var camera2 = new BABYLON.FollowCamera("camera2", new BABYLON.Vector3(0, 5, -10), scene);
     camera2.cameraRotation = 0;
     camera2.viewport = new BABYLON.Viewport(0.5, 0.5, 0.5, 0.5); 
-    scene.activeCameras.push(camera2);*/
+    scene.activeCameras.push(camera2);
+    */
  
-   
+       // GUI
+       var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
     sceneData();
   
 
     let playerMesh = scene.getMeshByName("player1");
     let playerMesh2 = scene.getMeshByName("player2");
-    console.log(playerMesh2);
+    //console.log(playerMesh2);
     //console.log(playerMesh); // Utilisez playerMesh comme nécessaire
     
     camera.lockedTarget = playerMesh;
@@ -256,7 +273,7 @@ function eventHandler(hk,player1,player2){
      
     });
 
-   //pinsCount(hk);
+   //WinParty
 
    
 }
@@ -301,7 +318,7 @@ function pinsCount(hk){
                 testSearch(uniqueId);
               
                 countPlayer1++;
-                console.log(countPlayer1);
+                //console.log(countPlayer1);
                 
             }
       
@@ -335,7 +352,7 @@ async function testSearch(listeQuilles1,countPlayer1,playerText){
                     
             };
         }
-        console.log("compteur "+playerText+" " +countPlayer1);
+       // console.log("compteur "+playerText+" " +countPlayer1);
 
 
 
@@ -534,6 +551,61 @@ function addQuille( listeQuilles1,x,y,z){
     ];
     return listeQuilles1;
 }
+
+function respawnPlayerInput() {
+    // Ajouter un écouteur d'événements pour la touche "espace"
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Shift') {
+            // Code à exécuter lorsque la touche "espace" est enfoncée
+            // Par exemple :
+            console.log('La touche "espace" a été enfoncée');
+            let ball1 = scene.getMeshByName("player1");
+            player1.disableThisObject();
+            ball1.dispose();
+            player1 = new PlayerLevel3(scene,engine,"player1",'q','d','s',' ',0,8,0);
+        }
+    });
+
+    // Ajouter un écouteur d'événements pour la touche "entrée"
+    document.addEventListener('keydown', function(event) {
+        if (event.code === 'Backspace') {
+            // Code à exécuter lorsque la touche "entrée" est enfoncée
+            // Par exemple :
+            console.log('La touche "entrée" a été enfoncée');
+            let ball2 = scene.getMeshByName("player2");
+            player2.disableThisObject();
+            ball2.dispose();
+            player2 = new PlayerLevel3(scene,engine,"player2",'ArrowLeft','ArrowRight','i','Enter',28,8,0);
+
+        }
+    });
+
+}
+
+function displayInstruction(){
+
+}
+
+function displayPinNumber(){
+    
+    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+
+    var button1 = BABYLON.GUI.Button.CreateSimpleButton("but1", "Click Me");
+    button1.width = "150px"
+    button1.height = "40px";
+    button1.color = "white";
+    button1.cornerRadius = 20;
+    button1.background = "green";
+    button1.onPointerUpObservable.add(function() {
+        alert("you did it!");
+    });
+    advancedTexture.addControl(button1);   
+    
+    
+
+}
+
+
 
 
 export { name, scene, sceneData, launch };

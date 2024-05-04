@@ -1,7 +1,7 @@
 var canvas = document.getElementById("renderCanvas");
 var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
-var name = "level1";
+
 
 import { CustomModels } from './CustomModels.js';
 function sceneData() {
@@ -24,7 +24,7 @@ function sceneData() {
     material.diffuseColor = new BABYLON.Color3(0, 0, 1); // Couleur bleue
 
     
-
+    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
     // Créez un cube avec le matériau
     var cube = BABYLON.MeshBuilder.CreateBox("blueCube", { size: 2 }, scene);
@@ -46,7 +46,7 @@ function sceneData() {
     scene.debugLayer.show();
 
 
-    
+  
 
 }
 
@@ -59,6 +59,7 @@ function launch() {
     var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
     camera.attachControl();
     sceneData();
+   
     engine.runRenderLoop(function () {
         scene.render();
     });
@@ -73,4 +74,4 @@ function getScene() {
     return scene;
 }
 
-export { name, scene, sceneData, launch , killLevel };
+export {   sceneData, launch , killLevel };

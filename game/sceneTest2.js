@@ -3,7 +3,6 @@ import CharacterController from './CharacterController.js';
 import { CustomModels } from './CustomModels.js';
 
 
-//import { SceneLoader } from "@babylonjs/core";
 
 
 var canvas = document.getElementById("renderCanvas");

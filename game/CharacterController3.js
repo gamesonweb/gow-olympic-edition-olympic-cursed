@@ -13,7 +13,7 @@ class CharacterController2 {
         canvas.addEventListener('keydown', (event) => {
             if (!this.keys[event.key]) {
                 this.keys[event.key] = true;
-
+         
              
             }
         });
@@ -21,36 +21,30 @@ class CharacterController2 {
         // Écoute l'événement "keyup" (touche relâchée) sur le canvas.
         canvas.addEventListener('keyup', (event) => {
             this.keys[event.key] = false;
-            
+       
         });
 
         // Démarre la boucle de rendu du moteur Babylon.js.
         engine.runRenderLoop(() => {
           
             if(!this.destroyed){
-                if (this.keys[input1]) {
-                    console.log('Touche gauche enfoncée');
+                if (this.keys[input1] ) {
+                    //console.log('Touche gauche enfoncée');
                     character.applyForce(new BABYLON.Vector3(5*2, 0, 0), new BABYLON.Vector3(0, 0, 0));
                     character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
             
                 }
 
-                if (this.keys[input2]) {
-                    console.log('Touche Droite enfoncée');
+                if (this.keys[input2] ) {
+                    //console.log('Touche Droite enfoncée');
                     character.applyForce(new BABYLON.Vector3(-5*2, 0, 0), new BABYLON.Vector3(0, 0, 0));
                     character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
         
                 }
 
-                
-                if (this.keys[inputJump] && !this.action) {
-                    console.log('Touche JUMP enfoncée');
-                    character.applyForce(new BABYLON.Vector3(0, 30, 0), new BABYLON.Vector3(0, 0, 0));
-                    character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
-        
-                }
+         
                 if (this.keys[inputLaunch] && !this.action) {
-                    console.log('Touche LAUNCH enfoncée');
+                    //console.log('Touche LAUNCH enfoncée');
                     this.action = true;
                     character.applyForce(new BABYLON.Vector3(0, 0, 700*4), new BABYLON.Vector3(0, 0, 0));
                     //character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);
@@ -81,6 +75,12 @@ class CharacterController2 {
         this.inputLaunch = null;
 
         // Réinitialisez ou supprimez d'autres ressources si nécessaire
+    }
+    isUpperCase(input,key) {
+        return key === input.toUpperCase();
+    }
+    getLastKeyPressed() {
+        return this.lastKeyPressed; // Fonction pour récupérer la dernière touche enfoncée
     }
 
     
