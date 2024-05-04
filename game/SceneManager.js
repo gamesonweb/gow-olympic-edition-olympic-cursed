@@ -11,12 +11,12 @@ import * as scene5 from './scene5.js'
 function Main() {
     // Appelez la fonction "launch" du module "level2" pour lancer la scène 2
     
-    launchLevel1();
+    //launchLevel1();
    
     //launchLevel2();
    //launchLevel3();
    //launchLevel4();
-   //launchLevel5();
+   launchLevel5();
    
 }
 function launchLevelMenu(){

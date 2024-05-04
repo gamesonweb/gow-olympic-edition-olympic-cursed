@@ -5,18 +5,7 @@ var scene = new BABYLON.Scene(engine);
 
 import { CustomModels } from './CustomModels.js';
 function sceneData() {
-    //activer la physique sur la scene 
-    //var physicsEngine = new BABYLON.CannonJSPlugin();
-   // scene.enablePhysics(new BABYLON.Vector3(0, -9.81, 0), physicsEngine);
-    //scene.collisionsEnabled = true;
-    
-   
-    // Configurez une caméra
-    //var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
-    //camera.setTarget(BABYLON.Vector3.Zero());
-    //camera.attachControl();
 
-    // Ajoutez une lumière
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
     // Créez un matériau pour le cube (bleu)
@@ -25,7 +14,7 @@ function sceneData() {
 
     
     var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
-
+    BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
     // Créez un cube avec le matériau
     var cube = BABYLON.MeshBuilder.CreateBox("blueCube", { size: 2 }, scene);
     cube.material = material;
