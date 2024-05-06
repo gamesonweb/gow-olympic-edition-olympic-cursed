@@ -3,7 +3,7 @@ import CharacterController from './CharacterController.js';
 import { CustomModels } from './CustomModels.js';
 import * as sceneManager from './SceneManager.js'
 import {PlayerLevel1} from "./PlayerLevel1.js";
-
+let advancedTexture ;
 
 var canvas = document.getElementById("renderCanvas");
 var engine = new BABYLON.Engine(canvas, true);
@@ -199,7 +199,7 @@ async function sceneData() {
    let player2 = new PlayerLevel1(scene,engine,'player2','i','k','j','l',0,5,0);
 
    triggerRespawn();
-
+    displayMenu();
    //montrer le layer
    //scene.debugLayer.show();
    
@@ -443,5 +443,13 @@ function loadNextLevel(){
 
 }
 
+function displayMenu(){
+    advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI_textControl");
+
+
+
+  
+
+}
 
 export { name, scene, sceneData, launch,killLevel };

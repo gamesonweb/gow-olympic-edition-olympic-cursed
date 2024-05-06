@@ -37,7 +37,7 @@ app.use(cookieSession({
   secret: 'mot-de-passe-du-cookie',
 }));
 app.use(authenticated);
-app.use('/@babylonjs', express.static(__dirname + '/node_modules/@babylonjs'));
+app.use(express.static('node_modules'));
 
 
 //app.use(change_header);

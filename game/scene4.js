@@ -2,7 +2,7 @@ var canvas = document.getElementById("renderCanvas");
 var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
 var name = "level4";
-
+let advancedTexture ;
 
 import { CustomModels } from './CustomModels.js';
 import CharacterController3 from './CharacterController3.js';
@@ -99,16 +99,8 @@ async function sceneData() {
 
     respawnPlayerInput(player1,player2);
 
-    /*
-    var button1 = BABYLON.GUI.Button.CreateSimpleButton("but1", "Click Me");
-    button1.width = "150px"
-    button1.height = "40px";
-    button1.color = "white";
-    button1.cornerRadius = 20;
-    button1.background = "green";
-    button1.onPointerUpObservable.add(function() {
-        alert("you did it!");
-    });*/
+    
+   
 
     //advancedTexture.addControl(button1);    
     scene.debugLayer.show();
@@ -124,7 +116,7 @@ function launch() {
     camera.detachControl(canvas);
     camera.cameraRotation = 0;
     scene.activeCameras.push(camera);
-    /*
+    
     camera.viewport = new BABYLON.Viewport(0, 0, 0.5, 1);
     scene.activeCameras.push(camera);
 
@@ -136,16 +128,11 @@ function launch() {
     camera2.cameraRotation = 0;
     scene.activeCameras.push(camera2);
     camera2.viewport = new BABYLON.Viewport(0.5,0 , 0.5, 1);
-    scene.activeCameras.push(camera2);*/
-    /*
-    var camera2 = new BABYLON.FollowCamera("camera2", new BABYLON.Vector3(0, 5, -10), scene);
-    camera2.cameraRotation = 0;
-    camera2.viewport = new BABYLON.Viewport(0.5, 0.5, 0.5, 0.5); 
     scene.activeCameras.push(camera2);
-    */
+    
+   
+
  
-       // GUI
-       var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
     sceneData();
   
@@ -588,10 +575,10 @@ function displayInstruction(){
 
 function displayPinNumber(){
     
-    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+     advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
     var button1 = BABYLON.GUI.Button.CreateSimpleButton("but1", "Click Me");
-    button1.width = "150px"
+    button1.width = "1000px"
     button1.height = "40px";
     button1.color = "white";
     button1.cornerRadius = 20;

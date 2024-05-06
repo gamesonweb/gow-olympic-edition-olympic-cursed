@@ -659,14 +659,6 @@ export class CustomModels {
                 mesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
                 
                 
-    
-                //var troncAggregate =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
-               // troncAggregate.shape.isTrigger =  true;
-    
-                
-                //var troncAggregate2 =new BABYLON.PhysicsAggregate(tronc, BABYLON.PhysicsShapeType.BOX, { mass: 0 }, this.scene);
-
-                 
             
               
               
@@ -711,6 +703,34 @@ export class CustomModels {
         
             return { boundingBox };
         }
+
+          // Crée un modèle d'arbre 3D et le positionne aux coordonnées spécifiées (x, y, z)
+          CreateMenu3dScene(x, y, z) {
+            let tree;
+            let boundingBox;
+            let tronc;
+           
+            BABYLON.SceneLoader.ImportMesh("", "./models/", "menu.glb", this.scene, (meshes) => {
+                console.log("Chargement réussi du menu", meshes);
+             
+                let mesh = meshes[0];
+                //tronc = meshes[1];
+                mesh.name ="fondMenu"
+                
+               
+                mesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+                
+                
+            
+              
+              
+            }, undefined, undefined, ".glb");
+    
+         
+        
+            return { boundingBox };
+        }
+
 
 
     

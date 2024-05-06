@@ -1,50 +1,101 @@
+let advancedTexture ;
+let advancedTexture2 ;
 var canvas = document.getElementById("renderCanvas");
 var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
-var name = "Menu";
-
 import { CustomModels } from './CustomModels.js';
-function sceneData() {
-    //activer la physique sur la scene 
-   
-    scene.collisionsEnabled = true;
-    
-   
-    // Configurez une caméra
-    var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
-    camera.setTarget(BABYLON.Vector3.Zero());
-    camera.attachControl();
-
+import * as sceneManager from './SceneManager.js'
+var createScene = function () {
+ 
+    // GUI
     // Ajoutez une lumière
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
-    // Créez un matériau pour le cube (bleu)
-    var material = new BABYLON.StandardMaterial("blueMaterial", scene);
-    material.diffuseColor = new BABYLON.Color3(0, 0, 1); // Couleur bleue
-
-    
-
-   
-
-    
-    var model = new CustomModels();
-    model.CreateColiseum(0,0,0 );
+   // Création d'une caméra
+    const camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 5, -18.5), scene);
+    //camera.attachControl()
   
 
-      //montrer le layer
-   scene.debugLayer.show();
 
-}
+    let menu = new CustomModels(scene);
+    menu.CreateMenu3dScene(0,0,0);
 
-function launch() {
-    sceneData();
+    displayMenu();
+
+    scene.debugLayer.show();
+    return scene;
+};
+function launch(){
+    createScene();
+
     engine.runRenderLoop(function () {
+        
         scene.render();
     });
+    
+
 }
 
-function getScene() {
-    return scene;
+function displayMenu(){
+
+
+       // Création du GUI
+    advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI_button");
+    advancedTexture2 = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI_text");
+    // Création du bouton Play
+    const playButton = BABYLON.GUI.Button.CreateSimpleButton("playButton", "Play");
+    playButton.width = "150px";
+    playButton.height = "40px";
+    playButton.color = "white";
+    playButton.background = "grey";
+    playButton.onPointerClickObservable.add(function () {
+        // Mettre ici la logique pour le bouton Play
+        console.log("Play button clicked");
+        killLevel();
+        loadNextLevel();
+    });
+    advancedTexture.addControl(playButton);
+
+    
+     // Création du texte en haut de la page
+     const headerText = new BABYLON.GUI.TextBlock();
+     headerText.text = "Titre de la Page";
+     headerText.color = "white";
+     headerText.fontSize = 24;
+     headerText.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
+     headerText.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP; // Modifier cette ligne
+     headerText.paddingTop = "-400px"; // Ajout de 20px de padding en haut
+     advancedTexture2.addControl(headerText);
+
+
+  
+
 }
 
-export { name, scene, sceneData, launch };
+function killLevel(player){
+    //scene.dispose();
+     
+    scene.meshes.forEach(function(mesh) {
+        mesh.dispose();
+    });
+   
+    scene.cameras.forEach(function(mesh) {
+        mesh.dispose();
+    });
+    // Supprimer toutes les lumières de la scène
+    scene.lights.forEach(function(light) {
+        light.dispose();
+    });
+    advancedTexture2.dispose();
+    advancedTexture.dispose();
+    engine.stopRenderLoop();
+}
+
+
+function loadNextLevel(){
+    
+    sceneManager.launchLevel2();
+
+}
+
+export {  scene, launch };
