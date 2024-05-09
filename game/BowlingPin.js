@@ -47,7 +47,7 @@ export class BowlingPin {
             
 
             
-                var Aggregate =new BABYLON.PhysicsAggregate(mesh, shapeBox1, { mass: 0.2 }, this.scene);
+                var Aggregate =new BABYLON.PhysicsAggregate(mesh, shapeBox1, { mass: 0.1 }, this.scene);
                 Aggregate.body.setCollisionCallbackEnabled(true);
                 this.Aggregate = Aggregate;
                 this.mesh = mesh;

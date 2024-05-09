@@ -11,7 +11,7 @@
     "mustache-express": "^1.3.2"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "npx webpack serve --config webpack.dev.js",
     "start:prod": "webpack serve --config webpack.prod.js",
     "build:dev": "npx webpack --config webpack.dev.js",
     "build": "npx webpack --config webpack.prod.js",

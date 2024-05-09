@@ -1,8 +1,9 @@
 
 import CharacterController from './CharacterController.js';
 import { CustomModels } from './CustomModels.js';
-import * as sceneManager from './SceneManager.js'
+
 import {PlayerLevel1} from "./PlayerLevel1.js";
+import * as sceneManager from './SceneManager.js';
 let advancedTexture ;
 
 var canvas = document.getElementById("renderCanvas");
@@ -17,7 +18,7 @@ async function getInitializedHavok() {
 }
 
 async function sceneData() {
-    
+    displayControlUI();
     // Ajoutez une lumière hémisphériques
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
@@ -34,7 +35,7 @@ async function sceneData() {
 
     var sceneprod = new CustomModels(scene);
     //PART 1 LEVEL
-
+    
     //first plane 
     let plane = sceneprod.plane(5,0,-45,25,150,scene);
   
@@ -199,7 +200,7 @@ async function sceneData() {
    let player2 = new PlayerLevel1(scene,engine,'player2','i','k','j','l',0,5,0);
 
    triggerRespawn();
-    displayMenu();
+    
    //montrer le layer
    //scene.debugLayer.show();
    
@@ -363,21 +364,12 @@ function eventHandler(hk,player){
 }
 
 function launch() {
-   /*
-    var camera2 = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
-    camera2.attachControl(canvas);*/
-
-    //camera2.cameraRotation = 0;
-   
-    //createCamPlayer and camera
-    /*
-    scene.meshes.forEach(function(mesh) {
-        mesh.dispose();
-    });*/
+ 
     
     var camera = new BABYLON.FollowCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
     camera.cameraRotation = 0;
     camera.viewport = new BABYLON.Viewport(0, 0, 0.5, 0.5);
+    
     
     var camera2 = new BABYLON.FollowCamera("camera2", new BABYLON.Vector3(0, 5, -10), scene);
     camera2.cameraRotation = 0;
@@ -427,6 +419,7 @@ function killLevel(player){
   
   
     engine.stopRenderLoop();
+    hideControlUI();
 }
 
 function reloadlevel(){
@@ -443,12 +436,21 @@ function loadNextLevel(){
 
 }
 
-function displayMenu(){
-    advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI_textControl");
-
-
-
+function displayControlUI(){
   
+   // Récupération de l'élément par son ID
+   var level1 = document.getElementById("level1");
+
+   // Afficher l'élément
+   level1.style.display = "block";
+
+}
+function hideControlUI(){
+       // Récupération de l'élément par son ID
+   var level1 = document.getElementById("level1");
+
+   // Afficher l'élément
+   level1.style.display = "none";
 
 }
 

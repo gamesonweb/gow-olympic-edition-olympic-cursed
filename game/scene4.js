@@ -58,8 +58,8 @@ async function sceneData() {
 
  
    // console.log(countPlayer1);
-     player1 = new PlayerLevel3(scene,engine,"player1",'q','d','s',' ',0,8,0);
-     player2 = new PlayerLevel3(scene,engine,"player2",'ArrowLeft','ArrowRight','i','Enter',28,8,0);
+     player1 = new PlayerLevel3(scene,engine,"player1",'q','d','s',' ',0,8,-8);
+     player2 = new PlayerLevel3(scene,engine,"player2",'ArrowLeft','ArrowRight','i','Enter',25,8,-8);
 
      //let pin = new BowlingPin(scene,0,2,19.397);
     
@@ -71,9 +71,10 @@ async function sceneData() {
 
     eventHandler(hk,player1,player2);
 
-    model.CreatePlateform_Scene4();
-    listeQuilles1 =  addQuille(listeQuilles1,0,0,-10);
-    listeQuilles2 =  addQuille(listeQuilles2,28,0,-10);
+   // model.CreatePlateform_Scene4();
+    model.CreateBowlingPlatform();
+    listeQuilles1 =  addQuille(listeQuilles1,0,0,-8);
+    listeQuilles2 =  addQuille(listeQuilles2,25,0,-8);
 
     testSearch(listeQuilles1,countPlayer1,"player1");
     testSearch(listeQuilles2,countPlayer2,"player2");
@@ -103,14 +104,15 @@ async function sceneData() {
    
 
     //advancedTexture.addControl(button1);    
-    scene.debugLayer.show();
+    //scene.debugLayer.show();
+    displayControlUI();
 
 
 }
 
 function launch() {
       
-    var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
+    var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -22), scene);
     camera.inertia = 0;
     camera.angularSensibility = 0;
     camera.detachControl(canvas);
@@ -121,7 +123,7 @@ function launch() {
     scene.activeCameras.push(camera);
 
 
-    var camera2 = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(27, 5, -10), scene);
+    var camera2 = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(25, 4, -23), scene);
     camera2.inertia = 0;
     camera2.angularSensibility = 0;
     camera2.detachControl(canvas);
@@ -282,6 +284,7 @@ function killLevel(player){
   
   
     engine.stopRenderLoop();
+    hideControlUI();
 }
 
 
@@ -339,7 +342,7 @@ async function testSearch(listeQuilles1,countPlayer1,playerText){
                     
             };
         }
-       // console.log("compteur "+playerText+" " +countPlayer1);
+        //console.log("compteur "+playerText+" " +countPlayer1);
 
 
 
@@ -549,7 +552,7 @@ function respawnPlayerInput() {
             let ball1 = scene.getMeshByName("player1");
             player1.disableThisObject();
             ball1.dispose();
-            player1 = new PlayerLevel3(scene,engine,"player1",'q','d','s',' ',0,8,0);
+            player1 = new PlayerLevel3(scene,engine,"player1",'q','d','s',' ',0,8,-8);
         }
     });
 
@@ -562,16 +565,14 @@ function respawnPlayerInput() {
             let ball2 = scene.getMeshByName("player2");
             player2.disableThisObject();
             ball2.dispose();
-            player2 = new PlayerLevel3(scene,engine,"player2",'ArrowLeft','ArrowRight','i','Enter',28,8,0);
+            player2 = new PlayerLevel3(scene,engine,"player2",'ArrowLeft','ArrowRight','i','Enter',25,8,-8);
+
 
         }
     });
 
 }
 
-function displayInstruction(){
-
-}
 
 function displayPinNumber(){
     
@@ -592,6 +593,23 @@ function displayPinNumber(){
 
 }
 
+function displayControlUI(){
+  
+    // Récupération de l'élément par son ID
+    var level1 = document.getElementById("level3");
+ 
+    // Afficher l'élément
+    level1.style.display = "block";
+ 
+ }
+ function hideControlUI(){
+        // Récupération de l'élément par son ID
+    var level1 = document.getElementById("level3");
+ 
+    // Afficher l'élément
+    level1.style.display = "none";
+ 
+ }
 
 
 

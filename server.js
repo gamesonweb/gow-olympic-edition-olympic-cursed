@@ -2,15 +2,12 @@
 
 
 
-//cookie
-const cookieSession = require('cookie-session');
-//var model = require('./model');
-
 
 
 var express = require('express');
 var mustache = require('mustache-express');
-
+//var babylon = require('babylonjs');
+var babylon = require('babylonjs');
 var app = express();
 
 //app.head("Content-type: application/JavaScript; charset=UTF-8");
@@ -25,45 +22,19 @@ app.engine('html', mustache());
 app.set('view engine', 'html');
 app.set('views', './view');
 
-app.use(express.static('public'));
+
 
 app.use(express.static('./view/css'));
 app.use(express.static('./view/img'));
 app.use(express.static('game'));
 app.use(express.static('game/models'));
+app.use(express.static('game/gui'));
 //app.use(express.static('game/models/character1_anim'));
 app.use(addSecurityHeader);  
-app.use(cookieSession({
-  secret: 'mot-de-passe-du-cookie',
-}));
-app.use(authenticated);
-app.use(express.static('node_modules'));
 
 
-//app.use(change_header);
 
-function is_authenticated(req, res, next) {
- 
-  if (!req.session.userid) {
-   // res.redirect('/not_authenticated')
-    return res.redirect('/login')
-    
-  }
-  
-  next();
-}
-function authenticated(req, res, next) {
-  if(req.session.userid && req.session){
-    res.locals.authenticated =true;
-    res.locals.name = req.session.name;
-   
-  }else{
-    // la session n'est pas valide
-    res.locals.authenticated = false;
-  }
- 
-  next();
-}
+
 
 
 
@@ -80,35 +51,6 @@ app.get('/', (req, res) => {
 
 
 
-app.get('/Menu', (req, res) => {
-
-
-  res.render('gamedev.html');
-
-});
-
-
-app.get('/contact', (req, res) => {
-
-
-  res.render('contact.html');
-
-});
-
-app.get('/experience', (req, res) => {
-
-
-  res.render('experience.html');
-
-});
-
-
-app.get('/portfolio', (req, res) => {
-
-
-  res.render('portfolio.html');
-
-});
 
 
 

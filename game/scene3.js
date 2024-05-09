@@ -31,14 +31,14 @@ async function sceneData() {
     // Ajoutez une lumière
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
-    
+    //var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
 
 
     // Créez un cube avec le matériau
   
     
-    let player1 = new PlayerLevel2(scene,engine,"player1",'s','f', 10,15,0);
-    let player2 = new PlayerLevel2(scene,engine,"player2",'k','m',0,15,0);
+    let player1 = new PlayerLevel2(scene,engine,"player1",'s','f', 2,15,0);
+    let player2 = new PlayerLevel2(scene,engine,"player2",'k','m',-15,15,0);
 
 
 
@@ -58,10 +58,10 @@ async function sceneData() {
     };
 
     var plane2 = new CustomModels(scene);
-    plane2.CreatePlateform(0,0, -472,678);
-
-   
-   //scene.debugLayer.show();
+    //plane2.CreatePlateform(0,0, -472,678);
+    plane2.CreatePlateformlevel2(-5,14, -100);
+    //displayControlUI();
+   scene.debugLayer.show();
 
 }
 
@@ -249,7 +249,25 @@ function killLevel(){
 
     
     engine.stopRenderLoop();
+    hideControlUI();
 }
 
+function displayControlUI(){
+  
+    // Récupération de l'élément par son ID
+    var level1 = document.getElementById("level2");
+ 
+    // Afficher l'élément
+    level1.style.display = "block";
+ 
+ }
+ function hideControlUI(){
+        // Récupération de l'élément par son ID
+    var level1 = document.getElementById("level2");
+ 
+    // Afficher l'élément
+    level1.style.display = "none";
+ 
+ }
 
 export { name, scene, sceneData, launch };

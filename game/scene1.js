@@ -7,7 +7,7 @@ var createScene = function () {
     // GUI
     var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
     
-    scene.debugLayer.show();
+    //scene.debugLayer.show();
     return scene;
 };
 function launch(){

@@ -1,12 +1,16 @@
 let advancedTexture ;
 let advancedTexture2 ;
+//const BABYLON = require('babylonjs');
+
+
+
 var canvas = document.getElementById("renderCanvas");
 var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
 import { CustomModels } from './CustomModels.js';
 import * as sceneManager from './SceneManager.js'
 var createScene = function () {
- 
+    
     // GUI
     // Ajoutez une lumière
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
@@ -15,14 +19,14 @@ var createScene = function () {
     const camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 5, -18.5), scene);
     //camera.attachControl()
   
-
+   
 
     let menu = new CustomModels(scene);
     menu.CreateMenu3dScene(0,0,0);
 
     displayMenu();
 
-    scene.debugLayer.show();
+    //scene.debugLayer.show();
     return scene;
 };
 function launch(){
@@ -57,15 +61,15 @@ function displayMenu(){
     advancedTexture.addControl(playButton);
 
     
-     // Création du texte en haut de la page
-     const headerText = new BABYLON.GUI.TextBlock();
-     headerText.text = "Titre de la Page";
-     headerText.color = "white";
-     headerText.fontSize = 24;
-     headerText.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
-     headerText.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP; // Modifier cette ligne
-     headerText.paddingTop = "-400px"; // Ajout de 20px de padding en haut
-     advancedTexture2.addControl(headerText);
+    // Création du texte en haut de la page
+    const headerText = new BABYLON.GUI.TextBlock();
+    headerText.text = "Titre de la Page";
+    headerText.color = "white";
+    headerText.fontSize = 24;
+    headerText.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
+    headerText.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP; // Modifier cette ligne
+    headerText.paddingTop = "-400px"; // Ajout de 20px de padding en haut
+    advancedTexture2.addControl(headerText);
 
 
   

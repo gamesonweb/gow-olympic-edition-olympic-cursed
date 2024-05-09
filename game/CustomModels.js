@@ -573,6 +573,37 @@ export class CustomModels {
             return { boundingBox };
         }
 
+        CreatePlateformlevel2(x, y, z) {
+            let tree;
+            let boundingBox;
+            let tronc;
+        
+            BABYLON.SceneLoader.ImportMesh("", "./models/", "Spike_Mine.glb", this.scene, (meshes) => {
+                console.log("Chargement réussi plateform", meshes);
+            
+                let mesh = meshes[0];
+                //tronc = meshes[1];
+                mesh.name ="colision"
+                
+            
+                mesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+                
+                
+                let i =1;
+                while( i <  meshes.length){
+                    
+                    var troncAggregate =new BABYLON.PhysicsAggregate(meshes[i], BABYLON.PhysicsShapeType.MESH, { mass: 0 }, this.scene);
+                    i++
+                }
+            
+            
+            }, undefined, undefined, ".glb");
+
+        
+
+            return { boundingBox };
+        }
+
 
 
  /** ######################################################################## Scene4 3D MODEL #########################################################################**/
@@ -583,6 +614,38 @@ export class CustomModels {
         let tronc;
     
         BABYLON.SceneLoader.ImportMesh("", "./models/", "scene4_gameplay_ELEMENT.glb", this.scene, (meshes) => {
+            console.log("Chargement réussi plateform", meshes);
+        
+            let mesh = meshes[0];
+            //tronc = meshes[1];
+            mesh.name ="colision"
+            
+        
+            mesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+            
+            
+            let i =1;
+            while( i <  meshes.length){
+                
+                var troncAggregate =new BABYLON.PhysicsAggregate(meshes[i], BABYLON.PhysicsShapeType.MESH, { mass: 0 }, this.scene);
+                //troncAggregate.body.setCollisionCallbackEnabled(true);
+                i++
+            }
+        
+        
+        }, undefined, undefined, ".glb");
+
+    
+
+        return { boundingBox };
+    }
+
+    CreateBowlingPlatform(x, y, z) {
+        let tree;
+        let boundingBox;
+        let tronc;
+    
+        BABYLON.SceneLoader.ImportMesh("", "./models/", "scene_de_bowling.glb", this.scene, (meshes) => {
             console.log("Chargement réussi plateform", meshes);
         
             let mesh = meshes[0];
