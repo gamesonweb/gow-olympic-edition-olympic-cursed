@@ -49,7 +49,7 @@ async function sceneData() {
     //var devcamera = new DevCamera(canvas, scene);
     // Positionnez le cube où vous le souhaitez
 
-    triggerEnd();
+    triggerEnd(5,11,-620);
     eventHandler(hk);
 
     // Ajoutez l'événement de clic à la scène
@@ -59,9 +59,9 @@ async function sceneData() {
 
     var plane2 = new CustomModels(scene);
     //plane2.CreatePlateform(0,0, -472,678);
-    plane2.CreatePlateformlevel2(-5,14, -100);
-    //displayControlUI();
-   scene.debugLayer.show();
+    plane2.CreatePlateformlevel2(-7,14, -265);
+    displayControlUI();
+   //scene.debugLayer.show();
 
 }
 
@@ -180,27 +180,27 @@ function getScene() {
 }
 
 
-function triggerEnd(){
+function triggerEnd(x,y,z){
 
     const shapeBox1 = new BABYLON.PhysicsShapeBox(
         new BABYLON.Vector3(0, 0, 0),        // center of the box
         new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
-        new BABYLON.Vector3(25, 2, 2000),      // dimensions of the box
+        new BABYLON.Vector3(60, 2, 2000),      // dimensions of the box
         scene                                // scene of the shape
     );
     
 
 
-    var boxW = 20;
-    var boxH = 20;
-    var boxD = 20;
+    var boxW = 40;
+    var boxH = 40;
+    var boxD = 40;
 
     var box = BABYLON.MeshBuilder.CreateBox("Ending", {width: boxW, height: boxH, depth: boxD},scene);
     box.isVisible = false;
 
-    box.position.x = 5,132;
-    box.position.y = 11,546;
-    box.position.z = -962,739;
+    box.position.x = x;
+    box.position.y = y;
+    box.position.z = z;
         
         
   

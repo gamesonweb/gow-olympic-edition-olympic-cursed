@@ -63,7 +63,7 @@ function displayMenu(){
     
     // Création du texte en haut de la page
     const headerText = new BABYLON.GUI.TextBlock();
-    headerText.text = "Titre de la Page";
+    headerText.text = "Les Jeux Olympique Maudits";
     headerText.color = "white";
     headerText.fontSize = 24;
     headerText.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
