@@ -8,6 +8,7 @@ import { CustomModels } from './CustomModels.js';
 import CharacterController3 from './CharacterController3.js';
 import PlayerLevel3 from './PlayerLevel3.js';
 import BowlingPin from './BowlingPin.js';
+import * as sceneManager from './SceneManager.js';
 
 let player1;
 let player2;
@@ -48,13 +49,7 @@ async function sceneData() {
    
     
     
-   
-   // console.log(countPlayer1);
- 
 
-    //model.CreateBowlingBall(0,12,0)
-
-  //let player2 = new PlayerLevel3(scene,engine,"player2","ArrowLeft","ArrowRight","ArrowUp",-5,5,0)
 
  
    // console.log(countPlayer1);
@@ -66,7 +61,7 @@ async function sceneData() {
    
     let ball1 = scene.getMeshByName("player1");
     
-    
+    displayControlUI();
     //CreateBowlingBall(0,6,0);
 
     eventHandler(hk,player1,player2);
@@ -101,11 +96,7 @@ async function sceneData() {
     respawnPlayerInput(player1,player2);
 
     
-   
 
-    //advancedTexture.addControl(button1);    
-    //scene.debugLayer.show();
-    displayControlUI();
 
 
 }
@@ -148,6 +139,7 @@ function launch() {
     //camera2.lockedTarget = playerMesh2;
 
     engine.runRenderLoop(function () {
+
         scene.render();
     });
 }
@@ -267,25 +259,6 @@ function eventHandler(hk,player1,player2){
    
 }
 
-function killLevel(player){
-    //scene.dispose();
-     
-    scene.meshes.forEach(function(mesh) {
-        mesh.dispose();
-    });
-   
-    scene.cameras.forEach(function(mesh) {
-        mesh.dispose();
-    });
-    // Supprimer toutes les lumières de la scène
-    scene.lights.forEach(function(light) {
-        light.dispose();
-    });
-  
-  
-    engine.stopRenderLoop();
-    hideControlUI();
-}
 
 
 
@@ -343,8 +316,16 @@ async function testSearch(listeQuilles1,countPlayer1,playerText){
             };
         }
         //console.log("compteur "+playerText+" " +countPlayer1);
+        //console.log(countPlayer1);
+  
+      if(countPlayer1 >= 93 ||countPlayer2 >= 93){
+        killLevel();
+        loadNextLevel();
+      }
 
-
+        // Utiliser setInterval pour appeler la fonction de mise à jour à intervalles réguliers (par exemple, toutes les 1000 millisecondes)
+        //setInterval(updateCountPins, 1000); //
+        
 
 
     })
@@ -553,6 +534,11 @@ function respawnPlayerInput() {
             player1.disableThisObject();
             ball1.dispose();
             player1 = new PlayerLevel3(scene,engine,"player1",'q','d','s',' ',0,8,-8);
+            
+        //document.getElementById("pin1").innerText = countPlayer1+"/93 PINS";
+        
+        // Modifier le texte de l'élément avec l'identifiant "pin2"
+  
         }
     });
 
@@ -566,8 +552,8 @@ function respawnPlayerInput() {
             player2.disableThisObject();
             ball2.dispose();
             player2 = new PlayerLevel3(scene,engine,"player2",'ArrowLeft','ArrowRight','i','Enter',25,8,-8);
-
-
+            //document.getElementById("pin2").innerText = countPlayer2+"/93 PINS";
+       
         }
     });
 
@@ -593,6 +579,31 @@ function displayPinNumber(){
 
 }
 
+function loadNextLevel(){
+    
+    sceneManager.launchEnd();
+
+}
+function killLevel(){
+    //scene.dispose();
+     
+    scene.meshes.forEach(function(mesh) {
+        mesh.dispose();
+    });
+   
+    scene.cameras.forEach(function(mesh) {
+        mesh.dispose();
+    });
+    // Supprimer toutes les lumières de la scène
+    scene.lights.forEach(function(light) {
+        light.dispose();
+    });
+
+    
+    engine.stopRenderLoop();
+    hideControlUI();
+}
+
 function displayControlUI(){
   
     // Récupération de l'élément par son ID
@@ -610,7 +621,5 @@ function displayControlUI(){
     level1.style.display = "none";
  
  }
-
-
 
 export { name, scene, sceneData, launch };

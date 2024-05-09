@@ -36,9 +36,7 @@ async function sceneData() {
 
     // Créez un cube avec le matériau
   
-    
-    let player1 = new PlayerLevel2(scene,engine,"player1",'s','f', 2,15,0);
-    let player2 = new PlayerLevel2(scene,engine,"player2",'k','m',-15,15,0);
+   
 
 
 
@@ -61,6 +59,11 @@ async function sceneData() {
     //plane2.CreatePlateform(0,0, -472,678);
     plane2.CreatePlateformlevel2(-7,14, -265);
     displayControlUI();
+
+
+     
+    let player1 = new PlayerLevel2(scene,engine,"player1",'s','f', 2,15,0);
+    let player2 = new PlayerLevel2(scene,engine,"player2",'k','m',-15,15,0);
    //scene.debugLayer.show();
 
 }
