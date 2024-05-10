@@ -24,7 +24,7 @@ class CharacterController {
                 //console.log('Touche Z enfoncée');
                 
                 let forward = character.transformNode.forward.scale(-5);
-                console.log(forward);
+               //console.log(forward);
 
                 character.applyForce(forward , character.transformNode.position);
                 character.setAngularVelocity(BABYLON.Vector3.ZeroReadOnly);

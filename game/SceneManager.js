@@ -6,16 +6,16 @@ import * as scene3 from './scene3.js'
 import * as scene4 from './scene4.js'
 import * as menu from './Menu.js'
 
-
-
+let winCountPlayer1 =0;
+let winCountPlayer2 =0;
 // Fonction principale
 function Main() {
     
     // Appelez la fonction "launch" du module "level2" pour lancer la scène 2
     
-    launchEnd();
+    //launchEnd();
    
-    //launchLevel2();
+    launchLevel2();
    //launchLevel3();
    //launchLevel4();
 
@@ -49,11 +49,15 @@ function launchLevel4(){
 }
 
 
-
-
+function setcountPlayer1(){
+    winCountPlayer1++;
+}
+function setcountPlayer2(){
+    winCountPlayer2++;
+}
  
 // Exportez toutes les fonctions d'un coup
-export { Main, launchEnd, launchLevel2, launchLevel3, launchLevel4 };
+export { Main, launchEnd, launchLevel2, launchLevel3, launchLevel4,setcountPlayer1,setcountPlayer2,winCountPlayer1,winCountPlayer2 };
 
 
 // Exécute la fonction principale

@@ -18,7 +18,7 @@ async function getInitializedHavok() {
 }
 
 async function sceneData() {
-    displayControlUI();
+    //displayControlUI();
     // Ajoutez une lumière hémisphériques
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
@@ -338,14 +338,26 @@ function eventHandler(hk,player){
     hk.onTriggerCollisionObservable.add((ev) => {
         // console.log(ev);
         console.log(ev.type, ':', ev.collider.transformNode.name, '-', ev.collidedAgainst.transformNode.name);
+        if(ev.collider.transformNode.name =="player1" && ev.collidedAgainst.transformNode.name == "Ending"){
+            console.log("PLAYER 111111 PASSSSSS")
+            sceneManager.setcountPlayer1()
+            console.log("COUNT_WIN PLAYER1:"+sceneManager.winCountPlayer1)
+        }
+        if(ev.collider.transformNode.name =="player2" && ev.collidedAgainst.transformNode.name == "Ending"){
+            console.log("PLAYER 2 PASSSSSS")
+            sceneManager.setcountPlayer2()
+            console.log("COUNT_WIN PLAYER2"+sceneManager.winCountPlayer2)
+        }
         if(ev.collidedAgainst.transformNode.name =="tronc"){
                 console.log("End OF the Game")
                 reloadlevel();
                
                 player = null;
-        }
+}      
         if(ev.collidedAgainst.transformNode.name =="Ending"){
-            console.log("YOU WINNNNNNN")
+
+            console.log("COUNT_WIN PLAYER1:"+sceneManager.winCountPlayer1+"  COUNT_WIN PLAYER2"+sceneManager.winCountPlayer2)
+           //console.log("YOU WINNNNNNN")
             killLevel();
             loadNextLevel();
             player = null;

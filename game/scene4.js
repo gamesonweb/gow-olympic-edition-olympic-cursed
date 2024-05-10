@@ -72,7 +72,7 @@ async function sceneData() {
     listeQuilles2 =  addQuille(listeQuilles2,25,0,-8);
 
     testSearch(listeQuilles1,countPlayer1,"player1");
-    testSearch(listeQuilles2,countPlayer2,"player2");
+    testSearch2(listeQuilles2,countPlayer2,"player2");
 
     
         
@@ -290,7 +290,7 @@ function pinsCount(hk){
 
 }
 
-async function testSearch(listeQuilles1,countPlayer1,playerText){
+async function testSearch(listeQuilles1,countPlayer,playerText){
 
  
     engine.runRenderLoop(async () => {
@@ -316,12 +316,21 @@ async function testSearch(listeQuilles1,countPlayer1,playerText){
             };
         }
         //console.log("compteur "+playerText+" " +countPlayer1);
-        //console.log(countPlayer1);
+        document.getElementById("pin1").innerHTML = countPlayer1 + "/93 PINS";
+
   
-      if(countPlayer1 >= 93 ||countPlayer2 >= 93){
-        killLevel();
-        loadNextLevel();
-      }
+        if(countPlayer1 >=93){
+            sceneManager.setcountPlayer1()
+            console.log("PLAYER1:"+sceneManager.winCountPlayer1)
+            console.log("PLAYER2:"+sceneManager.winCountPlayer2)
+        }
+        
+      
+   
+        if(countPlayer1 >= 93 ||countPlayer2 >= 93){
+            killLevel();
+            loadNextLevel();
+        }
 
         // Utiliser setInterval pour appeler la fonction de mise à jour à intervalles réguliers (par exemple, toutes les 1000 millisecondes)
         //setInterval(updateCountPins, 1000); //
@@ -334,6 +343,61 @@ async function testSearch(listeQuilles1,countPlayer1,playerText){
     
  
 }
+async function testSearch2(listeQuilles1,countPlayer,playerText){
+
+ 
+    engine.runRenderLoop(async () => {
+
+        for(let i=0;i<listeQuilles1.length; i++){
+            const meshIdQuille = await listeQuilles1[i].getMeshId();
+            const quille =  listeQuilles1[i];
+            //console.log(meshIdQuille);
+            /*
+            if(meshIdQuille == id){
+                
+                quille.disableThisObject();
+            
+            }*/
+            if(!quille.isPinUp()){
+                countPlayer2++;
+                
+                listeQuilles1.splice(i, 1);
+
+                // Décrémenter i pour compenser la suppression de l'élément
+                i--;
+                    
+            };
+        }
+        //console.log("compteur "+playerText+" " +countPlayer2);
+
+
+        document.getElementById("pin2").innerHTML = countPlayer2 + "/93 PINS";
+  
+     
+        if(countPlayer2 >92){
+            sceneManager.setcountPlayer2()
+            console.log("PLAYER1:"+sceneManager.winCountPlayer1)
+            console.log("PLAYER2"+sceneManager.winCountPlayer2)
+
+        }
+   
+        if(countPlayer1 >= 93 ||countPlayer2 >= 93){
+            killLevel();
+            loadNextLevel();
+        }
+
+        // Utiliser setInterval pour appeler la fonction de mise à jour à intervalles réguliers (par exemple, toutes les 1000 millisecondes)
+        //setInterval(updateCountPins, 1000); //
+        
+
+
+    })
+   
+  
+    
+ 
+}
+
 
 
 function addQuille( listeQuilles1,x,y,z){

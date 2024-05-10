@@ -219,9 +219,23 @@ function eventHandler(hk){
     hk.onTriggerCollisionObservable.add((ev) => {
         // console.log(ev);
         console.log(ev.type, ':', ev.collider.transformNode.name, '-', ev.collidedAgainst.transformNode.name);
-       
+
+        if(ev.collider.transformNode.name =="player1" && ev.collidedAgainst.transformNode.name == "Ending"){
+            console.log("PLAYER 111111 PASSSSSS")
+            sceneManager.setcountPlayer1()
+            console.log("COUNT_WIN PLAYER1:"+sceneManager.winCountPlayer1)
+        }
+        if(ev.collider.transformNode.name =="player2" && ev.collidedAgainst.transformNode.name == "Ending"){
+            console.log("PLAYER 2 PASSSSSS")
+            sceneManager.setcountPlayer2()
+            console.log("COUNT_WIN PLAYER2"+sceneManager.winCountPlayer2)
+        }
+
         if(ev.collidedAgainst.transformNode.name =="Ending"){
-            console.log("YOU WINNNNNNN")
+   
+   
+
+            //console.log("YOU WINNNNNNN")
             killLevel();
             loadNextLevel();
 

@@ -2,14 +2,23 @@ var canvas = document.getElementById("renderCanvas");
 var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
 import { CustomModels } from './CustomModels.js';
+import * as sceneManager from './SceneManager.js';
 var createScene = function () {
     // Ajoutez une lumière
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
     var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -22), scene);
-    playerWin(-11,0,0);
-    playerLoose(9,0,0);
-    scene.debugLayer.show();
-    hideControlUI();
+    if(sceneManager.winCountPlayer1 > sceneManager.winCountPlayer2){
+        playerWin(9,0,0);
+        playerLoose(-11,0,0);
+
+    }else{
+        playerWin(-11,0,0);
+        playerLoose(9,0,0);
+    }
+
+    //scene.debugLayer.show();
+    displayControlUI();
+    //hideControlUI();
     return scene;
 };
 function launch(){
