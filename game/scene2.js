@@ -37,169 +37,33 @@ async function sceneData() {
     //PART 1 LEVEL
     
     //first plane 
-    let plane = sceneprod.plane(5,0,-45,25,150,scene);
+    //let plane = sceneprod.plane(5,0,-45,25,150,scene);
   
    
 
     let x = -10;
-    var pineTree = new CustomModels(scene);
-    
-    pineTree.CreatePineTree(0,3,-10+x);
-    pineTree.CreatePineTree(10,3,-10+x);
-    pineTree.CreatePineTree(15,3,-10+x);
-    pineTree.CreatePineTree(-5,3,-10+x);
-    var deadTrees = new CustomModels(scene);
-    //deadTrees.createDeadTree(0,5,-20);
 
-    var snowTrees = new CustomModels(scene);
-    snowTrees.createSnowTree(0,4.5,-30+x);
-    snowTrees.createSnowTree(5,4.5,-30+x);
-    snowTrees.createSnowTree(15,4.5,-30+x);
-
-    var snowLitleTrees = new CustomModels(scene);
-    snowLitleTrees.createLitleSnowTree(-5,3,-50+x);
-    snowLitleTrees.createLitleSnowTree(9,3,-50+x);
-    snowLitleTrees.createLitleSnowTree(15,3,-50+x);
-
-
-    var snowMan= new CustomModels(scene);
-    snowMan.createSnowMan(0,-2.5,-70+x);
-    snowMan.createSnowMan(-5,-2.5,-70+x);
-    snowMan.createSnowMan(5,-2.5,-70+x);
-
-
- 
-
-  
-
-  
-
-
-    var ascendingRampe= new CustomModels(scene);
-
-    ascendingRampe.CreateRampe1(10,-5,-100+x);
-
-    //********************************************************** PART 2 LEVEL ******************************************************************************/////////////////
-
-    //second plane 
-    sceneprod.plane(5,-25,-250,25,230,scene);
-
-
-    var rampe_1 = new CustomModels(scene);
-
-    //rajout de neige
-    var snowMount= new CustomModels(scene);
-    
-    snowMount.createSnowMount(0,-12,-150+x);
-    snowMount.createSnowMount(11,-20,-210+x);
-    snowMount.createSnowMount(0,-23,-255+x);
-    snowMount.createSnowMount(11,-25.5,-290+x);
-    
-    //rajout d'une rampe
-    ascendingRampe.CreateRampe1(-5,-34.5,-350+x);
-
-
-    
-    var tree2 = new CustomModels(scene);
-    tree2.CreateTree(0,0,-10 );
-
-    
-    var plane2 = new CustomModels();
-    sceneprod.plane(5,-25,-250,25,230,scene);
-
- //********************************************************** PART 3 LEVEL ******************************************************************************/////////////////
-    //rajoute d'un plane 
-    var plane3 = new CustomModels(scene);
-    
-    plane3.flatplane(5,-32,-445,25,100,scene);
-
-    rampe_1.CreateRampe1(12,-32,-500);
-    snowMan.createSnowMan(12,-28,-500);
-    
-    rampe_1.CreateRampe1(4,-32,-500);
-    snowMan.createSnowMan(5,-28,-500);
-
-    rampe_1.CreateRampe1(-4,-32,-500);
-
-//********************************************************** PART 4 LEVEL ******************************************************************************/////////////////
-    //rajoute d'un plane 
-    var plane3 = new CustomModels(scene);
-    
-    plane3.flatplane(5,-28,-580,25,100,scene);
-
-    rampe_1.CreateRampe1(12,-28,-630);
-
-    snowMount.createSnowMount(4,-24,-630);
 
 //********************************************************** PART 5 LEVEL ******************************************************************************/////////////////
     //rajoute d'un plane
     
-    var plane3 = new CustomModels(scene);
-    plane3.flatplane(5,-24,-750,25,200,scene);
 
-    snowMan.createSnowTree(12,-20,-705);
-    snowMount.createSnowTree(-4,-20,-705);
-
-    snowMan.createSnowTree(12,-20,-715);
-    snowMount.createSnowTree(-4,-20,-715);
-
-    snowMan.createSnowTree(12,-20,-725);
-    snowMount.createSnowTree(-4,-20,-725);
-    
-    snowMan.createSnowTree(12,-20,-735);
-    snowMount.createSnowTree(-4,-20,-735);
-
-    snowMan.createSnowTree(12,-20,-745);
-    snowMount.createSnowTree(-4,-20,-745);
-
-    snowMan.createSnowTree(12,-20,-755);
-    snowMount.createSnowTree(-4,-20,-755);
-
-    snowMan.createSnowTree(12,-20,-765);
-    snowMount.createSnowTree(-4,-20,-765);
-
-    snowMan.createSnowTree(12,-20,-770);
-    snowMount.createSnowTree(-4,-20,-770);
-
-    snowMan.createSnowTree(12,-20,-775);
-    snowMount.createSnowTree(-4,-20,-775);
-
-
-    snowMan.createSnowTree(12,-20,-785);
-    snowMount.createSnowTree(-4,-20,-785);
-
-    snowMan.createSnowTree(12,-20,-800);
-    snowMount.createSnowTree(-4,-20,-800);
-
-    snowMan.createSnowTree(12,-20,-810);
-    snowMount.createSnowTree(-4,-20,-810);
-
-    snowMan.createSnowTree(12,-20,-820);
-    snowMount.createSnowTree(-4,-20,-820);
-
-    snowMan.createSnowTree(12,-20,-830);
-    snowMount.createSnowTree(-4,-20,-830);
-
-    snowMan.createSnowTree(12,-20,-840);
-    snowMount.createSnowTree(-4,-20,-840);
-
-    rampe_1.CreateRampe1(4,-24,-850);
 
     //trigger to die and pass
-    triggerDie();
-   
+    triggerDie(-1.79, -1.02, -832.37);
+    
 
     
 
-
+    displayControlUI();
 
    //testPlayer();
 
-   let player = new PlayerLevel1(scene,engine,'player1','z','s','q','d',5,5,0);
+   let player = new PlayerLevel1(scene,engine,'player1','z','s','q','d',5,160,0);
 
-   let player2 = new PlayerLevel1(scene,engine,'player2','i','k','j','l',0,5,0);
+   let player2 = new PlayerLevel1(scene,engine,'player2','ArrowUp','ArrowDown','ArrowLeft','ArrowRight',0,160,0);
 
-   triggerRespawn();
+   triggerRespawn(2,-45,200);
     
    //montrer le layer
    //scene.debugLayer.show();
@@ -207,14 +71,15 @@ async function sceneData() {
    
 
     var place = new CustomModels(scene);
-    place.createFinalScene2(4,-24,-970);
+    //place.createFinalScene2(4,-24,-970);
    
+    place.Createlevel1(0,0,-800)
     
  
 
     
     let playerMesh = scene.getMeshByName("player1");
-    //let playerMesh2 = scene.getMeshByName("player2");
+    //let playerMesh2 = scene.gezzzzzzztMeshByName("player2");
     //console.log(scene.getMeshByName("player"));
     //console.log(scene.getMeshByUniqueId(6));
     
@@ -271,12 +136,12 @@ function testPlayer(){
     
 }
 
-function triggerDie(){
+function triggerDie(x,y,z){
 
     const shapeBox1 = new BABYLON.PhysicsShapeBox(
         new BABYLON.Vector3(0, 0, 0),        // center of the box
         new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
-        new BABYLON.Vector3(10, 10, 10),      // dimensions of the box
+        new BABYLON.Vector3(40, 40, 40),      // dimensions of the box
         scene                                // scene of the shape
     );
     
@@ -290,9 +155,9 @@ function triggerDie(){
     var box = BABYLON.MeshBuilder.CreateBox("Ending", {width: boxW, height: boxH, depth: boxD},scene);
     box.isVisible = false;
 
-    box.position.x = 2;
-    box.position.y = -24;
-    box.position.z = -1010;
+    box.position.x = x;
+    box.position.y = y;
+    box.position.z = z;
     //box.position = BABYLON.Vector3(4,-24,-850);    
         
     var Aggregate =new BABYLON.PhysicsAggregate(box, shapeBox1, { mass: 0 },scene);
@@ -301,7 +166,7 @@ function triggerDie(){
     
 }
 
-function triggerRespawn(){
+function triggerRespawn(x,y,z){
 
     const shapeBox1 = new BABYLON.PhysicsShapeBox(
         new BABYLON.Vector3(0, 0, 0),        // center of the box
@@ -312,9 +177,9 @@ function triggerRespawn(){
     
 
 
-    var boxW = 100;
-    var boxH = 2;
-    var boxD = 2000;
+    var boxW = x;
+    var boxH = y;
+    var boxD = z;
 
     var box = BABYLON.MeshBuilder.CreateBox("Die", {width: boxW, height: boxH, depth: boxD},scene);
     box.isVisible = false;

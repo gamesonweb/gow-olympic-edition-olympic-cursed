@@ -168,7 +168,7 @@ export class PlayerLevel2 {
             if (isKeyPressed2) {
 
                 isKeyPressed2 = false;
-                animationGroup[1].play();
+                //animationGroup[1].play();
             }
 
         });
