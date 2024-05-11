@@ -6,18 +6,21 @@ import * as sceneManager from './SceneManager.js';
 var createScene = function () {
     // Ajoutez une lumière
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
-    var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -22), scene);
+    var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 4, -12.5), scene);
+
+    camera.attachControl();
     if(sceneManager.winCountPlayer1 > sceneManager.winCountPlayer2){
-        playerWin(9,0,0);
-        playerLoose(-11,0,0);
+        playerWin(-4,0,-1);
+        playerLoose(2,0,0);
 
     }else{
-        playerWin(-11,0,0);
-        playerLoose(9,0,0);
+        playerWin(2,0,-1);
+        playerLoose(-4,0,0);
     }
 
-    //scene.debugLayer.show();
-    displayControlUI();
+    scene.debugLayer.show();
+    //displayControlUI();
+    loadEndScene();
     //hideControlUI();
     return scene;
 };
@@ -29,11 +32,6 @@ function launch(){
         scene.render();
     });
     
-
-}
-function loadNextLevel(){
-    
-    sceneManager.launchLevel4();
 
 }
 
@@ -54,7 +52,7 @@ function hideControlUI(){
     level1.style.display = "none";
 
 }
-function playerWin(x,y,z){
+function playerLoose(x,y,z){
     
     
     BABYLON.SceneLoader.ImportMesh("", "./models/", "Loose.glb", scene, (meshes) => {
@@ -76,14 +74,14 @@ function playerWin(x,y,z){
 
 
 }
-function playerLoose(x,y,z){
+function playerWin(x,y,z){
   
     BABYLON.SceneLoader.ImportMesh("", "./models/", "victory.glb", scene, (meshes) => {
         console.log("Chargement réussi coliseum", meshes);
      
         let mesh = meshes[0];
        
-        mesh.name ="playerLoose"
+        mesh.name ="playerWin"
         
        
         mesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
@@ -95,5 +93,24 @@ function playerLoose(x,y,z){
     }, undefined, undefined, ".glb");
 }
 
+function loadEndScene(x,y,z){
+    
+    BABYLON.SceneLoader.ImportMesh("", "./models/", "recommencer.glb", scene, (meshes) => {
+        console.log("Chargement réussi end scene", meshes);
+     
+        let mesh = meshes[0];
+       
+        mesh.name ="EndScene"
+        
+       
+        mesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
+        
+        
+    
+      
+      
+    }, undefined, undefined, ".glb");
+
+}
 export {  scene, launch };
 
