@@ -19,7 +19,7 @@ var createScene = function () {
     }
 
     scene.debugLayer.show();
-    //displayControlUI();
+    displayControlUI();
     loadEndScene();
     //hideControlUI();
     return scene;
