@@ -63,7 +63,6 @@ async function sceneData() {
 
    let player2 = new PlayerLevel1(scene,engine,'player2','ArrowUp','ArrowDown','ArrowLeft','ArrowRight',0,160,0);
 
-   triggerRespawn(2,-45,200);
     
    //montrer le layer
    //scene.debugLayer.show();

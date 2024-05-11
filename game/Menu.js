@@ -16,7 +16,7 @@ var createScene = function () {
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
    // Création d'une caméra
-    const camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 5, -18.5), scene);
+    const camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 8, -30), scene);
     //camera.attachControl()
   
    
