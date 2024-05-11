@@ -53,6 +53,7 @@ class CharacterController2 {
             if (isKeyPressed) {
             
                 character.applyForce(new BABYLON.Vector3(0, 0, -50), new BABYLON.Vector3(0, 0, 0));
+                //character.applyForce(new BABYLON.Vector3(1, 0, ), new BABYLON.Vector3(0, 0, 0));
                 character.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
                
                 isKeyPressed = false;

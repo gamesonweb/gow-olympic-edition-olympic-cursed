@@ -31,7 +31,7 @@ export class PlayerLevel2 {
     async createPlayer(x,y,z){
 
         var boxW = 2;
-        var boxH = 1.80;
+        var boxH = 2;
         var boxD = 2;
         
         var box = BABYLON.MeshBuilder.CreateBox(this.name, {width: boxW, height: boxH, depth: boxD},this.scene);

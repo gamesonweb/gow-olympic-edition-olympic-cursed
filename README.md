@@ -24,7 +24,7 @@ Implémente l'interaction au clavier pour les actions de l'utilisateur dans le j
 
 
 # Installation:
-Cloner le dépôt :```bash$ git clone https://github.com/votre_nom_utilisateur/votre_projet.git
+Cloner le dépôt :```bash$ git clone gh repo clone Nayarjay/GAW
 
 
 # Contact:

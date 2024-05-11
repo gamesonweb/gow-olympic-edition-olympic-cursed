@@ -16,10 +16,10 @@ function Main() {
     //launchEnd();
    
     //launchLevel2();
-   //launchLevel3();
+   launchLevel3();
    //launchLevel4();
 
-    launchLevelMenu();
+    //launchLevelMenu();
     
 
    

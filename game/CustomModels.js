@@ -578,8 +578,8 @@ export class CustomModels {
             let boundingBox;
             let tronc;
         
-            BABYLON.SceneLoader.ImportMesh("", "./models/", "Spike_Mine.glb", this.scene, (meshes) => {
-                console.log("Chargement réussi plateform", meshes);
+            BABYLON.SceneLoader.ImportMesh("", "./models/", "scene3.glb", this.scene, (meshes) => {
+                console.log("Chargement réussi plateform level2", meshes);
             
                 let mesh = meshes[0];
                 //tronc = meshes[1];
