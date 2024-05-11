@@ -18,7 +18,7 @@ var createScene = function () {
         playerLoose(-4,0,0);
     }
 
-    scene.debugLayer.show();
+    //scene.debugLayer.show();
     displayControlUI();
     loadEndScene();
     //hideControlUI();
