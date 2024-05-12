@@ -773,7 +773,7 @@ export class CustomModels {
             let boundingBox;
             let tronc;
            
-            BABYLON.SceneLoader.ImportMesh("", "./models/", "menu.glb", this.scene, (meshes) => {
+            BABYLON.SceneLoader.ImportMesh("", "./models/", "fmenu.glb", this.scene, (meshes) => {
                 console.log("Chargement réussi du menu", meshes);
              
                 let mesh = meshes[0];
