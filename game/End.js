@@ -8,7 +8,7 @@ var createScene = function () {
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
     var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 4, -12.5), scene);
 
-    camera.attachControl();
+    //camera.attachControl();
     if(sceneManager.winCountPlayer1 > sceneManager.winCountPlayer2){
         playerWin(-4,0,-1);
         playerLoose(2,0,0);

@@ -12,7 +12,7 @@ https://github.com/Nayarjay/GAW
 
 # Crédits:
 
-Développeur 1: Mohamed rayan BOUDIBA 
+Développeur 1: Mohamed rayan BOUDIBA | Pseudo Github Nayarjay
 Développeur 2: Ines LAHBIB
 Développeur 3: Yousra MEDJIDEL
 
