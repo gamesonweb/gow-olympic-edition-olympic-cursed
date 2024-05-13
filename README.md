@@ -7,14 +7,13 @@
 Ce jeu, développé avec Babylon JS, vise à créer une expérience utilisateur immersive dans le navigateur tout en assurant la stabilité sans ralentissement du navigateur. L'objectif principal de ce jeu est de participer au concours Game of the Web (GAW), représentant ainsi notre équipe et la Miage d'Aix Marseille dans la compétition. Le thème de la compétition tourne autour des Jeux Olympiques, et notre jeu présentera une interprétation plus macabre de ce thème.
 
 # Lien du jeux 
-
-https://github.com/Nayarjay/GAW
+https://gamesonweb.github.io/gow-olympic-edition-olympic-cursed/
 
 # Crédits:
 
 Développeur 1: Mohamed rayan BOUDIBA | Pseudo Github Nayarjay
 Développeur 2: Ines LAHBIB
-Développeur 3: Yousra MEDJIDEL
+
 
 
 # Fonctionnalités:
