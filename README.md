@@ -33,6 +33,6 @@ mohamed.boudiba@etu.univ-amu.fr
 ines.LAHBIB@etu.univ-amu.fr
 yousra.medjidel@etu.univ-amu.fr
 
-# Repository github
+# Repository github personnel
 
 https://github.com/Nayarjay/GAW
