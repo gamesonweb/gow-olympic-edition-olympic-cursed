@@ -23,7 +23,7 @@ export class PlayerLevel2 {
         
         this.createPlayer(x,y,z);
         this.enablePlayerControl(forward,jump);
-       // this.Character(x,y,z);
+     
      
     }
     
@@ -38,7 +38,7 @@ export class PlayerLevel2 {
         this.boxMesh = box;
         //ADD character disable box visibility 
         box.visibility = false;
-       //this.Character(x, y, z, box); 
+     
 
 
 
@@ -65,11 +65,7 @@ export class PlayerLevel2 {
     
      
      
-        
-    
-        //boxBody.applyForce()
-        //let control = new CharacterController2(canvas,scene,engine,boxBody,'s',' ');
-        //let control = new CharacterController2(canvas,scene,engine,boxBody,input1,inputJump);
+ 
         return box;
     }
     
@@ -102,13 +98,7 @@ export class PlayerLevel2 {
         // Vous pouvez ajouter des manipulations supplémentaires sur le mesh ici, comme l'échelle ou la rotation
     
         console.log("Chargement réussi Personnage", mesh);
-        //gerer les animations
-        //console.log("ANIMATION GROUP :"+animationGroups)
-  
-        //animationGroups[0].play();
-        //animationGroups[1].play();
-        //animationGroups[2].play();
-        //console.log(animationGroups[1])
+ 
         await this.animGestionner(canvas,this.forward,this.jump,animationGroups)
         
     

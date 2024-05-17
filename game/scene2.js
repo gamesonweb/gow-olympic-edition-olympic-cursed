@@ -34,11 +34,7 @@ async function sceneData() {
     
 
     var sceneprod = new CustomModels(scene);
-    //PART 1 LEVEL
-    
-    //first plane 
-    //let plane = sceneprod.plane(5,0,-45,25,150,scene);
-  
+
    
 
     let x = -10;
