@@ -11,7 +11,7 @@ https://gamesonweb.github.io/gow-olympic-edition-olympic-cursed/
 
 # Crédits:
 
-Développeur 1: Mohamed rayan BOUDIBA | Pseudo Github Nayarjay
+Développeur 1: Mohamed rayan BOUDIBA | Pseudo Github Nayarjay <br>
 Développeur 2: Ines LAHBIB
 
 
