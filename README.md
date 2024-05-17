@@ -29,9 +29,9 @@ Cloner le dépôt :```bash$ git clone gh repo clone Nayarjay/GAW
 # Contact:
 Pour toute question ou commentaire concernant le projet, n'hésitez pas à nous contacter à nos adressses mail:
 
-mohamed.boudiba@etu.univ-amu.fr
-ines.LAHBIB@etu.univ-amu.fr
-yousra.medjidel@etu.univ-amu.fr
+mohamed.boudiba@etu.univ-amu.fr <br>
+ines.LAHBIB@etu.univ-amu.fr <br>
+yousra.medjidel@etu.univ-amu.fr <br>
 
 # Repository github personnel
 
