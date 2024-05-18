@@ -18,8 +18,15 @@ Développeur 2: Ines LAHBIB
 
 # Fonctionnalités:
 
-Utilise Babylon JS pour une expérience de jeu en 3D immersive dans le navigateur.
-Implémente l'interaction au clavier pour les actions de l'utilisateur dans le jeu.
+**Information importante :** Notre jeu est jouable à deux sur un même clavier en écran scindé.
+
+**Notre jeux ce compose de 4 parties :**
+
+- Un menu principal
+- Pour le premier niveau, une descente de ski
+- Pour le deuxième niveau, une course à pied (sprint)
+- Pour le troisième niveau, une compétition de bowling
+- Et pour finir, l'écran final avec les résultats
 
 
 # Installation:
@@ -39,3 +46,6 @@ yousra.medjidel@etu.univ-amu.fr <br>
 # Repository github personnel
 
 https://github.com/Nayarjay/GAW
+
+# Lien de la documentation technique en PDF 
+https://aixmarseilleuniversite-my.sharepoint.com/personal/mohamed_boudiba_etu_univ-amu_fr/Documents/Compte_rendu_game_On_web_Mohamed_Boudiba_Yousra_MEDJIDEL_Ines%20LAHBIB%20(1).pdf?login_hint=mohamed.BOUDIBA%40etu.univ-amu.fr
