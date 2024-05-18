@@ -1,3 +1,10 @@
+import { CustomModels } from './CustomModels.js';
+import CharacterController3 from './CharacterController3.js';
+import PlayerLevel3 from './PlayerLevel3.js';
+import BowlingPin from './BowlingPin.js';
+import * as sceneManager from './SceneManager.js';
+import SoundManager from './SoundManager.js';
+
 var canvas = document.getElementById("renderCanvas");
 var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
@@ -5,12 +12,9 @@ let soundManager = new SoundManager(scene,"level3.mp3");
 var name = "level4";
 let advancedTexture ;
 
-import { CustomModels } from './CustomModels.js';
-import CharacterController3 from './CharacterController3.js';
-import PlayerLevel3 from './PlayerLevel3.js';
-import BowlingPin from './BowlingPin.js';
-import * as sceneManager from './SceneManager.js';
-import SoundManager from './SoundManager.js';
+
+
+
 let player1;
 let player2;
 

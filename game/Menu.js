@@ -1,6 +1,10 @@
+import { CustomModels } from './CustomModels.js';
+import * as sceneManager from './SceneManager.js'
+import SoundManager from './SoundManager.js';
+
 let advancedTexture ;
 let advancedTexture2 ;
-let  musicSound;
+
 //const BABYLON = require('babylonjs');
 
 
@@ -9,9 +13,7 @@ var canvas = document.getElementById("renderCanvas");
 var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
 let soundManager = new SoundManager(scene,"Menu.mp3");
-import { CustomModels } from './CustomModels.js';
-import * as sceneManager from './SceneManager.js'
-import SoundManager from './SoundManager.js';
+
 var createScene = function () {
     
     // GUI

@@ -1,8 +1,12 @@
+import { CustomModels } from './CustomModels.js';
+import * as sceneManager from './SceneManager.js';
+import SoundManager from './SoundManager.js';
+
 var canvas = document.getElementById("renderCanvas");
 var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
-import { CustomModels } from './CustomModels.js';
-import * as sceneManager from './SceneManager.js';
+let soundManager = new SoundManager(scene,"End.mp3");
+
 var createScene = function () {
     // Ajoutez une lumière
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
@@ -21,6 +25,7 @@ var createScene = function () {
     //scene.debugLayer.show();
     displayControlUI();
     loadEndScene();
+    soundManager.initMusic();
     //hideControlUI();
     return scene;
 };
