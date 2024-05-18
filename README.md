@@ -23,7 +23,7 @@ Implémente l'interaction au clavier pour les actions de l'utilisateur dans le j
 
 
 # Installation:
-Cloner le dépôt : bash$ git clone gh repo clone Nayarjay/GAW
+Cloner le dépôt : bash$ git clone gh repo clone [Nayarjay/GAW](https://github.com/Nayarjay/GAW.git)
 Une fois le dépôt cloné vous pouvez lancer les commandes :
 - npm install
 -  node server.js 
