@@ -1,6 +1,7 @@
 var canvas = document.getElementById("renderCanvas");
 var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
+let soundManager = new SoundManager(scene,"level3.mp3");
 var name = "level4";
 let advancedTexture ;
 
@@ -9,7 +10,7 @@ import CharacterController3 from './CharacterController3.js';
 import PlayerLevel3 from './PlayerLevel3.js';
 import BowlingPin from './BowlingPin.js';
 import * as sceneManager from './SceneManager.js';
-
+import SoundManager from './SoundManager.js';
 let player1;
 let player2;
 
@@ -22,7 +23,7 @@ async function sceneData() {
     //activer la physique sur la scene 
 
     const havokInstance = await HavokPhysics();
-
+    soundManager.initMusic();
 
     // pass the engine to the plugin
     const hk = new BABYLON.HavokPlugin(true, havokInstance);
@@ -147,31 +148,6 @@ function launch() {
 
 
 
-function CreateBowlingBall(x, y, z) {
-    let tree;
-    let boundingBox;
-    let tronc;
-    var mesh 
-    BABYLON.SceneLoader.ImportMesh("", "./models/", "Spiky Ball.glb", scene, (meshes) => {
-        console.log("Chargement réussi ball", meshes);
-    
-        mesh = meshes[0];
-      
-        mesh.name ="ball"
-        
-    
-
-        mesh.position = new BABYLON.Vector3(x, y, z); // Positionne l'arbre aux 
-        
-        //var troncAggregate =new BABYLON.PhysicsAggregate(mesh, BABYLON.PhysicsShapeType.SPHERE, { mass: 0 }, this.scene);
-     
-    
-    }, undefined, undefined, ".glb");
-
-
-
-    return {mesh};
-}
 
 
 function triggerRespawn(x,y,z,sizeX,sizeY,sizeZ){
@@ -666,6 +642,7 @@ function killLevel(){
     
     engine.stopRenderLoop();
     hideControlUI();
+    soundManager.stopMusic();
 }
 
 function displayControlUI(){

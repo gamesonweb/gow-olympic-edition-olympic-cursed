@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"><script src="https://cdn.babylonjs.com/babylon.js"></script><script src="https://cdn.babylonjs.com/cannon.js"></script><script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script><script src="https://cdn.babylonjs.com/havok/HavokPhysics_umd.js"></script><script src="https://cdn.babylonjs.com/gui/babylon.gui.js"></script><script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script><link rel="icon" type="image/x-icon" href="./models/img/favicon.ico"><title>JO-Maudits</title><script defer="defer" src="js/babylonBundle.js"></script></head><body><div class="overlay"></div><div id="level1" class="overlay" style="display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 5%;"><div style="display: flex; justify-content: space-between; align-items: center; width: 100%;"><h2 style="flex-grow: 1; text-align: center;">Command Player1</h2><h2 style="flex-grow: 1; text-align: center;">Command Player2</h2></div><div style="display: flex; justify-content: space-between; align-items: center; width: 100%;"><div style="flex-grow: 1; text-align: center;"><img style="width: 100px; height: auto;" src="https://i.ibb.co/BB0fg19/ZQSD.png"></div><div style="flex-grow: 1; text-align: center;"><img style="width: 100px; height: auto;" src="https://i.ibb.co/JcMygZ8/fleches-directionelles.jpg" alt="fleches-directionelles"></div></div></div><div id="level2" class="overlay" style="display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 7%;"><div style="display: flex; justify-content: space-between; align-items: center; width: 100%;"><h2 style="flex-grow: 1; text-align: center;">Command Player1</h2><h2 style="flex-grow: 1; text-align: center;">Command Player2</h2></div><div style="display: flex; justify-content: space-between; align-items: center; width: 100%;"><div style="flex-grow: 1; text-align: center;"><p>Spam "S" to run</p><img style="width: 100px; height: auto;" src="https://i.ibb.co/8YmgZPS/S-key.png"></div><div style="flex-grow: 1; text-align: center;"><p>Spam "K" to run</p><img style="width: 100px; height: auto;" src="https://i.ibb.co/2Zg00Cg/K-key-2.png"></div></div></div><div id="level3" class="overlay" style="display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 7%;"><div style="display: flex; justify-content: space-between; align-items: center; width: 100%;"><h2 style="flex-grow: 1; text-align: center;">Command Player1</h2><h2 style="flex-grow: 1; text-align: center;">Command Player2</h2></div><div style="display: flex; justify-content: space-between; align-items: center; width: 100%;"><div style="flex-grow: 1; text-align: center;"><p>Press "Shift" to Reload ball / Press "Q" and "D" to Move / Press "Space bar to shoot"</p><h2 id="pin1">/93</h2></div><div style="flex-grow: 1; text-align: center;"><p>Press "Return" to Reload ball / Press "RightArrow" and "LeftArrow" to Move / Press "Enter" bar to shoot</p><h2 id="pin2">/93</h2></div></div></div><div id="End" class="overlay" style="display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 7%;"><div style="display: flex; justify-content: space-between; align-items: center; width: 100%;"><h2 style="flex-grow: 1; text-align: center;">Player1</h2><h2 style="flex-grow: 1; text-align: center;">Player2</h2></div></div><canvas id="renderCanvas" style="width: 100%; height: 100%;"></canvas><script type="module" src="../SceneManager.js">// Gestionnaire d'événement pour redimensionner le canvas
+        window.addEventListener('resize', function () {
+            engine.resize();
+        });</script><script>// Récupération de l'élément par son ID
+        var level1 = document.getElementById("level1");
+
+        // Rendre l'élément et son contenu invisibles
+        level1.style.display = "none";
+
+         
+        var level2 = document.getElementById("level2");
+
+        // Rendre l'élément et son contenu invisibles
+        level2.style.display = "none";
+
+        
+        var level3 = document.getElementById("level3");
+
+        // Rendre l'élément et son contenu invisibles
+        level3.style.display = "none";
+
+         
+        var level5= document.getElementById("End");
+
+        // Rendre l'élément et son contenu invisibles
+        level5.style.display = "none";</script></body><style>#renderCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.overlay {
+    position: absolute;
+    
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+ 
+    color: white;
+  
+}
+
+.overlay h1 {
+    font-size: 48px;
+}</style></html>

@@ -1,8 +1,9 @@
 var canvas = document.getElementById("renderCanvas");
 var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
+let soundManager = new SoundManager(scene,"level2.mp3");
 var name = "level3";
-
+import SoundManager from './SoundManager.js';
 import { CustomModels } from './CustomModels.js';
 import CharacterController2 from './CharacterController2.js';
 import * as sceneManager from './SceneManager.js';
@@ -16,7 +17,7 @@ async function sceneData() {
     //activer la physique sur la scene 
 
     const havokInstance = await HavokPhysics();
- 
+    soundManager.initMusic();
 
     // pass the engine to the plugin
     const hk = new BABYLON.HavokPlugin(true, havokInstance);
@@ -26,6 +27,7 @@ async function sceneData() {
     scene.collisionsEnabled = true;
     
    
+
     // Configurez une caméra
    
     // Ajoutez une lumière
@@ -34,15 +36,6 @@ async function sceneData() {
     //var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
 
 
-    // Créez un cube avec le matériau
-  
-   
-
-
-
-    //player2.position.x =0;
-    //player2.position.y =0;
-    //player2.position.z =0;
 
     //var devcamera = new DevCamera(canvas, scene);
     // Positionnez le cube où vous le souhaitez
@@ -133,54 +126,7 @@ function onPointerDown(evt, pickResult) {
 
 
 
-function catchPlayer(){
-    
-}
 
-function createPlayer(x,y,z , input1,inputJump){
-
-    var boxW = 2;
-    var boxH = 2;
-    var boxD = 2;
-    
-    var box = BABYLON.MeshBuilder.CreateBox("player", {width: boxW, height: boxH, depth: boxD},scene);
-   
-    box.rotationQuaternion = BABYLON.Quaternion.Identity();
-    //box.position = new BABYLON.Vector3(0,5,0);
-    box.position = new BABYLON.Vector3(x,y,z);
-    var boxShape = new BABYLON.PhysicsShapeBox(new BABYLON.Vector3(0,0,0), BABYLON.Quaternion.Identity(), new BABYLON.Vector3(boxW, boxH, boxD), scene);
-    var boxBody = new BABYLON.PhysicsBody(box, BABYLON.PhysicsMotionType.DYNAMIC, false, scene);
-
-    boxBody.shape = boxShape;
-    boxBody.setMassProperties({mass : 1})
-
-
-    //add create material add tothe cube
-    var blueMaterial = new BABYLON.StandardMaterial("groundMaterial", scene);
-    blueMaterial.diffuseColor = new BABYLON.Color3(0, 0, 1); // Rouge doux
-    box.material = blueMaterial;
-   
-    
-    boxBody.setCollisionCallbackEnabled(true)
-  
-   
-    
- 
-
- 
- 
-    
-
-    //boxBody.applyForce()
-    //let control = new CharacterController2(canvas,scene,engine,boxBody,'s',' ');
-    let control = new CharacterController2(canvas,scene,engine,boxBody,input1,inputJump);
-    return box;
-}
-
-
-function getScene() {
-    return scene;
-}
 
 
 function triggerEnd(x,y,z){
@@ -267,6 +213,7 @@ function killLevel(){
     
     engine.stopRenderLoop();
     hideControlUI();
+    soundManager.stopMusic();
 }
 
 function displayControlUI(){
