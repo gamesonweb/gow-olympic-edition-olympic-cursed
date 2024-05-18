@@ -1,5 +1,6 @@
 let advancedTexture ;
 let advancedTexture2 ;
+let  musicSound;
 //const BABYLON = require('babylonjs');
 
 
@@ -7,8 +8,10 @@ let advancedTexture2 ;
 var canvas = document.getElementById("renderCanvas");
 var engine = new BABYLON.Engine(canvas, true);
 var scene = new BABYLON.Scene(engine);
+let soundManager = new SoundManager(scene,"Menu.mp3");
 import { CustomModels } from './CustomModels.js';
 import * as sceneManager from './SceneManager.js'
+import SoundManager from './SoundManager.js';
 var createScene = function () {
     
     // GUI
@@ -25,6 +28,8 @@ var createScene = function () {
     menu.CreateMenu3dScene(0,0,0);
 
     displayMenu();
+    soundManager.initMusic();
+
 
     //scene.debugLayer.show();
     return scene;
@@ -96,10 +101,8 @@ function killLevel(player){
 }
 
 
-function loadNextLevel(){
-    
-    sceneManager.launchLevel2();
 
-}
+
+
 
 export {  scene, launch };
