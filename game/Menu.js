@@ -98,9 +98,12 @@ function killLevel(player){
     advancedTexture2.dispose();
     advancedTexture.dispose();
     engine.stopRenderLoop();
+    soundManager.stopMusic();
 }
 
-
+function loadNextLevel(){
+    sceneManager.launchLevel2();
+}
 
 
 

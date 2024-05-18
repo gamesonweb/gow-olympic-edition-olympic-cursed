@@ -4,6 +4,8 @@ import { CustomModels } from './CustomModels.js';
 
 import {PlayerLevel1} from "./PlayerLevel1.js";
 import * as sceneManager from './SceneManager.js';
+import SoundManager from './SoundManager.js';
+let soundManager = new SoundManager(scene,"level1.mp3");
 let advancedTexture ;
 
 var canvas = document.getElementById("renderCanvas");
@@ -35,7 +37,7 @@ async function sceneData() {
 
     var sceneprod = new CustomModels(scene);
 
-   
+   soundManager.initMusic();
 
     let x = -10;
 
@@ -74,9 +76,7 @@ async function sceneData() {
 
     
     let playerMesh = scene.getMeshByName("player1");
-    //let playerMesh2 = scene.gezzzzzzztMeshByName("player2");
-    //console.log(scene.getMeshByName("player"));
-    //console.log(scene.getMeshByUniqueId(6));
+
     
     eventHandler(hk,player);
    return playerMesh;
@@ -91,45 +91,6 @@ function getScene() {
 }
 
 
-function testPlayer(){
-    var boxW = 2;
-    var boxH = 2;
-    var boxD = 2;
-    
-    var box = BABYLON.MeshBuilder.CreateBox("player", {width: boxW, height: boxH, depth: boxD},scene);
-   
-    box.rotationQuaternion = BABYLON.Quaternion.Identity();
-    box.position = new BABYLON.Vector3(0,5,0);
-
-    var boxShape = new BABYLON.PhysicsShapeBox(new BABYLON.Vector3(0,0,0), BABYLON.Quaternion.Identity(), new BABYLON.Vector3(boxW, boxH, boxD), scene);
-    var boxBody = new BABYLON.PhysicsBody(box, BABYLON.PhysicsMotionType.DYNAMIC, false, scene);
-
-    boxBody.shape = boxShape;
-    boxBody.setMassProperties({mass : 1})
-
-
-    //add create material add tothe cube
-    var blueMaterial = new BABYLON.StandardMaterial("groundMaterial", scene);
-    blueMaterial.diffuseColor = new BABYLON.Color3(0, 0, 1); // Rouge doux
-    box.material = blueMaterial;
-   
-    
-    boxBody.setCollisionCallbackEnabled(true)
-  
-   
-    
- 
-
- 
- 
-    
-
-    //boxBody.applyForce()
-    let control = new CharacterController(canvas,scene,engine,boxBody);
-    return box;
-
-    
-}
 
 function triggerDie(x,y,z){
 
@@ -161,35 +122,6 @@ function triggerDie(x,y,z){
     
 }
 
-function triggerRespawn(x,y,z){
-
-    const shapeBox1 = new BABYLON.PhysicsShapeBox(
-        new BABYLON.Vector3(0, 0, 0),        // center of the box
-        new BABYLON.Quaternion(0, 0, 0, 1),  // rotation of the box
-        new BABYLON.Vector3(25, 2, 2000),      // dimensions of the box
-        scene                                // scene of the shape
-    );
-    
-
-
-    var boxW = x;
-    var boxH = y;
-    var boxD = z;
-
-    var box = BABYLON.MeshBuilder.CreateBox("Die", {width: boxW, height: boxH, depth: boxD},scene);
-    box.isVisible = false;
-
-    box.position.x = 2;
-    box.position.y = -45;
-    box.position.z = -800;
-        
-        
-  
-    var Aggregate2 =new BABYLON.PhysicsAggregate(box, BABYLON.PhysicsShapeType.MESH, { mass: 0 }, scene);
-    Aggregate2.shape.isTrigger =  true;
-
-    
-}
 
 
 
@@ -292,6 +224,7 @@ function killLevel(player){
   
     engine.stopRenderLoop();
     hideControlUI();
+    soundManager.stopMusic();
 }
 
 function reloadlevel(){
