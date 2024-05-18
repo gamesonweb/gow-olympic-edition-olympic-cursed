@@ -18,7 +18,7 @@ Développeur 2: Ines LAHBIB
 
 # Fonctionnalités:
 
-**Information importante :** Notre jeu est jouable à deux joeur en versus sur un même clavier en écran scindé.
+**Information importante :** Notre jeu est jouable à deux joueurs en versus sur un même clavier en écran scindé.
 
 **Notre jeux ce compose de 4 parties :**
 
