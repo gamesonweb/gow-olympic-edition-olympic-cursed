@@ -9,6 +9,8 @@ Ce jeu, développé avec Babylon JS, vise à créer une expérience utilisateur 
 # Lien du jeux 
 [nayarjay.github.io/GAW/](https://nayarjay.github.io/GAW/)
 
+# Lien de la vidéo du Gameplay
+
 # Crédits:
 
 Développeur 1: Mohamed rayan BOUDIBA | Pseudo Github Nayarjay <br>
@@ -18,7 +20,7 @@ Développeur 2: Ines LAHBIB
 
 # Fonctionnalités:
 
-**Information importante :** Notre jeu est jouable en :
+**Information importante - notre jeu est jouable en :**  
 - Deux joueurs en versus sur un même clavier en écran scindé 
 - En QWERTY ET AZERTY.
 - Bouger la souris pour lancer la musique entre chaque scène
