@@ -18,7 +18,10 @@ Développeur 2: Ines LAHBIB
 
 # Fonctionnalités:
 
-**Information importante :** Notre jeu est jouable à deux joueurs en versus sur un même clavier en écran scindé en QWERTY ET AZERTY.
+**Information importante :** Notre jeu est jouable en :
+- Deux joueurs en versus sur un même clavier en écran scindé 
+- En QWERTY ET AZERTY.
+- Bouger la souris pour lancer la musique entre chaque scène
 
 **Notre jeux ce compose de 4 parties :**
 
