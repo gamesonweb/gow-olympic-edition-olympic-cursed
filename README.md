@@ -24,6 +24,7 @@ Membre 3: Yousra Medjidel
 - Deux joueurs en versus sur un même clavier en écran scindé 
 - En QWERTY ET AZERTY.
 - Bouger la souris pour lancer la musique entre chaque scène
+- Enlever la touche Majuscule
 
 **Notre jeux ce compose de 4 parties :**
 
