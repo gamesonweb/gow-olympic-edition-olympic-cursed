@@ -14,7 +14,7 @@ Ce jeu, développé avec Babylon JS, vise à créer une expérience utilisateur 
 # Crédits:
 
 Développeur 1: Mohamed rayan BOUDIBA | Pseudo Github Nayarjay <br>
-Développeur 2: Ines LAHBIB
+Développeur 2: Ines LAHBIB <br>
 Membre 3: Yousra Medjidel
 
 
