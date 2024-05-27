@@ -25,7 +25,7 @@ Développeur 2: Ines LAHBIB
 - En QWERTY ET AZERTY.
 - Sur Firefox,Chrome ,Edge.
 
-**Information importante** 
+**Information importante :** 
 - Bouger la souris pour lancer la musique entre chaque scène
 - Activez l'accélération matérielle de votre navigateur si vous avez désactivée celle-ci.
   
