@@ -39,7 +39,7 @@ Développeur 2: Ines LAHBIB
 
 
 # Installation:
-Cloner le repository du jeux via ce lien :
+Cloner le repository du jeux via ce lien :<br>
 [Nayarjay/GAW](https://github.com/Nayarjay/GAW.git)<br>
 Une fois le dépôt cloné vous pouvez lancer les commandes :
 - npm install
