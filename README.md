@@ -32,10 +32,12 @@ Développeur 2: Ines LAHBIB
 **Notre jeux ce compose de 4 parties :**
 
 - Un menu principal
+- Une cinématique textuelle expliquant l'histoire du jeu
+- Les Crédits avec la liste des membres du groupe et de leurs contributions, ainsi que les remerciements aux contributeurs
 - Pour le premier niveau, une descente de ski
 - Pour le deuxième niveau, une course à pied (sprint)
 - Pour le troisième niveau, une compétition de bowling
-- Et pour finir, l'écran final avec les résultats
+- Et pour finir, l'écran final avec les résultats et l'animation associée à la victoire ou à la défaite du joueur
 
 
 # Installation:
