@@ -23,6 +23,7 @@ Développeur 2: Ines LAHBIB
 **Information importante Notre jeu est jouable en**  :
 - Deux joueurs en versus sur un même clavier en écran scindé 
 - En QWERTY ET AZERTY.
+- Sur tout Firefox,Chrome ,Edge
 
 **Information importante** 
 - Bouger la souris pour lancer la musique entre chaque scène
