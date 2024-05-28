@@ -28,7 +28,7 @@ Développeur 2: Ines LAHBIB
 **Information importante :** 
 - Bouger la souris pour lancer la musique entre chaque scène
 - Activez l'accélération matérielle de votre navigateur si vous avez désactivée celle-ci.
-- Utilser le slider en bas de l'écran pourchanger le volume de la musique
+- Utilser le slider en bas de l'écran pour changer le volume de la musique
   
 **Notre jeux ce compose de 4 parties :**
 
