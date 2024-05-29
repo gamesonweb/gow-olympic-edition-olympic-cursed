@@ -62,7 +62,8 @@ yousra.medjidel@etu.univ-amu.fr <br>
 
 https://github.com/Nayarjay/GAW
 # Lien de la vidéo d'explication technique
-[Watch the video](https://youtu.be/caxi4AppGNk)
+[![Watch the video](https://img.youtube.com/vi/caxi4AppGNk/maxresdefault.jpg)](https://youtu.be/caxi4AppGNk)
+
 
 # Lien de la documentation technique en PDF 
 https://aixmarseilleuniversite-my.sharepoint.com/personal/mohamed_boudiba_etu_univ-amu_fr/Documents/Compte_rendu_game_On_web_Mohamed_Boudiba_Yousra_MEDJIDEL_Ines%20LAHBIB%20(1).pdf?login_hint=mohamed.BOUDIBA%40etu.univ-amu.fr
