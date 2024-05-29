@@ -9,7 +9,7 @@ Ce jeu, développé avec Babylon JS, vise à créer une expérience utilisateur 
 # Lien du jeux 
 [nayarjay.github.io/GAW/](https://nayarjay.github.io/GAW/)
 
-# Lien de la vidéo du Gameplay
+# Lien de la vidéo du Gameplay (clicker sur l'image)
 [![Watch the video](https://i.ibb.co/hFTTPTB/background-Menu.png)](https://youtu.be/46admF5cjt0)
 
 
