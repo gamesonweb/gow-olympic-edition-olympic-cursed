@@ -44,12 +44,13 @@ Développeur 1: Mohamed rayan BOUDIBA | Pseudo Github Nayarjay: https://github.c
 
 
 # Installation:
+Assurez-vous d'avoir Node.js installé sur votre machine.Sinon télécharger le depuis https://nodejs.org/.
 Cloner le repository du jeux via ce lien :<br>
 [Nayarjay/GAW](https://github.com/Nayarjay/GAW.git)<br>
 Une fois le dépôt cloné vous pouvez lancer les commandes :
 - npm install
--  node server.js 
-
+- node server.js 
+- rentrer cette Url dans votre vaigateur http://localhost:300
 
 # Contact:
 Pour toute question ou commentaire concernant le projet, n'hésitez pas à nous contacter à nos adressses mail:
