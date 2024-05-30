@@ -64,7 +64,7 @@ https://github.com/Nayarjay/GAW
 # Lien de la vidéo d'explication technique
 [![Watch the video](https://img.youtube.com/vi/caxi4AppGNk/maxresdefault.jpg)](https://youtu.be/caxi4AppGNk)
 **Vidéo beta du jeux :** 
- [![Watch the video](https://youtu.be/g4IByEaSZq0?si=3rhfqW0HwvzXLyhE)
+https://youtu.be/g4IByEaSZq0?si=3rhfqW0HwvzXLyhE
 
 # Lien de la documentation technique en PDF 
 [Consultez la documentation PDF ici](https://drive.google.com/file/d/1vZGrVFSRthTtL1X6DnGh40wKQiEE2Y8-/view?usp=sharing)
