@@ -32,7 +32,7 @@ Développeur 1: Mohamed rayan BOUDIBA | Pseudo Github Nayarjay: https://github.c
 - Activez l'accélération matérielle de votre navigateur si vous avez désactivée celle-ci.
 - Utilser le slider en bas de l'écran pour changer le volume de la musique
 - Si la police du titre du menu principal ne change pas, actualisez la page
-
+- Si problème pour terminer le 4e niveau du côté du joueur 1, faire bouger les quilles déjà tombées
 **Notre jeux ce compose de 4 parties :**
 
 - Un menu principal
@@ -40,7 +40,7 @@ Développeur 1: Mohamed rayan BOUDIBA | Pseudo Github Nayarjay: https://github.c
 - Les Crédits avec la liste des membres du groupe et de leurs contributions, ainsi que les remerciements aux contributeurs
 - Pour le premier niveau, une descente de ski
 - Pour le deuxième niveau, une course à pied (sprint)
-- Pour le troisième niveau, une compétition de bowling
+- Pour le troisième niveau, une compétition de bowling 
 - Et pour finir, l'écran final avec les résultats et l'animation associée à la victoire ou à la défaite du joueur
 
 
