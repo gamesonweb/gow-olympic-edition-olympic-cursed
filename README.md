@@ -33,6 +33,7 @@ Développeur 1: Mohamed rayan BOUDIBA | Pseudo Github Nayarjay: https://github.c
 - Utilser le slider en bas de l'écran pour changer le volume de la musique
 - Si la police du titre du menu principal ne change pas, actualisez la page
 - Si problème pour terminer le 4e niveau du côté du joueur 1, faire bouger les quilles déjà tombées
+- 
 **Notre jeux ce compose de 4 parties :**
 
 - Un menu principal
