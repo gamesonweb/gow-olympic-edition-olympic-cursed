@@ -66,4 +66,4 @@ https://github.com/Nayarjay/GAW
 Vidéo beta du jeux : https://youtu.be/g4IByEaSZq0?si=3rhfqW0HwvzXLyhE
 
 # Lien de la documentation technique en PDF 
-https://aixmarseilleuniversite-my.sharepoint.com/personal/mohamed_boudiba_etu_univ-amu_fr/Documents/Compte_rendu_game_On_web_Mohamed_Boudiba_Yousra_MEDJIDEL_Ines%20LAHBIB%20(1).pdf?login_hint=mohamed.BOUDIBA%40etu.univ-amu.fr
+[Consultez la documentation PDF ici](https://drive.google.com/file/d/1vZGrVFSRthTtL1X6DnGh40wKQiEE2Y8-/view?usp=sharing)
