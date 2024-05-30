@@ -50,7 +50,7 @@ Cloner le repository du jeux via ce lien :<br>
 Une fois le dépôt cloné vous pouvez lancer les commandes :
 - npm install
 - node server.js 
-- rentrer cette Url dans votre vaigateur http://localhost:300
+- rentrer cette URL dans votre vaigateur http://localhost:3000
 
 # Contact:
 Pour toute question ou commentaire concernant le projet, n'hésitez pas à nous contacter à nos adressses mail:
